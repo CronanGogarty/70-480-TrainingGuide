@@ -1,0 +1,622 @@
+﻿<!DOCTYPE html>
+<html lang="en-ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="MSCD 70-480, html5, semantic markup" />
+    <meta name="description" content="Getting started with HTML5" />
+    <meta name="author" content="Aindréas Gogarty" />
+    <title>Chapter 2:Getting started with HTML5 | 70-480 Programming in HTML5 with JavaScript and CSS3</title>
+    <link href="../styles.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <h1>Chapter 2:Getting started with HTML5</h1>
+        <h2>Lesson 1:Introducing HTML5</h2>
+        <nav>
+            <ul>
+                <li>
+                    <a href="lesson1.html">Lesson 1:Introducing HTML5</a>
+                    <ul>
+                        <li><a href="#understanding-html-variations">Understanding HTML XHTML and HTML5</a></li>
+                        <li><a href="#introducing-semantic-markup">Introducing Semantic Markup</a></li>
+                        <li><a href="#working-with-elements">Working With Elements</a></li>
+                        <li><a href="#creating-an-html-document">Creating an HTML document</a></li>
+                        <li><a href="#lesson-summary">Lesson Summary</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <hr />
+    <article id="understanding-html-variations">
+        <h3>Understanding HTML XHTML and HTML5</h3>
+        <section title="html">
+            <h4>HTML</h4>
+            <p>HTML is a descended from SGML (Standard Generalized Markup Language) which was used to document publishing.</p>
+            <p>HTML browsers were designed to be backwards-comatible <em>and</em> forwards-comatible. This was achieved by the browsers ignoring any tags that were not recognized, this means that older browsers simply ignore tags that were introduced since the browser was developed and released.</p>
+        </section>
+        <section title="xhtml">
+            <h4>XHTML</h4>
+            <p>
+                XHTML is an XML-based specifiation that
+                tightened the HTML specifiation to make HTML adhere to the XML rules that describe a
+                well-formed document, such as having a matching end tag for each starting tag. This meant
+                that XHTML documents could be validated by using XSD (XML Schema Definition) fies and could be edited by using
+                XML tools
+            </p>
+            <p>XHTML required that elements be defined in lowercase. All elements must be closed; in the case of empty and void elements this was achieved using self-closing tags.</p>
+            <p>The demand for additional multimedia and interactivity saw the introduction of various 3rd-party plugins and scripting languages such as JavaScript. There was need for tighter integration of of multimedia with the browsers (especially on mobile or smaller devices) and standardization across the spectrum of web technologies.</p>
+        </section>
+        <section title="html5">
+            <h4>HTML5</h4>
+            <p>HTML5 was developed by the W3C to provide the standardization and integration required by the demand for interactivity and multimedia elements across a wide variety of browsers and devices.</p>
+            <p>HTML5 originates from HTML 4.01 <em>not XHTML</em>!</p>
+            <p>
+                &quot;HTML5 represents a reinvented HTML, CSS, and JavaScript in a way that solves the need
+                for rich, interactive websites that can play audio and video and support animations from
+                within the browser without the need for plug-ins.&quot;
+            </p>
+        </section>
+    </article>
+    <hr />
+    <article id="introducing-semantic-markup">
+        <h3>Introducing Semantic Markup</h3>
+        <section>
+            <p>
+                HTML5 stresses seperation of;
+            </p>
+            <ul>
+                <li>Structure</li>
+                <li>Presentation</li>
+                <li>Behaviour</li>
+            </ul>
+            <p>
+                HTML tags provide structure - the contents of the document are contained and described using HTML tags.<br />
+                CSS defines the presentation of that structure - the same structure can be prsented in a different manner across user-agents.<br />
+                Interactivity is provided by JavaScript - JavaScript is used to respond to user actions and other events.
+            </p>
+            <p>Remember that HTML only provides structure and not presentation; even a tag such as <code>&lt;b&gt;</code> is defined by the W3C as &quot;a span of text offset from its surrounding content without conveying any extra emphasis or importance, and for which the conventional typographic presentation is bold text; for example, keywords in a document abstract, or product names in a review.&quot;</p>
+        </section>
+    </article>
+    <hr />
+    <article id="working-with-elements">
+        <h3>Working with Elements</h3>
+        <section>
+            <p>
+                An HTML element consists of;
+            </p>
+            <ul>
+                <li>a beginning tag</li>
+                <li>an ending tag</li>
+                <li>the content between the tags</li>
+            </ul>
+        </section>
+        <section title="element-reference">
+            <h4>HTML Element Reference</h4>
+            <p>
+                The W3C has defined more than 100 HTML elements. For more detailed definitions visit <a href="http://www.w3.org/html/wg/drafts/html/master/semantics.html" target="_blank" id="W3C-Element-Definitions">W3C HTML5 Element Definitions</a>.
+                <br />
+                A brief definition for each element<sup>*</sup> is described below;
+            </p>
+            <ul id="element-definitions">
+                <li>
+                    <code>&lt;a&gt;</code> Hyperlink
+                </li>
+                <li>
+                    <code>&lt;abbr&gt;</code> Abbreviation
+                </li>
+                <li>
+                    <code>&lt;address&gt;</code> Contact information
+                </li>
+                <li>
+                    <code>&lt;area&gt;</code> Image map region
+                </li>
+                <li>
+                    <code>&lt;article&gt;</code> Independent section
+                </li>
+                <li>
+                    <code>&lt;aside&gt;</code> Auxiliary section
+                </li>
+                <li>
+                    <code>&lt;audio&gt;</code> Audio stream
+                </li>
+                <li>
+                    <code>&lt;b&gt;</code> Bold text
+                </li>
+                <li>
+                    <code>&lt;base&gt;</code> Document base URI
+                </li>
+                <li>
+                    <code>&lt;bb&gt;</code> Browser button
+                </li>
+                <li>
+                    <code>&lt;bdo&gt;</code> Bi-directional text override
+                </li>
+                <li>
+                    <code>&lt;blockquote&gt;</code> Long quotation
+                </li>
+                <li>
+                    <code>&lt;body&gt;</code> Main content
+                </li>
+                <li>
+                    <code>&lt;br&gt;</code> Line break
+                </li>
+                <li>
+                    <code>&lt;button&gt;</code> Push button control
+                </li>
+                <li>
+                    <code>&lt;canvas&gt;</code> Bitmap canvas
+                </li>
+                <li>
+                    <code>&lt;caption&gt;</code> Table caption
+                </li>
+                <li>
+                    <code>&lt;cite&gt;</code> Citation
+                </li>
+                <li>
+                    <code>&lt;code&gt;</code> Code fragment
+                </li>
+                <li>
+                    <code>&lt;col&gt;</code> Table column
+                </li>
+                <li>
+                    <code>&lt;colgroup&gt;</code> Table column group
+                </li>
+                <li>
+                    <code>&lt;command&gt;</code> Command that a user can invoke
+                </li>
+                <li>
+                    <code>&lt;datagrid&gt;</code> Interactive tree, list, or tabular data
+                </li>
+                <li>
+                    <code>&lt;datalist&gt;</code> Predefied control values
+                </li>
+                <li>
+                    <code>&lt;dd&gt;</code> Defiition description
+                </li>
+                <li>
+                    <code>&lt;del&gt;</code> Deletion
+                </li>
+                <li>
+                    <code>&lt;details&gt;</code> Additional information
+                </li>
+                <li>
+                    <code>&lt;dfn&gt;</code> Defiing instance of a term
+                </li>
+                <li>
+                    <code>&lt;dialog&gt;</code> Conversation
+                </li>
+                <li>
+                    <code>&lt;div&gt;</code> Generic division
+                </li>
+                <li>
+                    <code>&lt;dl&gt;</code> Description list
+                </li>
+                <li>
+                    <code>&lt;dt&gt;</code> Description term
+                </li>
+                <li>
+                    <code>&lt;em&gt;</code> Stress emphasis
+                </li>
+                <li>
+                    <code>&lt;embed&gt;</code> Embedded application
+                </li>
+                <li>
+                    <code>&lt;fildset&gt;</code> Form control group
+                </li>
+                <li>
+                    <code>&lt;fiure&gt;</code> A fiure with a caption
+                </li>
+                <li>
+                    <code>&lt;footer&gt;</code> Section footer
+                </li>
+                <li>
+                    <code>&lt;form&gt;</code> Form
+                </li>
+                <li>
+                    <code>&lt;h1&gt;</code> Heading level 1
+                </li>
+                <li>
+                    <code>&lt;h2&gt;</code> Heading level 2
+                </li>
+                <li>
+                    <code>&lt;h3&gt;</code> Heading level 3
+                </li>
+                <li>
+                    <code>&lt;h4&gt;</code> Heading level 4
+                </li>
+                <li>
+                    <code>&lt;h5&gt;</code> Heading level 5
+                </li>
+                <li>
+                    <code>&lt;h6&gt;</code> Heading level 6
+                </li>
+                <li>
+                    <code>&lt;head&gt;</code> Document head
+                </li>
+                <li>
+                    <code>&lt;header&gt;</code> Section header
+                </li>
+                <li>
+                    <code>&lt;hr&gt;</code> Separator
+                </li>
+                <li>
+                    <code>&lt;html&gt;</code> Document root
+                </li>
+                <li>
+                    <code>&lt;i&gt;</code> Italic text
+                </li>
+                <li>
+                    <code>&lt;iframe&gt;</code> Inline frame
+                </li>
+                <li>
+                    <code>&lt;img&gt;</code> Image
+                </li>
+                <li>
+                    <code>&lt;input&gt;</code> Form control
+                </li>
+                <li>
+                    <code>&lt;ins&gt;</code> Insertion
+                </li>
+                <li>
+                    <code>&lt;kbd&gt;</code> User input
+                </li>
+                <li>
+                    <code>&lt;label&gt;</code> Form control label
+                </li>
+                <li>
+                    <code>&lt;legend&gt;</code> Explanatory title or caption
+                </li>
+                <li>
+                    <code>&lt;li&gt;</code> List item
+                </li>
+                <li>
+                    <code>&lt;link&gt;</code> Link to resources
+                </li>
+                <li>
+                    <code>&lt;map&gt;</code> Client-side image map
+                </li>
+                <li>
+                    <code>&lt;mark&gt;</code> Marked or highlighted text
+                </li>
+                <li>
+                    <code>&lt;menu&gt;</code> Command menu
+                </li>
+                <li>
+                    <code>&lt;meta&gt;</code> Metadata
+                </li>
+                <li>
+                    <code>&lt;meter&gt;</code> Scalar measurement
+                </li>
+                <li>
+                    <code>&lt;nav&gt;</code> Navigation
+                </li>
+                <li>
+                    <code>&lt;noscript&gt;</code> Alternative content for no script support
+                </li>
+                <li>
+                    <code>&lt;object&gt;</code> Generic embedded resource
+                </li>
+                <li>
+                    <code>&lt;ol&gt;</code> Ordered list
+                </li>
+                <li>
+                    <code>&lt;optgroup&gt;</code> Option group
+                </li>
+                <li>
+                    <code>&lt;option&gt;</code> Selection choice
+                </li>
+                <li>
+                    <code>&lt;output&gt;</code> Output control
+                </li>
+                <li>
+                    <code>&lt;p&gt;</code> Paragraph
+                </li>
+                <li>
+                    <code>&lt;param&gt;</code> Plug-in parameter
+                </li>
+                <li>
+                    <code>&lt;pre&gt;</code> Preformatted text
+                </li>
+                <li>
+                    <code>&lt;progress&gt;</code> Progress of a task
+                </li>
+                <li>
+                    <code>&lt;q&gt;</code> Inline quotation
+                </li>
+                <li>
+                    <code>&lt;rp&gt;</code> Ruby parenthesis
+                </li>
+                <li>
+                    <code>&lt;rt&gt;</code> Ruby text
+                </li>
+                <li>
+                    <code>&lt;ruby&gt;</code> Ruby annotation
+                </li>
+                <li>
+                    <code>&lt;samp&gt;</code> Sample output
+                </li>
+                <li>
+                    <code>&lt;script&gt;</code> Linked or embedded script
+                </li>
+                <li>
+                    <code>&lt;section&gt;</code> Document section
+                </li>
+                <li>
+                    <code>&lt;select&gt;</code> Selection control
+                </li>
+                <li>
+                    <code>&lt;small&gt;</code> Small print
+                </li>
+                <li>
+                    <code>&lt;source&gt;</code> Media resource
+                </li>
+                <li>
+                    <code>&lt;span&gt;</code> Generic inline container
+                </li>
+                <li>
+                    <code>&lt;strong&gt;</code> Strong importance
+                </li>
+                <li>
+                    <code>&lt;style&gt;</code> Embedded style sheet
+                </li>
+                <li>
+                    <code>&lt;sub&gt;</code> Subscript
+                </li>
+                <li>
+                    <code>&lt;sup&gt;</code> Superscript
+                </li>
+                <li>
+                    <code>&lt;table&gt;</code> Table
+                </li>
+                <li>
+                    <code>&lt;tbody&gt;</code> Table body
+                </li>
+                <li>
+                    <code>&lt;td&gt;</code> Table cell
+                </li>
+                <li>
+                    <code>&lt;textarea&gt;</code> Multiline text control
+                </li>
+                <li>
+                    <code>&lt;tfoot&gt;</code> Table footer
+                </li>
+                <li>
+                    <code>&lt;th&gt;</code> Table header cell
+                </li>
+                <li>
+                    <code>&lt;thead&gt;</code> Table head
+                </li>
+                <li>
+                    <code>&lt;time&gt;</code> Date and/or time
+                </li>
+                <li>
+                    <code>&lt;title&gt;</code> Document title
+                </li>
+                <li>
+                    <code>&lt;tr&gt;</code> Table row
+                </li>
+                <li>
+                    <code>&lt;ul&gt;</code> Unordered list
+                </li>
+                <li>
+                    <code>&lt;var&gt;</code> Variable
+                </li>
+                <li>
+                    <code>&lt;video&gt;</code> Video or movie
+                </li>
+                <li>
+                    <code>&lt;wbr&gt;</code> Optionally break up a large word at this element
+                </li>
+            </ul>
+        </section>
+        <section title="element-attributes">
+            <h4>Working with Attributes</h4>
+            <p>
+                The beginning tag of an HTML element can contain additional data in the form of an <em>attribute</em>. An attribute is a name-value pair where the name is unique within the tag and the value is enclosed within double-quotes or single-quotes. The code <code>title="elementTitle"</code> is an example of en attribute; multiple attributes can be added to an element's beginning tag.
+            </p>
+            <h5>Boolean Attributes</h5>
+            <p>
+                Some attributes are Boolean, which means that merely adding the attribute name to the tag means the attribute is set. For example <code>&lt;input type="checkbox" checked&gt;</code> is equivelant to <code>&lt;input type="checkbox" checked="checked"&gt;</code>. It is also acceptable to use empty quotes as the value for a boolean attribute; <code>&lt;input type="checkbox" checked=''&gt;</code>.<br />
+                It is considered best-practice to use the long form (or redundant value) that specifies the full value of the boolean attribute especially if the attribute will be manipulated using JavaScript or jQuery.
+            </p>
+            <h5>HTML5 Global Attibute Reference</h5>
+            <p>
+                HTML5 provides a number of global attributes; these are attributes which may be applied to any HTML element.
+            </p>
+            <ul>
+                <li>
+                    <code>accesskey</code> Enables you to either specify a shortcut key to which to jump or to set
+                    focus to an element. As a rule, you shouldn’t use this because it can cause problems
+                    with other technologies.
+                </li>
+                <li>
+                    <code>class</code> Used with CSS to specify one or more class names for an element.
+                </li>
+                <li>
+                    <code>contenteditable</code> Specifies that the content within the tag can be edited.
+                </li>
+                <li>
+                    <code>contextmenu</code> User can right-click an element to display a menu. At the time of this
+                    writing, no browser supports this attribute.
+                </li>
+                <li>
+                    <code>dir</code> Enables you to specify left-to-right or right-to-left text direction for the content
+                    in an element.
+                </li>
+                <li>
+                    <code>draggable</code> Specifies whether an element is draggable.
+                </li>
+                <li>
+                    <code>
+                        dropzone
+                    </code> Enables you to specify the behavior of the dragged data when it’s
+                    dropped. Data can be copied, moved, or linked.
+                </li>
+                <li>
+                    <code>hidden</code> Specifies that an element is not relevant.
+                </li>
+                <li>
+                    <code>id</code> Specifies a unique id for an element.
+                </li>
+                <li>
+                    <code>lang</code> Specifies the language (English, French, German, and so on) of the element’s content.
+                </li>
+                <li>
+                    <code>spellcheck</code> Used with the lang attribute to enable you to indicate whether the element is to have its spelling and grammar checked.
+                </li>
+                <li>
+                    <code>style</code> Specifies an inline CSS style for the element.
+                </li>
+                <li>
+                    <code>tabindex</code> Sets the tabbing order of the element.
+                </li>
+                <li>
+                    <code>title</code> Provides extra information about the element.
+                </li>
+            </ul>
+            <h5>Working with void elements</h5>
+            <p>
+                Most HTML elements can have content. Elements are not required to have content (you can have an empty div for example) but there are certain elements called <em>void elements</em> that cannot have content. These are;
+            </p>
+            <ul>
+                <li>
+                    <code>&lt;area&gt;</code> Defies a hyperlink area with some text in an image map
+                </li>
+                <li>
+                    <code>&lt;base&gt;</code> Specifies the document’s base URL or target for all relative URLs in the
+                    document
+                </li>
+                <li>
+                    <code>&lt;br&gt;</code> Represents a line break
+                </li>
+                <li>
+                    <code>&lt;col&gt;</code> Defies the properties of one or more columns within a <code>&lt;colgroup&gt;</code> element
+                </li>
+                <li>
+                    <code>&lt;command&gt;</code> Defies a command that can be invoked by a user
+                </li>
+                <li>
+                    <code>&lt;hr&gt;</code> Specifies a thematic change in content
+                </li>
+                <li>
+                    <code>&lt;img&gt;</code> Defies an image
+                </li>
+                <li>
+                    <code>&lt;input&gt;</code> Defies a typed data fild that allows the user to edit the data
+                </li>
+                <li>
+                    <code>&lt;link&gt;</code> Defies a relationship between a document and an external resource such as
+                    a cascading style sheet
+                </li>
+                <li>
+                    <code>&lt;keygen&gt;</code> Defies a key-pair generator control for forms that is used to encrypt data
+                    that will be passed to the server
+                </li>
+                <li>
+                    <code>&lt;meta&gt;</code> Defies metadata that describes the HTML document
+                </li>
+                <li>
+                    <code>&lt;param&gt;</code> Defies a parameter for an object
+                </li>
+                <li>
+                    <code>&lt;source&gt;</code> Defies a multimedia resource for a <code>&lt;video&gt;</code> or <code>&lt;audio&gt;</code> element
+                </li>
+                <li><code>&lt;wbr&gt;</code> Optionally breaks up a large word at this element</li>
+            </ul>
+            <h5>Expando Attributes</h5>
+            <p>Expando attributes are attributes that <em>you</em> define and are also known as author-defined attributes or custom attributes. These custom attributes can be used to attach data to an element. To ensure that the attribute name you choose does not conflict with existing, or future, attributes created by the W3C,  it is important to prefix your attribute name with <code>data-</code>. For example, the following code <code>&lt;span data-custumernumber="123"&gt;CustomerName&lt;/span&gt;</code> allows us to add the customer number to the element.</p>
+        </section>
+        <section title="self-closing-tags">
+            <h4>Working with self-closing tags</h4>
+            <p>
+                Self-closing tags take the form <code>&lt;element /&gt;</code> where the closing slash is included in the opening tag. Any element that does not contains content may be represented as a self-closing tag, but for elements that <em>can</em> contain content (such as a p or a div) it is best-practice to use seperate opening and closing tags; e.g <code>&lt;div&gt;&lt;/div&gt;</code>. Empty elements that are capable of having content but currently don’t have content should have separate end tags.
+            </p>
+            <p><b>NOTE:</b> when using the <code>&lt;script src="&hellip;"&gt;&lt;/script&gt;</code> tag to reference an external JavaScript file, you must always include a seperate end tag.</p>
+        </section>
+        <section title="comments">
+            <h4>Comments</h4>
+            <p>Comments are not rendered on the page but are sent to the browser. Comments can be used to document code. Comments are added using the floowing syntax <code>&lt;!-- content sent to browser but not rendered in the page --&gt;</code>. It is not permissable to have a space between the &lt;! and the two dashes in the opening tag. It is also not permissible to have three dashes in a row within the comment's content. Officially it is permissible to have a space between the two dashes and the &gt; of the closing tag but in practice, this code <code>&lt;!-- comment -- &gt; other page content</code> will not close the comment and the other page content will not render in the page.</p>
+            <h5>Conditional Comments</h5>
+            <p>Internet Explorer recognises conditional comments in the form of <code>&lt;!--[if lte ie7]&gt; &lt;link href="styles-ie7.css" rel="stylesheet" /&gt; &lt;![endif]--&gt;</code>. This can be useful in delivering stylesheets to older, broken versions of Internet Explorer. In order to target browsers other than IE the following code can be used <code>&lt;!--[if !IE]&gt; --&gt; IE will not display this content, Firefox will &lt;!-- &lt;![endif]--&gt;</code></p>
+        </section>
+    </article>
+    <hr />
+    <article id="creating-an-html-document">
+        <h3>Creating an HTML document</h3>
+        <p>
+            Every HTML document should have the following basic structure;
+        </p>
+        <ul>
+            <li><code>&lt;!DOCTYPE html&gt;</code> - the doctype declaration</li>
+            <li>
+                <code>&lt;html&gt;</code> - the root html element. This element contains;
+                <ul>
+                    <li><code>&lt;head&gt;</code> - the head element - this contains hidden information such as metadata and information about the document (i.e. the language) in addition to links to resources the socument requires.</li>
+                    <li><code>&lt;body&gt;</code> - the body element - this element contains the information to be displayed in the browser.</li>
+                </ul>
+            </li>
+        </ul>
+    </article>
+    <hr />
+    <article id="lesson-summary">
+        <h3>Lesson Summary</h3>
+        <ul>
+            <li>
+                An element is composed of a starting tag, inner content, and an ending tag.
+            </li>
+            <li>
+                Browsers ignore tags that are not recognized.
+            </li>
+            <li>
+                HTML5 originates from HTML 4.01, not from XHTML.
+            </li>
+            <li>
+                The W3C is responsible for developing open standards for the web.
+            </li>
+            <li>
+                HTML elements provide structure, CSS style sheets provide presentation, and
+                JavaScript provides behavior.
+            </li>
+            <li>
+                Use lowercase tag names.
+            </li>
+            <li>
+                Attribute values should always be quoted using either single quotes or double quotes.
+            </li>
+            <li>
+                Boolean attributes are attributes whose mere presence on the starting tag indicates
+                that the option is set.
+            </li>
+            <li>
+                HTML5 defies global attributes, which are the set of attributes that can appear on any
+                HTML5 element.
+            </li>
+            <li>
+                Self-closing tags are tags whose beginning and ending tags are together to create an
+                element with no content. Self-closing tags should be used only with elements that cannot have content.
+            </li>
+            <li>
+                Void elements cannot have content. They should be created by using self-closing tags.
+            </li>
+            <li>
+                Expando attributes are attributes that you define and are also known as author-defined attributes or custom attributes. Prefix these attributes with “data-“.
+            </li>
+            <li>
+                You can use conditional comments to add a browser-specific source that will work with
+                Internet Explorer but be treated as a comment by other browsers.
+            </li>
+            <li>
+                HTML entities are special characters and can be embedded in your HTML document
+                by using the ampersand (&amp;), the entity name, and a semicolon (;). You can also use the
+                ampersand (&amp;), the hash symbol (#), the entity number, and the semicolon (;).
+            </li>
+            <li>
+                Nonbreaking spaces can be used to render several contiguous spaces. You can also use
+                nonbreaking spaces to keep two words from being separated by a line break.
+            </li>
+            <li>The id attribute specifies a unique identifier for an element.</li>
+        </ul>
+    </article>
+</body>
+</html>

@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en-ca">
+<head>
+    <meta charset="utf-8" />
+    <title>iframe exercises</title>
+    <style>
+        iframe {
+            width: 100%;
+        }
+
+        #iframe-internal-content {
+            height: 250px;
+        }
+        #seamless-iframe    {
+            border:solid 2px #f00;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Some examples of working with the &lt;iframe&gt; tag.</h1>
+    </header>
+    <article>
+        <section>
+            <p>
+                An iframe embedding content from an external resource www.theguardian.com/uk;<br />
+                <iframe id="iframe-external" src="http://www.theguardian.com/uk"></iframe>
+            </p>
+
+        </section>
+        <section>
+            <p>
+                An iframe embedding local content from internal-iframe-content.html;
+                <br />
+                <iframe id="iframe-internal-content" src="internal-iframe-content.html"></iframe>
+            </p>
+
+        </section>
+        <section>
+            <p>
+                An iframe embedding local content from internal-iframe-content.html this time with the <code>sandbox="sandbox"</code> attribute;
+                <br />
+                In this instance the scripts within the embedded pages do not run.
+                <br />
+                <iframe id="sandbox-sandbox" src="internal-iframe-content.html" sandbox="sandbox"></iframe>
+            </p>
+
+        </section>
+        <section>
+            <p>
+                An iframe embedding local content from internal-iframe-content.html this time with the <code>sandbox="allow-scripts"</code> attribute;
+                <br />
+                In this instance the scripts within the embedded pages will run with the exception of the pop-ups.
+                <br />
+                <iframe id="sandbox-allow-scripts" sandbox="allow-scripts" src="sandbox-content.html"></iframe>
+            </p>
+        </section>
+        <section>
+            <p>
+                An iframe with the <code>seamless="seamless"</code> attribute. Note that support for this attribute is limited.
+                <br />
+                Of course it is possible to style the iframe using CSS as I have done here by changing the default border to red.
+                <br />
+                In addition, I have enabled <code>allow-same-origin allow-form allow-scripts</code> in the <code>sandbox</code> attribute to increase functionality.
+                <br />
+                <iframe id="seamless-iframe" src="http://www.bing.com" seamless="seamless" sandbox="allow-same-origin allow-forms allow-scripts"></iframe>
+            </p>
+        </section>
+    </article>
+</body>
+</html>

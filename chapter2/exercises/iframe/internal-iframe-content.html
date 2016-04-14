@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="en-ca">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        function runScript() {
+            console.log("this script is running from internal-iframe-content.html...");
+            alert("pop-up message from internal-iframe-content.html");
+            console.log(window.top);
+            console.log(window.parent);
+            console.log(window.frameElement);
+        }
+    </script>
+</head>
+<body onload="runScript()">
+    <p>This page has a script that runs on page load. This script logs the following pertinent messages to the console;</p>
+    <ul>
+        <li>window.top</li>
+        <li>window.parent</li>
+        <li>window.frameElement</li>
+    </ul>
+    <p>I am embedding content in this page also. This will act as a nested iframe in the top window and will therefore show a different result in the console for the <code>window.parent</code> value;
+        <br />
+        <iframe id="nested-iframe-content" src="nested-iframe-content.html"></iframe>
+    </p>
+</body>
+</html>

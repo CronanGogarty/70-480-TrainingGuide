@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html lang="en-ca">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        function runScript() {
+            console.log("this script is running from nested-iframe-content.html...");
+            alert("pop-up message from nested-iframe-content.html");
+            console.log(window.top);
+            console.log(window.parent);
+            console.log(window.frameElement);
+        }
+    </script>
+</head>
+<body onload="runScript()">
+    <p>This is page has a script that runs on page load. This script logs the following pertinent messages to the console;</p>
+    <ul>
+        <li>window.top</li>
+        <li>window.parent</li>
+        <li>window.frameElement</li>
+    </ul>
+</body>
+</html>

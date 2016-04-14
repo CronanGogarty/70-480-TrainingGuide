@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<html lang="en-ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="MSCD 70-480, html5, embedding content, hyperlinks, iframe, images, plug-ins" />
+    <meta name="description" content="Getting started with HTML5" />
+    <meta name="author" content="Aindreas Gogarty" />
+    <title>Chapter 2:Getting started with HTML5 | 70-480 Programming in HTML5 with JavaScript and CSS3</title>
+    <link href="../styles.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <h1>Chapter 2:Getting started with HTML5</h1>
+        <h2>Lesson 2:Embedding Content</h2>
+        <nav>
+            <ul>
+                <li>
+                    <a href="lesson2.html">Lesson 2:Embedding Content</a>
+                    <ul>
+                        <li>
+                            <a href="#images">Adding images to your HTML document</a>
+                            <ul>
+                                <li><a href="#image-types">Image types</a></li>
+                                <li><a href="#image-maps">Image maps</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#embedding-plugin-content">Embedding plug-in content</a></li>
+                        <li><a href="#lesson-summary">Lesson Summary</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <b>Exercises</b>
+            <ul>
+                <li><a href="exercises/iframe/iframe.html">Working with iframes</a></li>
+                <li><a href="exercises/hyperlinks/hyperlink.html">Working with hyperlinks</a></li>
+                <li><a href="exercises/images/image-map.html">Image and map</a></li>
+            </ul>
+        </nav>
+    </header>
+    <hr />
+    <article id="images">
+        <h3>Adding images to your HTML documents</h3>
+        <p>
+            The <code>&lt;img&gt;</code> tag is a void tag, that is it does not contain any content. Img has two required attributes;
+        </p>
+        <ul>
+            <li><code>src</code> - an absolute or relative URL reference to the image that is to be displayed</li>
+            <li><code>alt</code> - provides alternate text to be displayed when the image is not available</li>
+        </ul>
+        <p>It is important to realise that the image is not <em>embedded</em> in the HTML document, it is referenced. When the browser encounters an image tag, it will retrieve the referenced image by folowing the value in the <code>src</code> attribute and merge the retrieved image into the final rendering that is displayed in the browser window.</p>
+        <section id="image-types">
+            <h4>Image Types</h4>
+            <p>When using the <code>img</code> element it is posdible to use the following file types;</p>
+            <ul>
+                <li><code>.JPG</code> - Also known as JPEG, this is best for photographs because it offers high compression and up to 16.8 million color combinations, but the compression algorithm is lossy, meaning that you lose detail every time you save the fie.</li>
+                <li>
+                    <code>.GIF</code> - GIF is great to use on small images that have a fied number of colors. GIF also
+                    supports transparent color. GIF uses lossless compression and is best for logos and
+                    worst for photos. GIF also supports the ability to encapsulate multiple images in one
+                    fie, which is commonly used to provide animated GIFs.
+                </li>
+                <li>
+                    <code>.PNG</code> - PNG is a great all-around fie type due to its lossless high compression. PNG
+                    fies can be 48-bit true color or 16-bit grayscale. PNG not only supports transparent
+                    color but also offers variable transparency. Photos aren’t compressed to be as small
+                    as JPG photos, but being lossless makes it worth the extra size in many scenarios.
+                </li>
+                <li>
+                    <code>.SVG</code> - SVG is Scalable Vector Graphics and is great for drawings but not for photos.
+                    SVG images can be scaled up or down without losing detail because the fie contains
+                    the instructions to draw the image, as opposed to the other fie types that contain a
+                    raster-based image. Raster-based images are composed of color dots that make up the
+                    image. If you need to scale a raster-based image up or down, you will see that in color,
+                    dots are re-sampled, and the image typically ends up looking blocky.
+                </li>
+            </ul>
+        </section>
+        <section id="image-maps">
+            <h4>Image maps</h4>
+            <p>It is possible to create a map which can then be associated with an image using the <code>usemap="mapName"</code> attribute of the <code>img</code> element. The map element requires a <code>name="mapName"</code> attribute, this is the name that is then used when setting the <code>usemap</code> attribute for the <code>img</code> element. In the <code>map</code> element you set <code>area</code> elements which have an attribute of <code>coord</code> which can take the following values;</p>
+            <ul>
+                <li><code>rect</code> - x1, y1, x2, and y2 specify the coordinates of the left, top, right, and bottom</li>
+                <li><code>circle</code> - x, y, and radius specify the coordinates of the center and the radius</li>
+                <li>
+                    <code>poly</code> - x1, y1, x2, y2,.., xn, and yn specify the coordinates of the edges. The fist and last
+                    coordinate pairs should be the same to close the polygon, but if they aren’t the same,
+                    the browser will add a closing pair.
+                </li>
+            </ul>
+            <p>Each area element can have a <code>href</code> attribute and a <code>alt</code> attribute which are similar to those in the <code>a href</code> element.</p>
+        </section>
+    </article>
+    <hr />
+    <article id="embedding-plugin-content">
+        <h3>Embedding plug-in content</h3>
+        <p>There are two supported elements for embedding plug-in content;</p>
+        <ul>
+            <li><code>&lt;embed&gt;</code></li>
+            <li><code>&lt;object&gt;</code></li>
+        </ul>
+        <p><code>&lt;embed&gt;</code> was originally created by Netscape and then support for the element was added to Internet Explorer, the <code>&lt;object&gt;</code> element was added to the HTML4.0 specification. In HTML5 both elements are valid - <code>object</code> provides more functionality whereas <code>embed</code> is easier to use.</p>
+        <p>The <code>embed</code> tag has the following attributes;</p>
+        <ul>
+            <li><code>height</code></li>
+            <li><code>width</code></li>
+            <li><code>src</code></li>
+            <li><code>type</code> - specifies the MIME type of the embedded content</li>
+        </ul>
+        <p>
+            For browsers that do not support the <code>embed</code> element, fallback code can be added between the opening and closing tags;
+            <br />
+            <code>&lt;embed src="myFlash.swf" height="100" width="300" type="application/x-shockwave-flash"&gt;Your browser does not support Flash - you are missing out&lt;/embed&gt;</code>
+        </p>
+        <p>The <code>object</code> tag embeds an object, such as multimedia like audio, video, Java applets, ActiveX, PDF and Flash, within an HTML document. The <code>object</code> tag supports the following attributes;</p>
+        <ul>
+            <li><code>data</code> - Supplies the URL of the resource to be used by the object</li>
+            <li><code>form</code> - Indicates one or more form ids to which the object belongs</li>
+            <li><code>height</code></li>
+            <li><code>width</code></li>
+            <li><code>name</code></li>
+            <li><code>type</code> - Defies the MIME type of data specifid in the data attribute</li>
+            <li><code>usemap</code> - the name of a client-side image map to be used with the object</li>
+        </ul>
+        <p><b>At a minimum, you must define either the data or type attribute.</b></p>
+        <p>
+            You can use the <code>object</code> element to embed another HTML page within your document as follows;
+            <br />
+            <code>
+                &lt;object data="menu.html" type="text/html" name="embeddedMenu" height="100" width="400"&gt;
+                <br />
+                Alternate text to be displayed by browsers that do not support the object tag
+                <br />
+                &lt;/object&gt;
+            </code>
+            <br />
+            using the <code>iframe</code> tag is the recommended approach for embedding a webpage since you can use the <code>sandbox</code> attribute to control content from an external domain. In addition, some features such as tooltips might not behave as expected when using the <code>object</code> tag.
+        </p>
+        <h4>Passing parameters to an object</h4>
+        <p>
+            Use the <code>&lt;param&gt;</code> tag to pass data to an object - these tags must be before any alternate text between the opening and closing tags. The <code>param</code> tag requires both <code>name</code> and <code>value</code> attributes. Here is an example;
+            <br />
+            <code>
+                &lt;object data="someMusic.wav"&gt;
+                <br />
+                &lt;param name="autoplay" value="false" /&gt;
+                <br />
+                Alternate text for non-supporting browsers
+                <br />
+                &lt;/object&gt;
+            </code>
+        </p>
+    </article>
+    <hr />
+    <article id="lesson-summary">
+        <h3>Lesson Summary</h3>
+        <ul>
+            <li>
+                You can use the <code>&lt;iframe&gt;</code>
+                element to provide reuse of HTML by embedding an HTML
+                document in your current HTML document.
+            </li>
+            <li>
+                Use the sandbox attribute on the <code>&lt;iframe&gt;</code>
+                tag to help prevent malware and annoyances such as pop-ups from being introduced when the content is embedded in your
+                HTML page.
+            </li>
+            <li>
+                Use the seamless attribute on the <code>&lt;iframe&gt;</code>
+                tag to indicate that the source content is to
+                be rendered to appear as though it’s part of the containing document.
+            </li>
+            <li>
+                The <code>&lt;a&gt;</code>
+                tag creates a hyperlink to either an external HTML document or an internal
+                location in the current document. The <code>&lt;a&gt;</code>
+                tag can also be used to send email
+                messages.
+            </li>
+            <li>
+                The <code>&lt;img&gt;</code> element is a void element and is used to add an image reference to your
+                HTML document.
+            </li>
+            <li>
+                JPG is best for displaying photos on HTML pages due to its compression, GIF is best
+                for small images with transparency and embedded animations, PNG is best for storage
+                due to lossless compression during editing sessions, and SVG is best for drawings due
+                to its vector drawing scalability.
+            </li>
+            <li>
+                You can create a clickable image map by using the <code>&lt;map&gt;</code> and <code>&lt;area&gt;</code> elements.
+            </li>
+            <li>
+                You can use the <code>&lt;embed&gt;</code> tag to provide simple content embedding.
+            </li>
+            <li>
+                You can use the <code>&lt;object&gt;</code>
+                tag to provide content embedding with greater flexibility
+                because it can have nested <code>&lt;param&gt;</code> elements.
+        </ul>
+    </article>
+</body>
+</html>

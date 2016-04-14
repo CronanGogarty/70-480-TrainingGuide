@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en-ca">
+<head>
+    <meta charset="utf-8" />
+    <title>hyperlinks exercises</title>
+    <style>
+        iframe  {
+            width:100%;
+            height:300px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hyperlinks Exercises</h1>
+    </header>
+    <article>
+        <section id="iframes">
+            <h2>iframe links</h2>
+            <p>
+                Open links in an iframe
+                <br />
+                <a href="http://www.theguardian.com/uk" target="newspapers">The Guarniaud</a>&nbsp;||&nbsp;<a href="http://www.independent.ie" target="newspapers">Irish Independent</a>&nbsp;||&nbsp;<a href="http://www.nationalpost.com" target="newspapers">The National Post</a>&nbsp;||&nbsp;<a href="red.html" target="newspapers">Red Page (local file)</a>
+                <iframe name="newspapers" sandbox="allow-forms"></iframe>
+            </p>
+            <p>
+                Open links with target=_parent and target=_top;
+                <br />
+                <iframe src="parent.html"></iframe>
+            </p>
+        </section>
+        <section id="mailto">
+            <h2>mailto links</h2>
+            <p>
+                Using the <code>mailto</code> protocol to send emails from hyperlinks;
+                <br />
+                simple mailto: <a href="mailto:name@domain.com">name@domain.com</a>
+                <br />
+                mailto using name and email address; "Firstname&nbsp;Lastname&lt;firstnamelastname@domain.com&gt;": <a href="mailto:Firstname%20Lastname&lt;firstnamelastname@domain.com&gt;">firstnamelastname@domain.com</a>
+                <br />
+                mailto with a comma-seperated list of recipients; "user1@domain.com,user2@domain.com": <a href="mailto:user1@domain.com,user2@domain.com">list@domain.com</a>
+                <br />
+                mailto with a CC; "user@domain.com?cc=carboncopy@domain.com": <a href="mailto:user@domain.com?cc=carboncopy@domain.com">carboncopy@domain.com</a>
+                <br />
+                mailto with a BCC; "user@domain.com?bcc=blindcopy@domain.com": <a href="mailto:user@domain.com?bcc=blindcopy@domain.com">blindcopy@domain.com</a>
+                <br />
+                mailto with a CC and BCC; "user@domain.com?cc=copy@domain.com&amp;bcc=blindcopy@domain.com": <a href="mailto:user@domain.com?cc=copy@domain.com&amp;bcc=blindcopy@domain.com">cc-and-bcc@domain.com</a>
+                <br />
+                mailto with a message body; "user@domain.com?body=Important message body!": <a href="mailto:user@domain.com?body=Important%20message%20body!">message@domain.com</a>
+                <br />
+                mailto with a multiline message; "user@domain.com?body=Multiline%0Amessage": <a href="mailto:user@domain.com?body=Multiline%0Amessage">multilinemessage@domain.com</a>
+                <br />
+                mailto with a subject and a message; "user@domain.com?subject=Important Subject&amp;body=this is very important": <a href="mailto:user@domain.com?subject=Important%20Subject&amp;body=this%20is%20very%20important">subject-and-message@domain.com</a>
+            </p>
+        </section>
+    </article>
+</body>
+</html>
