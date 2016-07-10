@@ -4,7 +4,12 @@
     <meta charset="utf-8" />
     <title>image with usemap &amp; an associated map element</title>
     <style>
-
+        #foxImage   {
+            /*repositioning the image causes the map to move to the repositioned location also - i.e. the map sits on top of the image regardless of where it is    */
+            position:relative;
+            top:50px;
+            left:100px;
+        }
     </style>
     <script>
         function part(arg) {
@@ -16,7 +21,7 @@
     <header>
         <h1>image with usemap &amp; an associated map element</h1>
     </header>
-    <img src="Fox_v2.png" alt="Foxy" usemap="#foxmap" />
+    <img id="foxImage" src="Fox_v2.png" alt="Foxy" usemap="#foxmap" />
     <map name="foxmap">
         <area shape="circle" coords="110,230,80" href="javascript:part('nose')" alt="Nose" />
         <area shape="rect" coords="200,230,450,330" href="javascript:part('body')" alt="Body" />

@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <script>
+        window.onload = function () {
+            var JavaScriptObjectLiteral = {
+                firstName: "John",
+                lastName: "Doe",
+                age: 25
+            }
+            alert(JSON.stringify(JavaScriptObjectLiteral));
+            var stringed = JSON.stringify(JavaScriptObjectLiteral);
+            var objected = JSON.parse(stringed);
+            console.log("Firstname = " + objected.firstName);
+        }
+        
+    </script>
+</body>
+</html>

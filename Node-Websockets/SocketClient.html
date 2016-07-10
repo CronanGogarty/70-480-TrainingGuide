@@ -21,7 +21,11 @@
     <!--[if lte IE 6]>
         <link rel="stylesheet" href="http://universal-ie6-css.googlecode.com/files/ie6.1.1.css" media="screen, projection">
     <![endif]-->
-
+    <style>
+        input[type=text] {
+            width:300px;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -29,7 +33,11 @@
     </header>
 
     <main role="main">
-        <button id="btnSend" type="button">Send</button>
+        <form id="msgForm">
+            <input type="text" id="txtMessage" placeholder="Enter text to send to WebSocket Server:" required /> <!-- pattern="[A-Za-z]{3}-->
+            <br />
+            <input type="submit" id="btnSend" form="msgForm" value="Send" />
+        </form>
         <br />
         <div id="divStatus"></div>
         <br />
@@ -61,7 +69,7 @@
 
     window.addEventListener('load', function (event) {
         var socket;
-        var text = "Hello server";
+        
         var send = document.getElementById('btnSend');
         var status = document.getElementById('divStatus');
         var response = document.getElementById('divResponse');
@@ -76,22 +84,41 @@
             status.textContent = 'Service Connected!';
         });
 
-        socket.addEventListener('message', function (event) {
-            response.innerHTML = event.data;
-        });
-
-        socket.addEventListener('error', function (event) {
-            response.innerHTML = event;
-        });
-
-        socket.addEventListener('close', function (event) {
-            send.disabled = true;
-            status.textContent = "Service Disconnected";
-        });
-
-        send.addEventListener('click', function () {
-            socket.send(text);
-        });
+        try {
+            socket.addEventListener('message', function (event) {
+                response.innerHTML = "Server replied: " + event.data;
+            });
+        } catch (e) {
+            console.log(e.message);
+        }
+        
+        try {
+            socket.addEventListener('error', function (event) {
+                response.innerHTML = event;
+            });
+        } catch (e) {
+            console.log(e.message);
+        }
+        
+        try {
+            socket.addEventListener('close', function (event) {
+                send.disabled = true;
+                status.textContent = "Service Disconnected";
+            });
+        } catch (e) {
+            console.log(e.message);
+        }
+        
+        try {
+            send.addEventListener('click', function (e) {
+                var text = document.getElementById('txtMessage').value;
+                socket.send(text);
+                e.preventDefault();
+            });
+        } catch (e) {
+            console.log(e.message);
+        }
+        
     })
     </script>
 

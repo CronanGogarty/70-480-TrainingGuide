@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Animated Elements | 70-480</title>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="description" content="">
+    <meta name="author" content="Cronán Gogarty" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" />
+    <!--<link rel="stylesheet" href="css/main.css" media="screen, projection">-->
+    <link rel="stylesheet" href="../styles.css" media="screen, projection">
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lte IE 6]>
+        <link rel="stylesheet" href="http://universal-ie6-css.googlecode.com/files/ie6.1.1.css" media="screen, projection">
+    <![endif]-->
+
+    <style>
+        body,
+        html {
+            height: 100%;
+        }
+
+        body {
+            background: rgba(55, 205, 102, 0.5);
+        }
+
+
+        /*body {
+          display: flex;
+          justify-content:center;
+          align-items:center;
+        }*/
+
+        .animationContainer {
+            position:relative;
+            width: 100%;
+            min-height: 300px;
+            height: 100%;
+            border: 1px solid #000;
+            overflow: hidden;
+
+        }
+
+        .animationElement {
+            position: absolute;
+            background-color: yellow;
+            -moz-animation: increase infinite;
+            -o-animation: increase infinite;
+            -webkit-animation: increase infinite;
+            animation: increase infinite;
+            -moz-animation-direction: alternate;
+            -o-animation-direction: alternate;
+            -webkit-animation-direction: alternate;
+            animation-direction: alternate;
+        }
+
+        @-moz-keyframes increase {
+            0% {
+                border-radius: 100%;
+            }
+
+            50% {
+                background-color: orange;
+            }
+
+            100% {
+                -moz-transform: scale(2);
+                -ms-transform: scale(2);
+                -o-transform: scale(2);
+                -webkit-transform: scale(2);
+                transform: scale(2);
+                background-color: red;
+            }
+        }
+
+        @-webkit-keyframes increase {
+            0% {
+                border-radius: 100%;
+            }
+
+            50% {
+                background-color: orange;
+            }
+
+            100% {
+                -moz-transform: scale(2);
+                -ms-transform: scale(2);
+                -o-transform: scale(2);
+                -webkit-transform: scale(2);
+                transform: scale(2);
+                background-color: red;
+            }
+        }
+
+        @keyframes increase {
+            0% {
+                border-radius: 100%;
+            }
+
+            50% {
+                background-color: orange;
+            }
+
+            100% {
+                -moz-transform: scale(2);
+                -ms-transform: scale(2);
+                -o-transform: scale(2);
+                -webkit-transform: scale(2);
+                transform: scale(2);
+                background-color: red;
+                box-shadow: 5px 5px 3px #333;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main role="main">
+        <div class="animationContainer"></div>
+
+    </main>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script>try { Modernizr } catch (e) { document.write('<script src="/Scripts/modernizr-2.8.3.js"><\/script>') }</script>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/Scripts/jquery-2.2.3.min.js"><\/script>')</script>
+    <!--//ONLY INCLUDE JQUERY UI IF USING ADVANCED ANIMATION TECHNIQUES
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js" integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw=" crossorigin="anonymous"></script>
+    <script>window.jQuery.ui || document.write('<script src="/Scripts/jquery-ui-1.11.4.js"><\/script>')</script>
+    -->
+
+    <script>
+        $(function () {
+            createRandomElements();
+        });
+
+        function createRandomElements() {
+            for (var i = 0; i < 20; i++) {
+                var dimensions = Math.floor(Math.random() * (60 - 10) + 10);
+                var width = $('.animationContainer').width();
+                var height = $('.animationContainer').height();
+
+                var eltop = Math.floor(Math.random() * (height - dimensions) + dimensions);
+                var elleft = Math.floor(Math.random() * (width - dimensions) + dimensions);
+
+                var animationTime = Math.floor(Math.random() * (5 - 2 + 1)) + 2;
+                var delayTime = Math.floor(Math.random() * (300 - 100 + 100)) + 100;
+                console.log(delayTime);
+
+                var element = $('<div>', {
+                    class: 'animationElement',
+                    width: dimensions,
+                    height: dimensions
+                });
+                element.css({
+                    'animation-duration': animationTime + 's',
+                    'animation-delay': delayTime + 'ms'
+                });
+                element.offset({
+                    top: eltop,
+                    left: elleft
+                });
+                $('.animationContainer').prepend(element);
+            }
+        }
+    </script>
+
+</body>
+</html>

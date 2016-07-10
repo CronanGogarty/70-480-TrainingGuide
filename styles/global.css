@@ -1,0 +1,15 @@
+﻿html {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 0.9em;
+    color: #000;
+    background-color: #fff;
+}
+
+footer {
+    font-size:85%;
+}
+
+nav a 
+{
+    display:block;
+}
