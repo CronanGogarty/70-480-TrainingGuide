@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlexBox | 70-480 Exam Reference</title>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <link rel="shortcut icon" href="favicon.ico" />
+    <meta name="description" content="">
+    <meta name="author" content="Cronán Gogarty" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" />
+    <!--<link rel="stylesheet" href="css/main.css" media="screen, projection">-->
+    <link rel="stylesheet" href="/Styles.css" media="screen, projection">
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lte IE 6]>
+        <link rel="stylesheet" href="http://universal-ie6-css.googlecode.com/files/ie6.1.1.css" media="screen, projection">
+    <![endif]-->
+    <style>
+        #flexbox1 {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex; /*display:flexbox is now deprecated*/
+            border: 1px solid black;
+            margin-top: 100px;
+            min-height: 150px;
+            -ms-flex-direction: row;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+            justify-content: center;
+            -ms-flex-wrap: wrap;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+            align-items:flex-end;
+
+        }
+
+            #flexbox1 > div {
+                min-width: 80px;
+                min-height: 80px;
+                border: 1px solid black;
+                margin: 5px;
+                text-align: center;
+            }
+
+                #flexbox1 > div:nth-child(1) {
+                    background-color: green;
+                    order:1;
+                }
+
+                #flexbox1 > div:nth-child(2) {
+                    background-color: yellow;
+                    order:3;
+                }
+
+                #flexbox1 > div:nth-child(3) {
+                    background-color: red;
+                    order:2;
+                }
+
+                #flexbox1 > div:nth-child(4) {
+                    background-color: aqua;
+                    align-self:flex-start;
+                }
+
+                #flexbox1 > div:nth-child(5) {
+                    background-color: blueviolet;
+                    align-self:stretch;
+                }
+
+                #flexbox1 > div:nth-child(6) {
+                    background-color: chartreuse;
+                }
+
+                #flexbox1 > div:nth-child(7) {
+                    background-color: firebrick;
+                }
+
+                #flexbox1 > div:nth-child(8) {
+                    background-color: lightsalmon;
+                }
+
+                #flexbox1 > div:nth-child(9) {
+                    background-color: orange;
+                }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CSS Flexbox</h1>
+    </header>
+
+    <main role="main">
+        <article>
+            <h1>Flexbox Layout</h1>
+            <div id="flexbox1">
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>4</div>
+                <div>5</div>
+                <div>6</div>
+                <div>7</div>
+                <div>8</div>
+                <div>9</div>
+            </div>
+        </article>
+    </main>
+
+    <!-- aside is hidden in Styles.-->
+    <aside style="visibility:hidden;">
+        <h3>Aside</h3>
+    </aside>
+
+    <footer></footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script>try { Modernizr } catch (e) { document.write('<script src="Scripts/modernizr-2.8.3.js"><\/script>') }</script>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/Scripts/jquery-2.2.3.min.js"><\/script>')</script>
+    <!--//ONLY INCLUDE JQUERY UI IF USING ADVANCED ANIMATION TECHNIQUES
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js" integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw=" crossorigin="anonymous"></script>
+    <script>window.jQuery.ui || document.write('<script src="js/jquery-ui-1.11.4.js"><\/script>')</script>
+    -->
+
+    <script>
+        $(function () {
+            console.log("jQuery is working");
+        });
+    </script>
+
+</body>
+</html>

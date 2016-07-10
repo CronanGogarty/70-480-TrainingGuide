@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <form>
+        <div><input type="text" name="1stThing" value="ronán" id="a"></div>
+        <div><input type="text" name="b" value="2" id="b"></div>
+        <div><input type="hidden" name="c" value="3" id="c"></div>
+        <div>
+            <textarea name="d" rows="8" cols="40">4</textarea>
+        </div>
+        <div>
+            <select name="selecter">
+                <option value="5" selected="selected">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+            </select>
+        </div>
+        <div>
+            <input type="checkbox" name="f" value="8" id="f">
+        </div>
+        <div>
+            <input type="submit" name="g" value="Submit" id="g">
+        </div>
+    </form>
+
+    <script src="../Scripts/jquery-2.2.3.min.js"></script>
+    <script>
+        $("form").submit(function (event) {
+            console.log($(this).serializeArray());
+            console.log($(this).serialize());
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>

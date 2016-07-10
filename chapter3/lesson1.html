@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<html lang="en-ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="MSCD 70-480, javascript, introducing javascript" />
+    <meta name="description" content="Getting started with JavaScript" />
+    <meta name="author" content="Andréas Gogarty" />
+    <title>Chapter 3:Getting started with JavaScript | 70-480 Programming in HTML5 with JavaScript and CSS3</title>
+    <link href="../styles.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <hgroup>
+            <h1>Chapter 3:Getting started with JavaScript</h1>
+            <h2>Lesson 1:Introducing JavaScript</h2>
+        </hgroup>
+        <nav>
+            <ul>
+                <li>
+                    <a href="lesson1.html">Lesson 1:Introducing JavaScript</a>
+                    <ul>
+                        <li><a href="#understanding-javascript">Understanding JavaScript</a></li>
+                        <li>
+                            <a href="#understanding-data">Understanding Data</a>
+                            <ul>
+                                <li><a href="#number-type">The number type</a></li>
+                                <li><a href="#the-string-type">The string type</a></li>
+                                <li><a href="#unary-operators">Unuray operators</a></li>
+                                <li><a href="#boolean-type">The Boolean type</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#using-statements">Using statements</a>
+                            <ul>
+                                <li><a href="#variable-naming-rules">Variable naming rules</a></li>
+                                <li><a href="#creating-the-environment">Creating the environment</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#creating-an-html-document">Creating an HTML document</a></li>
+                        <li><a href="#lesson-summary">Lesson Summary</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <hr />
+    <article id="understanding-javascript">
+        <h3>Understanding JavaScript</h3>
+        <p>JavaScript is used to add interactivity to web pages. It can be used to create animations, add functionality when a user-event such as a button-click occurs, or to retrieve data from a web server when a user enters text into a form-field.</p>
+        <p>JavaScript is related to ECMAScript. ECMAScript is the standardized language for client-side scripting on the web and some variations on ECMAScript include JavaScript, JScript and ActionScript.</p>
+        <p>JavaScript is an untyped language, this means that when you declare a variable, you do not need to specify it's type.</p>
+    </article>
+    <hr />
+    <article id="understanding-data">
+        <h3>Understanding Data</h3>
+        <p>Data is at the root of all systems. When you create a program, you will typically want to retrieve, manipulate, display and store data.</p>
+        <p>Data can be stored in different forms but most data is broken into small pieces called <em>values</em>. In JavaScript a <em>value type</em> is a primitive value, a function or an object,. In JavaScript a <em>primitive value</em> is one of the following;</p>
+        <ul>
+            <li>undefined</li>
+            <li>null</li>
+            <li>Boolean</li>
+            <li>number</li>
+            <li>string</li>
+        </ul>
+        <p>A <em>function</em> is a callable object. Afunction that is part of an object is known as a <em>method</em>.</p>
+        <p>JavaScript defines the following built-in objects;</p>
+        <ul>
+            <li>the global object</li>
+            <li>the Object object</li>
+            <li>the Function object</li>
+            <li>the Array object</li>
+            <li>the String object</li>
+            <li>the Number object</li>
+            <li>the Math object</li>
+            <li>the Date object</li>
+            <li>the RegExp object</li>
+            <li>the JSON object</li>
+            <li>several variations of Error objects</li>
+        </ul>
+        <section id="expressions">
+            <h4>Using expressions to produce data</h4>
+            <p>An expression is a piece of code that produces a values such as a simple declaration of a value or a calculation using operators and operands. The operators are typically the mathematical symbols within an expression (+, -, *, etc...) while the operands are the values either side of the operators. Operands are typically numbers or strings but can also be other expressions.</p>
+
+        </section>
+        <section id="number-type">
+            <h4>Understanding the number type</h4>
+            <p>In JavaScript the number type is one of the primitive value types. A numeric value is a member of the number type and corresponds to a double-precision, 64-bit binary format. In JavaScript all numbers are represented internally as floating-point values. The 64-bit number is divided into 3 components: the fraction is 52 bits (bits 0-to-51), the exponent is 11 bits (bits 52-to-62) and the sign is a single bit (bit 63).</p>
+            <p>The highest number that can be represented internally is 2<sup>53</sup> which is 9,007,199,254,740,994. After that numbers are stored as a fraction times 2<sup>exponent</sup>.</p>
+            <p>When performing integer calculations the results will always be precise, but when dealing with fractions the results are often incorrect due to the manner in which fractions are stored. It is best to round your fractions to a specific number of decimal places.</p>
+            <p>The number type supports some special values;</p>
+            <ul>
+                <li><em>NaN</em> - not a number</li>
+                <li><em>Infinity</em> - Represents positive infiity when your value exceeds 1.7976931348623157E + 10308</li>
+                <li><em>-Infinity</em> - Represents negative infiity when your value exceeds -1.7976931348623157E + 10308.</li>
+                <li><em>undefined</em> - no value has been assigned</li>
+            </ul>
+            <section id="operator-precedence">
+                <h5>Operator Precedence</h5>
+                <p>Operator precedence determines the order in which operators are evaluated. Operators with higher precedence are evaluated first. The plus (+) and minus (-) signs have lower precedence than the multiplication (*) and division (/) signs which are equal to the modulo (%) or remainder sign. Precedence can be forced by using parentheses to determine which expressions are to be evaluated first.</p>
+            </section>
+            <section id="modulo">
+                <h5>Modulo</h5>
+                <p>The modulo (%) operator performs an implied division and returns the remainder. For example, 25 % 7 produces a result of 4, which is the remainder after dividing 25 by 7.</p>
+            </section>
+        </section>
+
+        <section id="the-string-type">
+            <h4>Understanding the string type</h4>
+            <p>A string is a collection of characters and is used to represent text. Strings can be enclosed in double or single quotes, it doesn't matter so long as the opening and closing quotes match.</p>
+            <p>The backslash character is used to escape special characters and place them in a string - e.g. "This string has a \"double quotes\" escaped in it.". Other escape sequences include \t for a tab, \n for the newline character and \u0233 will embed the unicode symbol &eacute; in a JavaScript string.</p>
+            <p>Using the plus (+) operator on strings performs string concatenation - e.g. <code>"This string " + "has been concatenated!"</code> will create a new string with the value "This string has been concatenated!".</p>
+        </section>
+
+        <section id="unary-operators">
+            <h4>Unary Operators</h4>
+            <p>Most operators are binary, in that they require two operands. When an operator requires only one operand it is known as a unary operator. The <em>typeof</em> operator is an example of a unary operator, it takes one operand and returns the dat type of that operand - e.g. <code>typeof "Any text."</code> will return a value of 'string', <code>typeof 78.9</code> will return 'number' and <code>typeof false</code> will return 'Boolean'.</p>
+            <p>The plus and minus signs can be used as unary operators to specify the sign of numbers - e.g. <code>-35</code>. The not operator (!) is also a unary operator.</p>
+        </section>
+
+        <section id="boolean-type">
+            <h4>The Boolean type</h4>
+            <p>The Boolean type can contain the values true and false.</p>
+            <section id="logical-operators">
+                <h5>Logical Operators</h5>
+                <p>JavaScript provides three logical operators that can be used in expressions to produce Boolean values;</p>
+                <ul>
+                    <li><em>&amp;&amp;</em> - logical and - true if both values evaluate to true</li>
+                    <li><em>||</em> - logical or - true if either values evaluate to true</li>
+                    <li><em>!</em> - the not operator - a unary operator that will invert the operand - e.g. !false is true</li>
+                </ul>
+                <section id="short-circuiting">
+                    <h5>Short-circuiting operators</h5>
+                    <p>In the case of the logical or (||) operator, if the first operand is true, JavaScript will not evaluate the expression any further as the result of the expression will evaluate to true. Similarly, if the first operand of a logical and (&amp;&amp;) expression is false JavaScript will abandon the rest of the expression as the result (false) is already known.</p>
+                </section>
+            </section>
+        </section>
+    </article>
+    <hr />
+    <article id="using-statements">
+        <h3>Using Statements</h3>
+        <p>In JavaScript a statement is a line of code that ends in a semicolon (;). A statement is different from an expression because an expression produces a value then JavaScript discards it. An statement tells the JavaScript host what to do. The host is typically a browser but could also be an operating system. A statement can be a command to store the value produced by an expression.</p>
+        <p>The results of expressions are typically stored in variables. A <em>variable</em> is a named reference to a location in memory for storing data. Variables in JavaScript are created using the <em>var</em> keyword.</p>
+        <p>You declare your variables when you write code that states "here is a variable named myVar" = <code>var myvar;</code>. You initialize that variable when you give it a value = <code>myvar = 123.25;</code>.</p>
+        <section id="variable-naming-rules">
+            <h4>Rules for naming variables</h4>
+            <ul>
+                <li>variable names can contain letters, numbers, the underscore (_) symbol and the dollar ($) sign</li>
+                <li>a variable name cannot begin with a number</li>
+                <li>no mathematical or logical operators or punctuation symbols are allowed in a variable name</li>
+                <li>variable names cannot be JavaScript keywords or reserved words - keywords and reserved words are allowed <em>within</em> the variable name - e.g. var function; is illegal - var myfunction; is legal</li>
+                <li>no spaces are allowed</li>
+                <li>variable names are case-sensitive</li>
+                <li>although allowed, it is recommended not to use $ or _ in variable names</li>
+            </ul>
+        </section>
+        <section id="creating-the-environment">
+            <h4>Creating the environment</h4>
+            <p>
+                The collection of all variables and their values is commonly referred to as the environment.
+                When the environment is created, it contains many standard variables plus the variables you
+                create.
+                In a web application, each time a webpage is loaded into the browser, a new environment
+                is created, and the old environment is destroyed. Any variables that you create are accessible
+                until a new webpage is loaded.
+                In a Windows 8 program, an environment is created when the application starts, and the
+                environment is destroyed when the application ends. A variable is accessible as long as your
+                program is running.
+            </p>
+        </section>
+    </article>
+    <hr />
+    <article id="functions">
+        <h3>Working with functions</h3>
+        <p>
+            A function is a grouping of statements that are executed when you call the function.
+            Functions promote code reuse because you can call the function many times from within
+            your code. Functions can have parameters, which enable you to pass data into the function.
+            Functions can also have a return value, so you can return the results of the function to the
+            caller.
+        </p>
+        <p>
+            A function can be declared by using the function keyword and then providing a name (also
+            known as an identifier), the optional list of parameters enclosed in parentheses, and a set of
+            curly braces with the grouping of statements. e.g
+            
+        </p>
+        <p>
+            <code>
+                <pre>
+function multiplyNumbers(n1, n2)    {
+    return n1 * n2;
+}</pre>
+            </code>
+        </p>
+        <p>This is an example of a <em>function declaration</em>. The name (or identifier) is multiplyNumbers, it takes two parameters (n1, n2) and has a <em>code block</em> denoted by the curly braces.</p>
+        <p>You can <em>call</em> the function from code by writing <code>var result = multiplyNumbers(3,7);</code> - this is also known as <em>invoking</em> or <em>applying</em> the function. In the given example, 3 and 7 are the <em>arguments</em> to the multiplyNumbers function. <em>Arguments</em> are what's passed to the receiving function in the code that calls it (3 and 7), while <em>parameters</em> are the values received from the caller (n1 and n2). The variable "result" will hold the value returned by the function. Not all functions will return a value.</p>
+    </article>
+</body>
+</html>

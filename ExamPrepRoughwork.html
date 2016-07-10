@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="Scripts/jquery-2.1.4.js"></script>
+    <style>
+        table,
+        td {border:1px solid black;}
+        tr:first-of-type, 
+        tr:last-of-type {background-color:blue;}
+    </style>
+</head>
+<body>
+    <canvas id="clickCanvas" width="300" height="300" style="border:solid 1px #000;">
+        Canvas is unsupported....
+    </canvas>
+    <br />
+    <button id="btnEdit" style="display:none;">Edit</button>
+    <br />
+    <hr />
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Adjusctable something</td>
+            </tr>
+            <tr>
+                <td>another something</td>
+            </tr>
+            <tr>
+                <td>third something</td>
+            </tr>
+            <tr>
+                <td>4th something</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        var canvas;
+        var context;
+        window.onload = function initialize() {
+            console.log("Running...");
+            canvas = document.getElementById("clickCanvas");
+            context = canvas.getContext('2d');
+            drawBox();
+            //drawBox.Click += clickReporter;
+            canvas.onclick = clickReporter;
+        }
+        
+        function drawBox()	{
+            context.fillStyle = 'black';
+            context.strokeRect(20, 20, (canvas.width - 40), (canvas.height - 40));
+        }
+
+        function clickReporter(e) {
+            alert("Clicked");
+        }
+
+        var customer = function () {
+            var name = "Contoso";
+            return {
+                getName: function () {
+                    return name;
+                },
+                setName: function (newName) {
+                    name = newName;
+                }
+            };
+        }();
+        alert(customer.getName());
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#btnEdit").show();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style>
+        canvas  {
+            border:1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="1000" height="400"></canvas>
+
+    <script>    
+        (function () {
+            var canvas = document.getElementById('canvas');
+            var ctxt = canvas.getContext('2d');
+            var ball;
+            var timeout = 1;
+            var ballx = bally = 100;
+            canvas.addEventListener('click', captureClick, false);
+
+            ctxt.strokeStyle = "Black";
+            ctxt.lineWidth = 5;
+            ctxt.fillStyle = '#f00';
+
+            function drawBall(x, y) {
+                ctxt.beginPath();
+                ball = ctxt.arc(x, y, 75, 0, 2 * Math.PI);
+                ctxt.stroke();
+                ctxt.fill();
+                animateBall(x,y);
+            }
+
+            function animateBall(x,y) {
+                setTimeout(function () {
+                    if (x <= (canvas.width - 100)) {
+                        //repaint the canvas
+                        ctxt.clearRect(0, 0, 1000, 400);
+                        ballx = x += 1;
+                        //bally = y = y;
+                        drawBall(x,y);
+                    }
+                }, timeout);
+            }
+
+            function captureClick(e) {
+                    var rect = canvas.getBoundingClientRect();
+                    var clickx = e.clientX - rect.left;
+                    var clicky = e.clientY - rect.top;
+                    console.log("x: " + clickx + " y: " + clicky);
+                    isThisBall(clickx, clicky);
+            }
+
+            function isThisBall(clickx, clicky) {
+                console.log('x = ' + ballx + '; y = ' + bally);
+                if ((clickx >= ballx - 60) && (clickx <= ballx + 60)) {
+                    if ((clicky >= bally - 60) && (clicky <= bally + 60)) {
+                        alert("Ball!");
+                    }
+                }
+            }
+            drawBall(100,100);
+        }());
+    </script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Drawing Using Paths</title>
+    <link href="../styles.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-2.2.3.js"></script>
+</head>
+<body>
+    <h1>Drawing Using Paths</h1>
+
+    <canvas id="canvasDrawPaths" width="1000" height="650"></canvas>
+
+    <script>
+        var canvas;
+        var context;
+
+        (function () {
+            console.log('JavaScript running....');
+
+            canvas = document.getElementById('canvasDrawPaths');
+            context = canvas.getContext('2d');
+
+            //draw the initial rect to place items inside
+            context.strokeStyle = 'rgb(255,0,0)';
+            context.strokeRect(50, 20, 900, 600);
+            var gradient = context.createLinearGradient(70, 20, 630, 20);
+            gradient.addColorStop(0, 'orange');
+            gradient.addColorStop(1, 'yellow');
+            context.fillStyle = gradient;
+            context.fillRect(50, 20, 900, 600);
+
+            drawTriangle();
+            drawX();
+            drawPolygon();
+            drawArcTo();
+            drawArc();
+
+        }());
+
+        function drawTriangle() {
+            
+
+            //always begin a new path with .beginPath()
+            context.beginPath();
+            context.moveTo(70, 30);
+            context.lineTo(170, 90);
+            context.lineTo(90, 180);
+            context.closePath();    //.closePath() draws a line to the initial point
+
+            context.strokeStyle = 'rgb(0,0,0)';
+            context.fillStyle = 'rgb(0, 255, 55)';
+            context.fill();
+            context.stroke();
+        }
+
+        function drawX() {
+            
+            context.beginPath();
+            context.moveTo(300, 50);
+            context.lineTo(300, 200);
+            context.moveTo(200, 70);
+            context.lineTo(400, 170);
+
+            context.strokeStyle = 'rgb(102, 255, 255)';
+            context.lineWidth = 10;
+            context.stroke();
+        }
+
+        function drawPolygon() {
+
+            context.beginPath();
+            context.moveTo(500, 30);
+            context.lineTo(550, 100);
+            context.lineTo(600, 100);
+            context.lineTo(550, 150);
+            context.lineTo(500, 250);
+            context.lineTo(450, 150);
+            context.lineTo(350, 100);
+            context.closePath();
+
+            context.fillStyle = 'rgb(255, 0, 102)';
+            context.strokeStyle = '#000000';
+            
+            //the sequence in which stroke and fill affects the polygon appearance
+            //the stroke width is 10px - 5px of that are painted inside the fill area
+            //if stroke is called after fill, the stroke will cover 5px of the fill area
+            //if stroke is called before fill, the subsequent fill will cover 5px of the stroke and only 5px will be visible
+            randomizeStrokeFillSequence();
+
+        }
+
+        function randomizeStrokeFillSequence() {
+            var rand = Math.floor((Math.random() * 10) + 1);
+            console.log('rand = ' + rand);
+
+            if (rand >= 5) {
+                context.fill();
+                context.stroke();
+            }
+            else {
+                context.stroke();
+                context.fill();
+            }
+        }
+
+        function drawArcTo() {
+            //this is difficult to understand - use the arc method instead
+
+            context.strokeStyle = 'rgb(0,0,0)';
+            context.lineWidth = 2;
+
+            context.beginPath();
+            context.moveTo(650, 300);
+            context.lineTo(780, 50);
+            context.lineTo(920, 290);
+            context.stroke();
+
+            context.beginPath();
+            context.moveTo(650, 300);
+            context.arcTo(720, 166, 866, 196, 200);
+            context.stroke();
+
+        }
+
+        function drawArc() {
+            context.beginPath();
+            context.arc(340, 510, 50, 0, 2 * Math.PI);
+            context.fill();
+            context.stroke();
+
+            //draw a partial circle
+            context.beginPath();
+            context.arc(600, 500, 100, 0, 1.5 * Math.PI);
+            context.fill();
+            context.stroke();
+
+
+
+        }
+    </script>
+</body>
+</html>

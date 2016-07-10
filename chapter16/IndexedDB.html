@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <p>Cannot be bothered going any further with this since; a) it is not part of the 70-480 exam, and, b) support for these features is patchy at the moment.</p>
+    <script>
+        //add this cross-browser code at the top of every script that uses InedexedDb
+        window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+        window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction;
+        window.IDBCursor = window.IDBCursor || window.webkitIDBCursor;
+        window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange;
+
+        var openRequest = indexedDB.open('Library', 1);
+        var db;
+
+        openRequest.onsuccess = function (response) {
+            db = openRequest.result;
+            console.log('success apparently');
+        }
+
+        openRequest.onerror = function (response) {
+            alert('Error code:' + response.target.errorCode);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <button id="clicker">ClickME</button>
+    <script>
+        (function () {
+            document.addEventListener("anAction", customEventHandler);
+            document.getElementById('clicker').addEventListener('click', function () {
+                //raise the custom event
+                document.dispatchEvent(myEvent);
+            }, false);
+
+            function customEventHandler(e) {
+                console.log(e.type);
+                console.log(e.target);
+                console.log(e.timestamp);
+
+
+            }
+
+            myEvent = new CustomEvent("anAction", {
+                detail: {
+                    description: "a description of the event",
+                    timeofevent: new Date(),
+                    eventcode: 2
+                },
+                bubbles: true,
+                cancelable: true
+            });
+        }());
+    </script>
+</body>
+</html>

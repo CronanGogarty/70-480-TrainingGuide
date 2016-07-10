@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <title>css-roughwork</title>
+    <link rel="stylesheet" type="text/css" href="styles/main.css" />
+</head>
+<body>
+    <p>The font-color of this paragraph has been set in the main.css file while the background-color has been declared in the importme.css file. The main.css file usese the <em>@import</em> rule to import the contents of importme.css into it. Only main.css has been linked to this html file with the relationship of stylesheet specified.</p>
+    <ul>
+        <li><a href="http://www.duckduckgo.com">Alt Search engine 1 = </a></li>
+        <li><a href="http:.//www.gigablast.com">Alt search engine 2 = </a></li>
+        <li><a name="nolink">Google doesn't need any more links</a></li>
+    </ul>
+    <p class="important" style="color:red;">This is a paragraph who's class has been set to "important".</p>
+    <p>Demonstrating the power of the <a href="#" class="user-defined">user-defined</a> stylesheet! The order of precedence (from lowest to highest) is;</p>
+    <ol>
+        <li>built-in browser style sheet</li>
+        <li>normal style rules in user-defined style sheet</li>
+        <li>normal style rules in author-defined style sheet</li>
+        <li>!important style rules in author-defined style sheet</li>
+        <li>!important style rules in user-defined style sheet</li>
+    </ol>
+    <p class="colorDemo">This is just a paragraph to be used to test various hexidecimal color values</p>
+    <div class="wrapper">
+        <div id="boxModel">
+            <div>Contents</div>
+        </div>
+        <p style="background-color:grey; border:1px solid #000;">para</p>
+        <div id="relativeDiv">
+            <div>
+                position:relative;<br />
+                width:500px;<br />
+                height:100px;<br />
+                background-color:cyan;<br />
+                bottom:50px;<br />
+                left:100px;<br />
+            </div>
+        </div>
+        <p style="background-color:grey; border:1px solid #000;">para</p>
+        <p style="background-color:grey; border:1px solid #000;">para</p>
+        <p style="background-color:grey; border:1px solid #000;">para</p>
+        <div class="nonStaticDiv">
+            position:relative;  /* make it non-static positioning */<br />
+            border:1px dashed red;<br />
+            width:100%;<br />
+            height:300px;<br />
+            <div id="absoluteDiv">
+                <div>
+                    position:absolute;<br />
+                    top:10px;<br />
+                    right:10px;<br />
+                    width:200px;<br />
+                    height:auto;<br />
+                    background-color:yellow;<br />
+                </div>
+            </div>
+            <p>A paragraph that is a sibling of the absolutely positioned div.</p>
+        </div>
+        <p style="background-color:grey; border:1px solid #000;">para</p>
+        <p style="background-color:grey; border:1px solid #000;">para</p>
+        <p style="background-color:grey; border:1px solid #000;">para</p>
+        <div class="nonStaticDiv">
+            position:relative;  /* make it non-static positioning */<br />
+            border:1px dashed red;<br />
+            width:100%;<br />
+            height:300px;<br />
+            <div class="floatedLeft">
+                float:left;<br />
+                width:33%;<br />
+                height:auto;<br />
+                background-color:lawngreen;<br />
+            </div>
+            <p>Remember that elements <em>after</em> the floated element will try to flow around the floated element. Elements <em>before</em> the float are unaffected. Lorem ipsum etc etc... with enough text in this paragraph I should be able to demonstrate the wrapping will continue underneath the floated element. It is also a good opportunity to practice my touch-typing.
+            <br />
+            <br />
+            Ok I still need some more text, I could copy-and-paste content from somewhere on the web but this is a good exercise in typing... uh-oh the library is closing soon, I've been here for many hours....</p>
+        </div>
+        <p style="background-color:grey; border:1px solid #000;">para</p>
+        <p style="background-color:grey; border:1px solid #000;">para</p>
+        <p style="background-color:grey; border:1px solid #000;">para</p>
+        <div class="nonStaticDiv">
+            <div class="floatedLeft">
+                float:left;<br />
+                width:33%;<br />
+                height:auto;<br />
+                background-color:lawngreen;<br />
+                
+            </div>
+            <p class="clearRight">
+                this is a paragraph that has been given the value <code>clear:right;</code>
+            </p>
+            <p class="clearLeft">
+                this is a paragraph that has been given the value <code>clear:left;</code>
+            </p>
+
+        </div>
+        <p style="background-color:grey; border:1px solid #000;">para</p>
+        <p style="background-color:grey; border:1px solid #000;">para</p>
+        <p style="background-color:grey; border:1px solid #000;">para</p>
+        <div class="nonStaticDiv">
+            <div class="floatedRight">
+                float:right;<br />
+                width:33%;<br />
+                height:auto;<br />
+                background-color:lawngreen;<br />
+
+            </div>
+            <p class="clearBoth">
+                this is a paragraph that has been given the value <code>clear:both;</code>
+            </p>
+
+        </div>
+        <p style="background-color:grey; border:1px solid #000;">para</p>
+        <p style="background-color:grey; border:1px solid #000;">para</p>
+        <p style="background-color:grey; border:1px solid #000;">para</p>
+        <div class="wrapper group" style="position:relative;">
+            
+            <div id="borderBox" class="boxSizing">
+                width:300px;<br />
+                position:relative;<br />
+                top:10px;<br />
+                left:10px;<br />
+                margin:0;<br />
+                padding:20px;<br />
+                border:10px solid red;<br />
+                -moz-box-sizing:border-box;<br />
+                -webkit-box-sizing:border-box;<br />
+                box-sizing:border-box;<br />
+                float:left;<br />
+            </div>
+            <div id="paddingBox" class="boxSizing">
+                width: 300px;<br />
+                position: relative;<br />
+                top: 10px;<br />
+                right: 10px;<br />
+                margin: 0;<br />
+                padding: 30px;<br />
+                border: 10px solid green;<br />
+                -moz-box-sizing: padding-box;<br />
+                -webkit-box-sizing: padding-box;<br />
+                box-sizing: padding-box;<br />
+                float:right;<br />
+            </div>
+            <div class="clearBoth">Note - support for <code>box-sizing:padding-box;</code> is currently limited to Firefox.</div>
+        </div>
+    </div>
+</body>
+</html>

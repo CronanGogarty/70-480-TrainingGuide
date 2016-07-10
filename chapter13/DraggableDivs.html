@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Draggable Divs</title>
+    
+    <style>
+        #container {
+            border: 1px solid #000;
+            height: 332px;
+            width: 332px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .hole {
+            background-color: green;
+            width: 160px;
+            height: 160px;
+            border: solid;
+            float: left;
+            text-align:center;
+            position:relative;
+        }
+
+        .item {
+            font-size: 120px;
+            font-size: 128px;
+            font-family: Arial, Helvetica, sans-serif;
+            width: 140px;
+            height: 140px;
+            background-color: #C0C0C0;
+            color: #FFFFFF;
+            text-align: center;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+            user-select: none; /*user cannot select the text*/
+            cursor: move;
+            position:absolute;
+            top:50%;
+            left:50%;
+            margin:-70px;
+        }
+
+        .dragging {
+            background-color: yellow;
+        }
+    </style>
+
+
+</head>
+<body>
+    <h1>Draggable Divs</h1>
+    <p>Oh goody, this doesn't work in Firefox even though Firefox supports Drag and Drop..... and d&d is a first-class citizen in HTML5.</p>
+    <div id="container">
+        <div id="hole1" class="hole"><div id="item1" draggable="true" class="item">1</div></div>
+        <div id="hole2" class="hole"><div id="item2" draggable="true" class="item">2</div></div>
+        <div id="hole3" class="hole"><div id="item3" draggable="true" class="item">3</div></div>
+        <div id="hole4" class="hole"></div>
+    </div>
+
+
+    <script src="../Scripts/modernizr-2.8.3.js"></script>
+    <script src="../Scripts/jquery-2.2.3.js"></script>
+    <script>
+        var dragCount = dragEndCount = elapsed = 0;;
+
+        if (Modernizr.draganddrop) {
+            // Browser supports HTML5 DnD.
+            console.log('d&d supported');
+        } else {
+            // Fallback to a library solution.
+            console.log('d&d NOT supported');
+        }
+
+        $(document).ready(function () {
+            console.log('jQuery  running...');
+            $('.item').on('dragstart', dragging);
+            $('.item').on('dragend', draggingEnded);
+            $('.hole').on('dragenter', preventDefault);
+            $('.hole').on('dragover', preventDefault);
+            $('.hole').on('dragleave', preventDefault);
+            $('.hole').on('drop', dropItem);
+        });
+
+        function dragging(e) {
+            console.log('dragging...' + ++dragCount);
+            $(e.target).addClass('dragging');
+            $draggedItem = $(e.target);
+        }
+        function draggingEnded(e) {
+            console.log('drag ended... ' + ++dragEndCount);
+            $(e.target).removeClass('dragging');
+        }
+
+        function preventDefault(e) {
+            var eventType = e.type;
+            console.log('preventDefault triggered by; ' + eventType);
+            e.preventDefault();
+        }
+        function dropItem(e) {
+            var hole = $(e.target);
+            if (hole.hasClass('hole') && hole.children().length == 0) {
+                $draggedItem.detach();
+                $draggedItem.appendTo($(e.target));
+            }
+        }
+
+    </script>
+</body>
+</html>

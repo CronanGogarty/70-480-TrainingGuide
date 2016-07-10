@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <h1>Retrieve data from sessionStorage</h1>
+    <div id="divDisplayObject"></div>
+
+    <script type="text/javascript">
+        var displayDiv;
+        var carObject;
+
+        window.onload = function () {
+            carObject = sessionStorage.getItem('carObject');
+            document.getElementById('divDisplayObject').innerText = carObject;
+        }
+        
+
+    </script>
+</body>
+</html>

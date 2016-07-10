@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        code{
+            white-space:pre;
+        }
+    </style>
+</head>
+<body>
+    <code>
+(function () {
+    myInitialFunction(myCallbackFunction, "this is a ", "callback function pattern");
+
+    function myInitialFunction(callback, a, b) {
+        var calculation = a + b;
+        callback(calculation);
+    }
+    function myCallbackFunction(inString) {
+        alert(inString);
+    }
+}());
+    </code>
+    <script>
+        (function () {
+            myInitialFunction(myCallbackFunction, "this is a ", "callback function pattern");
+
+            function myInitialFunction(callback, a, b) {
+                var calculation = a + b;
+                callback(calculation);
+            }
+            function myCallbackFunction(inString) {
+                alert(inString);
+            }
+        }());
+    </script>
+</body>
+</html>

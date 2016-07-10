@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Subscribing to an already completed Promise object</title>
+    <link href="../styles.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-2.2.3.js"></script>
+</head>
+<body>
+    <button id="btnExecuteAsync">Execute Async Function</button>
+    <p>
+        It’s useful to know that you can subscribe to the promise object even after it’s been resolved.<br />
+        This immediately executes the function you pass to the done method.<br />
+        Consider the following example in which two promise objects are used to chain actions together, and the completion of secondPromise adds a function to firstPromise, which has already completed.
+    </p>
+    <p>Open the console to see the thread execution</p>
+
+    <hr />
+<code>
+
+function timeoutAsync(milliseconds) {
+    console.log('timeoutAsync executing...');
+    var deferred = $.Deferred();
+    setTimeout(function () { deferred.resolve() }, milliseconds);
+    return deferred.promise();
+};
+
+function sendRequestAsync() {
+    console.log('sendRequest executing...');
+    var firstPromise = timeoutAsync(2000);
+    console.log('code has continued to execute after call to timeoutAsync...');
+    firstPromise.done(function () {
+        console.log('firstPromise.done...');
+        var secondPromise = timeoutAsync(2000);
+        console.log('code has continued to execute after secondPromise call to timeoutAsync...');
+        secondPromise.done(function () {
+            console.log('secondPromise.done...');
+            firstPromise.done(function () {
+                console.log('second call to firstPromise.done...');
+                alert('both firstPromise and secondPromise are done!');
+            });
+        });
+    });
+    console.log('code has continued to execute after call to timeoutAsync and all dones...');
+    return firstPromise;
+}
+
+$(document).ready(function () {
+    console.log('jQuery running...');
+    var btn = $('#btnExecuteAsync').click(sendRequestAsync);
+});
+</code>
+
+    <script type="text/javascript">
+
+        function timeoutAsync(milliseconds) {
+            console.log('timeoutAsync executing...');
+            var deferred = $.Deferred();
+            setTimeout(function () { deferred.resolve() }, milliseconds);
+            return deferred.promise();
+        };
+
+        function sendRequestAsync() {
+            console.log('sendRequest executing...');
+            var firstPromise = timeoutAsync(2000);
+            console.log('code has continued to execute after call to timeoutAsync...');
+            firstPromise.done(function () {
+                console.log('firstPromise.done...');
+                var secondPromise = timeoutAsync(2000);
+                console.log('code has continued to execute after secondPromise call to timeoutAsync...');
+                secondPromise.done(function () {
+                    console.log('secondPromise.done...');
+                    firstPromise.done(function () {
+                        console.log('second call to firstPromise.done...');
+                        alert('both firstPromise and secondPromise are done!');
+                    });
+                });
+            });
+            console.log('code has continued to execute after call to timeoutAsync and all dones...');
+            return firstPromise;
+        }
+
+        $(document).ready(function () {
+            console.log('jQuery running...');
+            var btn = $('#btnExecuteAsync').click(sendRequestAsync);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <button id="createBook" type="button">Create Book Object</button>
+    <button id="createAuthor" type="button">Create Author Object</button>
+    <hr />
+    <div id="bookOut"></div>
+    <script>
+        (function () {
+
+            document.getElementById('createBook').addEventListener('click', function () {
+                var newBook = new Book('The Hobbit', '327', 'JR Hartley');
+                newBook.ISBN = "123456789";
+                showBook(newBook);
+            }, false);
+
+            function showBook(book) {
+                document.getElementById('bookOut').innerHTML = "Title: " + book.title + "<br />Length: " + book.length + "<br />Author: " + book.author + "<br />ISBN: " + book.ISBN;
+            }
+
+            function Book() {
+                //just creates an  empty book.
+            }
+
+            function Book(title, length, author) {
+
+                this.title = title;
+                this.length = length;
+                this.author = author;
+
+            }
+
+            Book.prototype = {
+                ISBN: "",
+                Length: -1,
+                genre: "",
+                covering: "",
+                author: "",
+                currentPage: 0,
+                title: "",
+
+                flipTo: function FlipToAPage(pNum) {
+                    this.currentPage = pNum;
+                },
+
+                turnPageForward: function turnForward() {
+                    this.flipTo(this.currentPage++);
+                },
+
+                turnPageBackward: function turnBackward() {
+                    this.flipTo(this.currentPage--);
+                }
+            };
+
+            //var books = new Array(new Book(), new Book("First Edition", 350, "Random"));
+        }());
+    </script>
+</body>
+</html>

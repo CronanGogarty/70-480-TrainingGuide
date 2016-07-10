@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Drag and Drop with the dataTransfer property</title>
+    <script src="../Scripts/jquery-2.2.3.js"></script>
+    <style>
+        #container {
+            border: 1px solid #000;
+            height: 332px;
+            width: 332px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .hole {
+            background-color: green;
+            width: 160px;
+            height: 160px;
+            border: solid;
+            float: left;
+            text-align: center;
+            position: relative;
+        }
+
+        .item {
+            font-size: 120px;
+            font-size: 128px;
+            font-family: Arial, Helvetica, sans-serif;
+            width: 140px;
+            height: 140px;
+            background-color: #C0C0C0;
+            color: #FFFFFF;
+            text-align: center;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+            user-select: none; /*user cannot select the text*/
+            cursor: move;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -70px;
+        }
+
+        .dragging {
+            background-color: yellow;
+        }
+    </style>
+
+
+</head>
+<body>
+    <h1>Drag and Drop with the dataTransfer property</h1>
+    <p>Firefox does not support this either, nor does Chrome, nor does IE - at that point I gave up testing, I grow weary of exam training material that doesn't even work.</p>
+    <hr />
+    <p>What cars do you like?</p>
+    <ul id="carList">
+        <li draggable="true" data-value="car,Chevrolet">Chevrolet</li>
+        <li draggable="true" data-value="car,Ford">Ford</li>
+        <li draggable="true" data-value="car,BMW">BMW</li>
+    </ul>
+    <p>Drop your favorite cars below:</p>
+    <ul id="favoriteCars" style="min-height:100px;background-color:yellow;"></ul>
+
+
+    <script src="../Scripts/modernizr-2.8.3.js"></script>
+    <script src="../Scripts/jquery-2.2.3.js"></script>
+    <script>
+        var dragCount = dragEndCount = elapsed = 0;;
+
+        if (Modernizr.draganddrop) {
+            // Browser supports HTML5 DnD.
+            console.log('d&d supported');
+        } else {
+            // Fallback to a library solution.
+            console.log('d&d NOT supported');
+        }
+
+        $(document).ready(function () {
+            console.log('jQuery  running...');
+            jQuery.event.props.push('dataTransfer');
+            $('#carList').on('dragstart', dragging);
+            $('#favoriteCars').on('dragenter', preventDefault);
+            $('#favoriteCars').on('dragover', preventDefault);
+        });
+
+        function dragging(e) {
+            console.log('dragging...' + ++dragCount);
+            var val = e.target.getAttribute('data-value');
+            e.dataTransfer.setData('text', val);
+            e.dataTransfer.effectAllowed = 'copy';
+        }
+
+        function preventDefault(e) {
+            var eventType = e.type;
+            console.log('preventDefault triggered by; ' + eventType);
+            e.preventDefault();
+        }
+        function dropItem(e) {
+            var data = e.dataTransfer.getData('text').split(',');
+            if (data[0] == 'car') {
+                var li = document.createElement('li');
+                li.textContent = data[1];
+                e.target.appendChild(li);
+            }
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="../Content/qunit.css" rel="stylesheet" />
+    <script src="../Scripts/qunit.js"></script>
+    <script>
+        var literalCar;
+
+        window.onload = function () {
+            document.getElementById('cmdJSObjectLiteral').addEventListener('click', createObjectLiteral, false);
+            document.getElementById('cmdShowJSObejectLiteral').addEventListener('click', function () {
+                var span = document.getElementById('spanJSObjectLiteral');
+                span.innerText = "Object Literal: " + literalCar.getInfo();
+            }, false)
+        };
+
+
+        (function createObjectLiteral() {
+            literalCar = {
+                make: "Volvo",
+                model: "S60",
+                year: 2005,
+                color: "Silver",
+                getInfo: function () {
+                    return "Make: " + this.make + "; Model: " + this.model + "; Year: " + this.year + "; Color: " + this.color;
+                }
+            }
+        })();
+    </script>
+    <script>
+        test("Create Object Literal Test", function(){
+            expect(1);
+            expected = "Make: Volvo; Model: S60; Year: 2005; Color: Silver";
+            actual = literalCar.getInfo();
+
+            equal(actual, expected, "Expected: " + expected + "\tActual: " + actual);
+        });
+    </script>
+</head>
+<body>
+    <h1 id="qunit-header">QUnit example</h1>
+    <h2 id="qunit-banner"></h2>
+    <div id="qunit-testrunner-toolbar"></div>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests"></ol>
+    <div id="qunit-fixture">test markup, will be hidden</div>
+</body>
+</html>

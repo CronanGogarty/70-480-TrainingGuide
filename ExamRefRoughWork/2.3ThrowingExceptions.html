@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <canvas id="myCanvas"></canvas>
+    <script>
+        var ball = {
+            x: -1,
+            y: -1,
+            draw: function DrawBall(c) {
+                if (this.x < 0)
+                    throw new Error("Invalid X coordinate");
+            }
+        }
+
+        window.onload = function () {
+            try {
+                WorkWithCanvas();
+            } catch (e) {
+                console.log('catch at function call level ...');
+                console.log(e.message);
+            }
+
+            try {
+                var canvas = document.getElementById("myCanvas");
+                var context = canvas.getContext("2d");
+                ball.draw(context);
+            } catch (e) {
+                console.log('error name = ' + e.name);
+                console.log('error message = ' + e.message);
+                console.log('lineNumber = ' + e.lineNumber);
+            }
+
+            try {
+                var a, b, c;
+                a = 5;
+                b = 10;
+                var result = multiplyNumbers(a, b, c);
+                alert(result);
+            } catch (e) {
+                alert(e.message);
+            }
+        }
+
+        function WorkWithCanvas() {
+            try {
+                var canvas = document.getElementById("myCanvas");
+                var context = canvas.getContext("2d");
+                contxt.arc(50, 50, 25, 0, 360);
+                context.fillStyle = "blue";
+                context.fill();
+                context.strokeStyle = "red";
+                context.stroke();
+            } catch (e) {
+                //handle the exception as appropriate
+                console.log('catch inside function ...');
+                throw e;
+            } finally {
+            }
+        }
+
+        function multiplyNumbers(first, second, third) {
+            if (first == null || second == null || third == null) {
+                throw new Error("Forgot to initialize a number.");
+            }
+            return first * second * third;
+        }
+
+    </script>
+</body>
+</html>

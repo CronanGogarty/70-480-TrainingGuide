@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="Content/default.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-2.2.3.js"></script>
+
+</head>
+<body>
+    <form id="formContactForm" name="ContactForm" method="get">
+        <div>
+            <label for="inputFirstName">Firstname:</label>
+            <input type="text" id="inputFirstName" name="FirstName" />
+        </div>
+        <div>
+            <label for="inputLastName">Lastname:</label>
+            <input type="text" id="inputLastName" name="LastName" />
+        </div>
+        <div>
+            <label for="inputEmail">Email:</label>
+            <input type="email" id="inputEmail" name="Email" required="" placeholder="enter a valid email address" title="email@address.com" />
+        </div>
+        <div>
+            <label for="textareaMessage">Message:</label>
+            <textarea id="textareaMessage" name="Message"></textarea>
+        </div>
+        <div>
+            <button type="submit" id="btnSubmit" name="Submit">Submit</button>
+        </div>
+    </form>
+    <script type="text/javascript">
+        //$(document).ready(function () {
+        //    console.log('jQuery running...');
+        //})
+        $(function () {
+            console.log('jQuery running...');
+        });
+
+        $('#formContactForm').on('submit', function (e) {
+            var serializedForm = $('#formContactForm').serialize();
+            console.log(serializedForm);
+            var decoded = decodeURIComponent(serializedForm);
+            console.log(decoded);
+            e.preventDefault();
+
+        });
+    </script>
+</body>
+</html>

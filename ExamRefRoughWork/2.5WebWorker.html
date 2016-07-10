@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+    <script>
+        /*
+        Web Workers run in an isolated thread. As a result, the code that they execute needs to be contained in a separate file. But before we do that, the first thing to do is create a new Worker object in your main page. The constructor takes the name of the worker script:
+        If the specified file exists, the browser will spawn a new worker thread, which is downloaded asynchronously. The worker will not begin until the file has completely downloaded and executed. If the path to your worker returns an 404, the worker will fail silently.
+        */
+        var worker = new Worker('task.js');
+        //worker.postMessage(); // Start the worker.
+        worker.postMessage('Hello World'); // Send data to our worker.
+
+        worker.addEventListener('message', function (e) {
+            console.log('Worker said: ', e.data);
+        }, false);
+
+    </script>
+
+    <button onclick="sayHI()">Say HI</button>
+    <button onclick="unknownCmd()">Send unknown command</button>
+    <button onclick="stop()">Stop worker</button>
+    <output id="result"></output>
+
+    <script>
+
+        var worker2 = new Worker('doWork2.js');
+
+        worker2.addEventListener('message', function (e) {
+            document.getElementById('result').textContent = e.data;
+        }, false);
+
+        function sayHI() {
+            worker2.postMessage({
+                'cmd': 'start',
+                'msg': 'Hi'
+            });
+        }
+
+        function stop() {
+            // worker.terminate() from this script would also stop the worker.
+            worker2.postMessage({
+                'cmd': 'stop',
+                'msg': 'Bye'
+            });
+        }
+
+        function unknownCmd() {
+            worker2.postMessage({
+                'cmd': 'foobard',
+                'msg': '???'
+            });
+        }
+
+    </script>
+</body>
+</html>

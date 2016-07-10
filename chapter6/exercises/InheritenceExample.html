@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="scripts/inheritenceExample.js"></script>
+</head>
+<body>
+    <button id="btnCreateParent">getParentInfo()</button>
+    <button id="btnGetChildInfo">getChildInfo()</button>
+    <script>
+        var parentvar = new AnimalVar("Goofy the dog", "Canine", "Woof");
+        var childVar = new CatVar("Tiddles the cat", "Feline", "Meeow");
+
+        document.getElementById('btnCreateParent').addEventListener('click', getParentInfo, false);
+        document.getElementById('btnGetChildInfo').addEventListener('click', getChildInfo, false);
+
+        function getChildInfo() {
+            alert(childVar.getInfo());
+        }
+
+        function getParentInfo() {
+            alert(parentvar.getInfo());
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS3 Grid Layout | 70-480 Exam Ref</title>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="description" content="">
+    <meta name="author" content="Cronán Gogarty" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" />
+    <!--<link rel="stylesheet" href="css/main.css" media="screen, projection">-->
+    <link rel="stylesheet" href="/Styles.css" media="screen, projection">
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lte IE 6]>
+        <link rel="stylesheet" href="http://universal-ie6-css.googlecode.com/files/ie6.1.1.css" media="screen, projection">
+    <![endif]-->
+    <style>
+
+
+        #blogPage {
+            display: grid;
+            /*grid-template-columns: 15% 1fr 25%;
+            grid-template-rows: 20% 20% 20% 20% 20%;*/
+            -moz-columns: 15% 1fr 25%;
+            -webkit-columns: 15% 1fr 25%;
+            columns: 15% 1fr 25%;
+            grid-rows: 20% 20% 20% 20% 20%;
+            width: 90%;
+            height: 95%;
+            border: 1px dotted black;
+            margin: auto;
+        }
+
+            #blogPage > header {
+                grid-column-start: 1;
+                grid-column-end:4;
+                grid-row-start: 1;
+                border: 1px dotted black;
+            }
+
+            #blogPage > footer {
+                grid-column-start: 1;
+                grid-column-end:4;
+                grid-row-start: 5;
+                border: 1px dotted black;
+            }
+
+            #blogPage > article {
+                grid-column-start: 2;
+                grid-column-end:3;
+                grid-row-start: 2;
+                grid-row-end:5;
+                border: 1px dotted black;
+            }
+
+            #blogPage > #calendar {
+                grid-column-start: 3;
+                grid-row-start: 3;
+                border: 1px dotted black;
+            }
+
+            #blogPage > #blogRoll {
+                grid-column-start: 3;
+                grid-row-start: 4;
+                border: 1px dotted black;
+            }
+
+            #blogPage > #aboutMe {
+                grid-column-start: 1;
+                grid-row-start: 2;
+                grid-row-end:5;
+                border: 1px dotted black;
+            }
+
+            #blogPage > #bloghistory {
+                grid-column-start: 3;
+                grid-row-start: 2;
+                border: 1px dotted black;
+            }
+    </style>
+</head>
+<body>
+    <div id="blogPage">
+        <header>My Blog Header</header>
+        <article>My Blog's Main Body</article>
+        <footer>My Blog Footer</footer>
+        <aside id="calendar">A calendar</aside>
+        <aside id="blogRoll">My favorite blogs</aside>
+        <aside id="aboutMe">Who am I?</aside>
+        <aside id="bloghistory">My blog history</aside>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script>try { Modernizr } catch (e) { document.write('<script src="/Scripts/modernizr-2.8.3.js"><\/script>') }</script>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/Scripts/jquery-2.2.3.min.js"><\/script>')</script>
+    <!--//ONLY INCLUDE JQUERY UI IF USING ADVANCED ANIMATION TECHNIQUES
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js" integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw=" crossorigin="anonymous"></script>
+    <script>window.jQuery.ui || document.write('<script src="js/jquery-ui-1.11.4.js"><\/script>')</script>
+    -->
+
+    <script>
+        $(function () {
+            console.log("jQuery is working");
+        });
+    </script>
+
+</body>
+</html>

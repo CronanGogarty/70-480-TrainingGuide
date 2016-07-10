@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>cronan</title>
+</head>
+<body>
+
+    <script type="text/javascript" sr>
+        (function () {
+            var j;
+            for(var i=0;i<=4;i++){
+                 j+=i;
+            }
+            //alert("i" + i);
+
+            var username = "foobar"
+            //alert("Hello " & username & ".");
+
+            window.document.write("Yo");
+
+            window.document.title = "Helpp";
+
+            var d = new Date();
+            whatDay = d.getDay();
+            switch (whatDay) {
+                case 0:
+                    console.log('0');
+                    break;
+                default:
+                    console.log('default');
+                    //break;
+
+
+            }
+
+            var i, cats = new Array();
+            cats[0] = "Jaguar";
+            cats[1] = "Cougar";
+            cats[2] = "Panther";
+            for (i in cats) {
+                switch (i) {
+                    case "Cougar":
+                        i = "Stingray";
+                        break;
+                    default:
+
+                }
+            }
+            alert(cats);
+
+
+        }());
+    </script>
+</body>
+</html>

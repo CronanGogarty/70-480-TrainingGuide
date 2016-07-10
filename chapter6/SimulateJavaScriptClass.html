@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <button id='btnCreateCar1'>
+        Create Car1
+    </button>
+    <button id='btnShowCar1'>
+        Show Car 1
+    </button>
+    <div id='divCar1Info'>
+    </div>
+    <script type="text/javascript">
+        var car1;
+
+        window.onload = function()  {
+            document.getElementById('btnCreateCar1').addEventListener('click', createCar1, false);
+            document.getElementById('btnShowCar1').addEventListener('click', showCar1, false);
+        };
+
+        function createCar1() {
+            car1 = createVehicle('Volvo', '850', '1997', 'Burgundy')
+        }
+
+        function createVehicle(pMake, pModel, pYear, pColor)	{
+            var make = pMake;
+            var model = pModel;
+            var year = pYear;
+            var color = pColor;
+            this.getInfo = function()	{
+                return "Make:" + this.make + "; Model:" + this.model + "; Year:" + this.year + "; Color:" + this.color;
+            };
+        }
+
+        function showCar1() {
+                document.getElementById('divCar1Info').innerText = car1.getInfo();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <canvas id="myCanvas"></canvas>
+    <script>
+        (function () {
+            var myArray = new Array();
+            myArray.unshift(['bacon', 'eggs', 'sausage']);
+            try {
+                console.log('try running...');
+                WorkthroughArray();
+            } catch (e) {
+                console.log('exception caught...');
+                console.log(e.name);
+                console.log(e.message);
+                //console.log(e.number);
+                //console.log(e.description);
+            }
+
+            function WorkthroughArray() {
+                var canvas = document.getElementById("myCanvas");
+                var context = canvas.getContext("2d");
+                context.fillStyle = "blue";
+
+                contxt.arc(50, 50, 25, 0, 360);
+
+                context.fill();
+                context.strokeStyle = "red";
+                context.stroke();
+            }
+
+            var canvas;
+            var context;
+            try {
+                canvas = document.getElementById("myCanvas");
+                context = canvas.getContext("2d");
+                contxt.arc(50, 50, 25, 0, 360);
+                context.fillStyle = "blue";
+                context.fill();
+                context.strokeStyle = "red";
+                context.stroke();
+            }
+            catch (e) {
+                context.strokeText(e.message, 50, 50);
+                console.log(e.message);
+            }
+            finally {
+                //do any final logic before exiting the method
+            }
+
+        }());
+    </script>
+</body>
+</html>

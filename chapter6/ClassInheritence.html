@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <button id='btnCreateVehicles'>
+        Create Vehicles
+    </button>
+    <br />
+    <button id='btnGetVehiclesInfo'>
+        Get Vehicles Info
+    </button>
+    <br />
+    <div id='divVehiclesInfo'></div>
+    <script type="text/javascript">
+        var car1, bus1;
+
+        document.getElementById('btnCreateVehicles').addEventListener('click', createVehicles, false);
+        document.getElementById('btnGetVehiclesInfo').addEventListener('click', getVehiclesInfo, false);
+
+        var Vehicle = (function () {
+            function Vehicle(pMake, pModel, pColor) {
+                var make = pMake;
+                var model = pModel;
+                var color = pColor;
+                this.getMake = function getMake() {
+                    return make;
+                };
+                this.getModel = function getModel() {
+                    return model;
+                };
+                this.getColor = function getColor() {
+                    return color;
+                };
+            }
+            Vehicle.prototype.getInfo = function () {
+                return "Make:" + this.getMake() + "; Model:" + this.getModel() + "; Color:" + this.getColor();
+            };
+            Vehicle.prototype.getVehicleType = function () {
+                return "This is a generic vehicle";
+            }
+            return Vehicle;
+        })();
+
+        //we have a parent class - now define a child class
+        var Car = (function (parent) {
+            //inheritance is accomplished by changing the Car prototype object to be a new Vehicle object.
+            //By default,the prototype is of type Object. 
+            //After the new Vehicle is assigned to the prototype, the constructor of that Vehicle is changed to be the Car constructor
+            Car.prototype = new Vehicle();
+            Car.prototype.constructor = Car;
+
+            function Car(pMake, pModel, pColor) {
+                parent.call(this, pMake, pModel, pColor);
+                this.pasengers = 4;
+            }
+            Car.prototype.getVehicleType = function () {
+                return "This is a car!";
+            }
+            return Car;
+        })(Vehicle);
+
+        var Bus = (function (parent) {
+            Bus.prototype = new Vehicle();
+            Bus.prototype.constructor = Bus;
+
+            function Bus(pMake, pModel, pColor) {
+                parent.call(this, pMake, pModel, pColor);
+                this.pasengers = 27;
+            }
+            Bus.prototype.getVehicleType = function () {
+                return "This is a bus";
+            };
+            return Bus;
+        })(Vehicle);
+
+        function createVehicles() {
+            car1 = new Car('Mazda', 'MX5', 'Scarlet');
+            bus1 = new Bus('Volvo', 'VCoach21', 'White');
+        }
+
+        function getVehiclesInfo() {
+            document.getElementById('divVehiclesInfo').innerHTML = "Car1 = " + car1.getVehicleType() + " with these properties; " + car1.getInfo() + "<br />Bus1 = " + bus1.getVehicleType() + " with these properties; " + bus1.getInfo();
+        }
+
+    </script>
+</body>
+</html>

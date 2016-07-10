@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+    <ul id="sportsList">
+
+    </ul>
+
+    <script>
+        (function () {
+            /*
+            The every method lets you process specific logic for each array element to determine whether any of them meet some condition
+            The every method takes two parameters:
+                * The name of the function that should be processed for each element
+                * An optional reference to the array object
+            As soon as the every method gets the first false result for any item in the array, it exits and returns false.
+            Otherwise, if all elements in the array return true, the every method returns true.
+            */
+            var evenNumbers = new Array(0, 2, 4, 6, 8, 9, 10, 12);
+            var allEven = evenNumbers.every(evenNumberCheck, this);
+            if (allEven) {
+                alert('alleven = ' + allEven);
+            } else {
+                alert('alleven = ' + allEven);
+            }
+
+            /*
+            The some method works very much like the every method.
+            The difference is that some checks only whether any item in the array meets the criteria.
+            In this case, the some method returns true if the called function returns true for any single element.
+            If all elements in the array return false, the some method returns false.
+            */
+            var allEven = evenNumbers.some(evenNumberCheck, evenNumbers);
+            alert('allEven = ' + allEven);
+
+            function evenNumberCheck(value, index, array) {
+                return (value % 2) == 0;
+            }
+
+            //8888888888888888888888888888888888888888888888
+            //console.log('----------------------------------------------------------------------------');
+            var sportsArray = ['soccer', 'basketball', 'hockey', 'football', 'cricket', 'rugby'];
+            sportsArray.forEach(offerSport);
+            function offerSport(value, index, array) {
+                console.log(value + ", " + index);
+                var sportsList = document.getElementById("sportsList");
+                var bullet = document.createElement("li");
+                bullet.innerText = value;
+                sportsList.appendChild(bullet);
+            }
+
+            //*******************************************
+            console.log('----------------------------------------------------------------------------');
+            var evenNumbers = new Array(0, 3, 2, 4, 6, 31, 8, 9, 10, 12);
+            console.log('var evenNumbers = ' + evenNumbers.toString());
+            var allEven = evenNumbers.filter(evenNumberCheck, evenNumbers);
+            console.log('run the filter method on the array to remove all odd numbers - returns a new array');
+            console.log('var allEven = ' + allEven.toString());
+            console.log('var evenNumbers still = ' + evenNumbers.toString());
+
+
+            function evenNumberCheck(value, index, array) {
+                return (value % 2) == 0;
+            }
+
+            //*******************************************
+            console.log('----------------------------------------------------------------------------');
+            /*
+            The map method enables you to replace values in the array. 
+            Every element in the array is passed to a callback function. 
+            The callback function’s return value replaces the value for the position in the array that was passed in. 
+            The following example demonstrates having every number in an array rounded off appropriately:
+            */
+            var money = [12.8, 15.9, 21.7, 35.2];
+            var roundedMoney = money.map(roundOff, money);
+            console.log('var money = ' + money.toString());
+            console.log('var roundedMoney = money.map(roundOff, money) = ' + roundedMoney.toString());
+
+            function roundOff(value, position, array) {
+                return Math.round(value);
+            }
+
+
+            //*******************************************
+            var person = {
+                firstName: "Jane", lastName: "Doe", birthDate: "Jan 5, 1925", gender: "female" };
+            for (var prop in person) {
+                document.write(prop);
+            }
+            var person = {
+                firstName: "Jane", lastName: "Doe", birthDate: "Jan 5, 1925", gender: "female" };
+            for (var prop in person) {
+                document.write(person[prop]);
+            }
+        }());
+    </script>
+</body>
+</html>

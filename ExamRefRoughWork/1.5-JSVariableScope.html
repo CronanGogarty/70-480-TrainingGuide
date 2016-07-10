@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Variable Scope</title>
+
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="Div1"></div>
+    <div id="Div2"></div>
+    <div id="Div3"></div>
+
+    <script>
+        var globalVar = "global";
+        var scaleX = 0.0;
+        var nullVar = null;
+
+        window.onload = function () {
+            var localVar = "local";
+            document.getElementById("Div1").onclick = function () {
+                var insideDiv1Click = "insideDiv1";
+                alert(globalVar);
+                alert(localVar);
+                alert(insideDiv1Click);
+                alert(nullVar);
+            };
+            document.getElementById("Div2").onclick = function () {
+                alert(globalVar);
+                alert(localVar);
+                alert(scaleX);  // will alert 0 - the value set at global level
+                try {
+                    alert(insideDiv1Click);
+                } catch (e) {
+                    alert(e.message);
+                }
+
+            };
+            document.getElementById("Div3").onclick = function () {
+                var insideDiv3 = "Div3";
+                AFunction();
+                BFunctionWithParam(insideDiv3);
+                alert(scaleX);  // will alert undefined - at runtime this var is declared inside this code block but is not yet initialized
+                var scaleX = -3;
+                alert(scaleX); //will alert -3 - local var is initialized and overrides global var of same name
+            };
+        }
+
+        function AFunction() {
+            var x;
+            try {
+                alert(insideDiv3);
+            } catch (e) {
+                alert(e.message);
+            }
+
+        }
+        function BFunctionWithParam(p) {
+            alert(p);
+            try {
+                alert(localVar);
+            } catch (e) {
+                alert(e.message);
+            }
+
+        }
+    </script>
+
+</body>
+</html>

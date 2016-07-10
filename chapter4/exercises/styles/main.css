@@ -1,0 +1,148 @@
+﻿@charset 'UTF-8';
+@import url('importme.css'); 
+@import url('importmeprint.css'); print
+
+body {
+    color: #000;
+    background-color: rgba(0, 255, 144, 0.5);
+}
+p   {
+    color:#fff;
+    font-weight:bold;
+    margin:1px 0;
+    border:1px solid #333;
+}
+
+a[href]:hover:after {
+    content:attr(href);
+}
+
+p.important {
+    color:blue !important;
+    background-color:yellow;
+
+}
+
+a.user-defined  {
+    background-color:white !important;
+}
+
+p.colorDemo {
+    /*background-color:#008000;*/
+    background-color:rgb(20%,150%,0%);
+    background-color:hsl(240,50%,70%);
+    color:hsl(240,100%,20%);
+}
+
+div.wrapper {
+    border:1px solid #000;
+    text-align:center;
+}
+
+div.wrapper div   {
+    text-align:left;
+}
+body > div.wrapper > div#boxModel {
+    border:10px solid #000;
+    width:200px;
+    height:200px;
+    margin:10px auto 50px 20px;
+    padding:40px;
+}
+
+div#boxModel > div {
+    width:100%;
+    height:100%;
+    background-color:yellow;
+}
+
+div#relativeDiv   {
+    position:relative;
+    width:500px;
+    height:auto;
+    background-color:cyan;
+    bottom:50px;
+    left:100px;
+}
+
+div.nonStaticDiv    {
+    position:relative;  /* make it non-static positioning */
+    border:1px dashed red;
+    width:100%;
+    height:300px;
+}
+
+div#absoluteDiv     {
+    position:absolute;
+    top:10px;
+    right:10px;
+    width:200px;
+    height:auto;
+    background-color:yellow;
+}
+
+div.floatedLeft {
+    float:left;
+    width:33%;
+    height:auto;
+    background-color:lawngreen;
+}
+
+div.floatedRight {
+    float:right;
+    width:33%;
+    height:auto;
+    background-color:lawngreen;
+}
+
+.clearLeft {
+    clear:left;
+}
+
+.clearRight {
+    clear:right;
+}
+
+.clearBoth  {
+    clear:both;
+}
+
+#borderBox {
+    width:300px;
+    position:relative;
+    top:10px;
+    left:10px;
+    margin:0;
+    padding:20px;
+    border:10px solid red;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+    float:left;
+}
+
+#paddingBox {
+    width: 300px;
+    position: relative;
+    top: 0;
+    right: 10px;
+    margin: 0;
+    padding: 30px;
+    border: 10px solid green;
+    -moz-box-sizing: padding-box;
+    -webkit-box-sizing: padding-box;
+    box-sizing: padding-box;
+    float:right;
+}
+.clearfix:after {
+    content:"";
+    visibility:hidden;
+    display:block;
+    height:0;
+    clear:both;
+}
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}

@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html lang="en-ca">
+<head>
+    <meta charset="utf-8" />
+    <title>Contact Us</title>
+    <link href="Content/default.css" rel="stylesheet" />
+
+    <script src="scripts/jquery-2.1.4.js"></script>
+    <script src="scripts/ContactUs.js"></script>
+
+    <!--<style type="text/css">
+        #container * {
+            /*margin: 0;*/
+        }
+
+        #container > *
+        /*header, nav, div[role="main"], aside, footer*/ {
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #00ffff;
+            width: 100%;
+            padding-left: 0.5em;
+            padding-right: 0.5em;
+        }
+
+        nav {
+            width: 100%;
+        }
+
+        div[role="main"] {
+            background-color: yellow;
+            width: 80%;
+            float: left;
+            /*text-align: center;*/
+        }
+
+        #contactUs {
+            /*outline: 1px solid #000;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;*/
+        }
+
+        aside {
+            width: 20%;
+            float: right;
+        }
+
+        footer {
+            clear: both;
+            width: 100%;
+            background-color: #00ffff;
+        }
+
+        label {
+            clear: both;
+            display: block;
+            float: left;
+            width: 125px;
+            height: 12px;
+            vertical-align: bottom;
+            padding: 10px;
+        }
+        form input  {
+            width:200px;
+            border-width:medium;
+            border-color:hsl(255,100%,100%);
+            height:12px;
+            text-align:left;
+            vertical-align:top;
+            font-family:Arial;
+            font-size:12pt;
+        }
+        form button {
+            width:100px;
+            border-width:medium;
+            border-color:hsl(255,100%,100%);
+            vertical-align:top;
+            font-family:Arial;
+            font-size:12pt;
+            margin-top:10px;
+            margin-right:50%;
+            margin-bottom:10px;
+            margin-left:50%;
+        }
+        form div{
+            outline:1px solid #000;
+        }
+    </style>-->
+</head>
+<body>
+    <div id="container">
+        <header>
+            <hgroup id="headerText">
+                <h1>Consoto Ltd.</h1>
+                <h2>Your success equals our success</h2>
+            </hgroup>
+        </header>
+        <nav>
+            <a href="calculator.html">Home</a>
+        </nav>
+        <div role="main">
+            <div id="contactUs">
+                <!--<form id="formContactForm" name="ContactForm" method="get">-->
+                <form name="ContactForm" method="post" action="/ContactMessage">
+                    <div>
+                        <label for="inputFirstName">Firstname:</label>
+                        <input type="text" id="inputFirstName" name="FirstName" required="required" />
+                    </div>
+                    <div>
+                        <label for="inputLastName">Lastname:</label>
+                        <input type="text" id="inputLastName" name="LastName" required="required" />
+                    </div>
+                    <div>
+                        <label for="inputEmail">Email:</label>
+                        <input type="email" id="inputEmail" name="Email" required="required" />
+                    </div>
+                    <div>
+                        <label for="textareaMessage">Message:</label>
+                        <textarea id="textareaMessage" name="Message" required="required"></textarea>
+                    </div>
+                    <div>
+                        <button type="button" id="btnSubmit" name="Submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div id="result"></div>
+        </div>
+        <aside>
+            <p>Advertisements</p>
+        </aside>
+        <footer>
+            <p>&copy; 2015 Cronán Gogarty</p>
+        </footer>
+    </div>
+
+</body>
+</html>

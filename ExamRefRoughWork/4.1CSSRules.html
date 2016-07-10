@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        @import 'https://fonts.googleapis.com/css?family=Sriracha';
+
+        #textDiv1 {
+            padding:4px;
+            width: 350px;
+            height: 100%;
+            font-family: 'Sriracha', cursive;
+            text-align: justify;
+            outline: 1px solid #000;
+        }
+
+        #textDiv2 p:first-child   {
+            color:red;
+            letter-spacing:5px;
+        }
+        #textDiv2 p:nth-child(2) {
+            color:green;
+            word-spacing:12px;
+            border-left: 3px dashed red;
+        }
+
+        #textDiv3 {
+            width: 20px;
+            -moz-hyphens: none;
+            -ms-hyphens: none;
+            -webkit-hyphens: none;
+            hyphens: none;
+            outline: 1px solid #000;
+        }
+
+        #textDiv4 {
+            outline: 1px solid #000;
+            width: 20px;
+            -moz-hyphens: auto;
+            -ms-hyphens: auto;
+            -webkit-hyphens: auto;
+            hyphens: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="textDiv1">
+        Justifying text with CSS requires two things: a section of text to justify that is inside a block with a set width. That second bit is important. If the width on the container element is not set, justification will still work, but it will be more difficult to maintain because you won't know how much text you need to create a block of text to be justified.
+    </div>
+
+    <div id="textDiv2">
+        <p>This is a sentence, it has the letter-spacing property applied.</p>
+        <p>This is another sentence, this one has word-spacing property applied.</p>
+    </div>
+
+    <div id="textDiv3">
+        This text is not hyphenated, therefore some of the exceedingly elongated words that are liberally distributed across the container may actually expand beyond the border.
+    </div>
+
+    <div id="textDiv4">
+        This text IS hyphenated, therefore some of the exceedingly elongated words that are liberally distributed across the container should be hyphenated by the browser to prevent them from expanding beyond the border.
+    </div>
+</body>
+</html>

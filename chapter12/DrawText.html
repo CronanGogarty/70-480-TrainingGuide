@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Draw Text on Canvas</title>
+    <link href="../styles.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-2.2.3.js"></script>
+</head>
+<body>
+    <h1>Draw Text on Canvas</h1>
+    <canvas height="330" width="1000" id="canvas"></canvas>
+
+    <script>
+        var canvas, context;
+
+        (function () {
+            canvas = $('#canvas')[0];
+            context = canvas.getContext('2d');
+
+            drawText();
+        }());
+
+        function drawText() {
+            context.strokeStyle = 'purple';
+            context.fillStyle = 'yellow';
+            context.font = 'italic 46px Arial';
+
+            context.beginPath();
+            context.moveTo(20, 70);
+            context.lineTo(950, 70);
+            context.stroke();
+
+            context.strokeStyle = 'black';
+            context.textAlign = 'left';
+            context.textBaseline = 'bottom';
+            context.fillText("Hello canvas - this is text from context.fillText()", 20, 55);
+            context.strokeText("Hello canvas - this is text from context.fillText()", 20, 55);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <h1>Create an Object - Then Ad to sessionStorage</h1>
+    <input type="button" id="cmdJSObjectLiteral" value="Create JavaScript Object Literal" />
+    <br />
+    <input type="button" id="cmdShowJSObejectLiteral" value="Show JavaScript Object Literal Values" />
+    <br />
+    <span id="spanJSObjectLiteral"></span>
+    <br />
+    <button id="btnAddToSessionStorage">Add to Session Storage</button>
+    <br />
+    <script type="text/javascript">
+        var literalCar;
+
+        window.onload = function () {
+            document.getElementById('cmdJSObjectLiteral').addEventListener('click', createObjectLiteral, false);
+            document.getElementById('cmdShowJSObejectLiteral').addEventListener('click', function () {
+                var span = document.getElementById('spanJSObjectLiteral');
+                span.innerText = "Object Literal: " + literalCar.getInfo();
+            }, false)
+            document.getElementById('btnAddToSessionStorage').addEventListener('click', addToSessionStorage, false);
+        };
+        
+
+        function createObjectLiteral() {
+            literalCar = {
+                make: "Volvo",
+                model: "S60",
+                year: 2005,
+                color: "Silver",
+                getInfo: function () {
+                    return "Make: " + this.make + "; Model: " + this.model + "; Year: " + this.year + "; Color: " + this.color;
+                }
+            }
+            //var span = document.getElementById('spanJSObjectLiteral');
+            //span.innerText = "Object Literal: " + literalCar.getInfo();
+        }
+
+        function addToSessionStorage() {
+            sessionStorage.setItem('carObject', literalCar.getInfo());
+            document.location.href = "RetrieveObjectFromSessionStorage.html";
+            return false;
+        }
+
+        
+    </script>
+</body>
+</html>

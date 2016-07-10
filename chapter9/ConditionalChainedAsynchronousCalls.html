@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Conditional chained asynchronous calls</title>
+    <link href="../styles.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-2.2.3.js"></script>
+</head>
+<body>
+    <h1>Conditional Chained Asynchronous Calls</h1>
+
+    <label for="">Execute thirdPromise?</label>&nbsp;<input type="checkbox" id="chkIncludeThird" form="" />
+    <br />
+    <button id="btnConditionalChainedCall">Conditional Chained Call</button>
+    <hr />
+
+<code>
+function timeoutAsync(milliseconds, caller) {
+    console.log(caller + ' timeoutAsync running...');
+    var deferred = $.Deferred();
+    setTimeout(function () {
+        deferred.resolve();
+    }, milliseconds);
+    return deferred;
+}
+
+function callChainedTimeoutAsync(includeThird) {
+    var firstPromise = timeoutAsync(2000, 'firstPromise');
+
+    var secondPromise = firstPromise.pipe(function () {
+        return timeoutAsync(2000, 'secondPromise');
+    });
+
+    var thirdPromise = includeThird ? secondPromise.pipe(function () { return timeoutAsync(3000, 'thirdPromise'); }) : secondPromise;
+
+    var fourthPromise = thirdPromise.pipe(function () {
+        return timeoutAsync(2000, 'fourthPromise');
+    });
+
+    fourthPromise.done(function () {
+        alert('All promises done');
+    });
+    return fourthPromise;
+}
+
+$(document).ready(function () {
+    console.log('jQuery running...');
+    $('#btnConditionalChainedCall').click(function () {
+        if ($('#chkIncludeThird').is(':checked')) {
+            console.log('checked');
+            callChainedTimeoutAsync(true);
+        }
+        else {
+            console.log('not checked');
+            callChainedTimeoutAsync(false);
+        };
+    });
+});
+</code>
+
+    <script type="text/javascript">
+
+    function timeoutAsync(milliseconds, caller) {
+        console.log(caller + ' timeoutAsync running...');
+        var deferred = $.Deferred();
+        setTimeout(function () {
+            deferred.resolve();
+        }, milliseconds);
+        return deferred;
+    }
+
+    function callChainedTimeoutAsync(includeThird) {
+        var firstPromise = timeoutAsync(2000, 'firstPromise');
+
+        var secondPromise = firstPromise.pipe(function () {
+            return timeoutAsync(2000, 'secondPromise');
+        });
+
+        var thirdPromise = includeThird ? secondPromise.pipe(function () { return timeoutAsync(3000, 'thirdPromise'); }) : secondPromise;
+
+        var fourthPromise = thirdPromise.pipe(function () {
+            return timeoutAsync(2000, 'fourthPromise');
+        });
+
+        fourthPromise.done(function () {
+            alert('All promises done');
+        });
+        return fourthPromise;
+    }
+
+    $(document).ready(function () {
+        console.log('jQuery running...');
+        $('#btnConditionalChainedCall').click(function () {
+            if ($('#chkIncludeThird').is(':checked')) {
+                console.log('checked');
+                callChainedTimeoutAsync(true);
+            }
+            else {
+                console.log('not checked');
+                callChainedTimeoutAsync(false);
+            };
+        });
+    });
+    </script>
+
+</body>
+</html>

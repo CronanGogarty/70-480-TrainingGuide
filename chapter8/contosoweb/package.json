@@ -1,0 +1,20 @@
+{
+  "name": "contosoweb",
+  "version": "0.0.0",
+  "description": "Contoso Web Site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Contoso",
+    "WebCalculator"
+  ],
+  "author": "Cronan Gogarty",
+  "license": "ISC",
+  "dependencies": {
+    "formidable": "1.x",
+    "express": "4.13.3"
+  },
+  "devDependencies": {}
+}

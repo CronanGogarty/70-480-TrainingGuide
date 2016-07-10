@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+
+</head>
+<body>
+    <div id="message"></div>
+
+
+    <script>
+        (function () {
+            var message = document.getElementById('message');
+
+            function getLocation() {
+                if (navigator.geolocation) {
+                    /*The PositionOptions interface describes an object 
+                    containing option properties to pass as a parameter of Geolocation.getCurrentPosition()*/
+                    var options = {
+                        enableHighAccuracy: true,
+                        timeout: 30000,
+                        maximumAge: 30000
+                    };
+                    navigator.geolocation.getCurrentPosition(showPosition, showError, options);
+                    //showposition function is called when the  position information has been successfully obtained
+                    
+                }
+                else {
+                    message.innerHTML = "This browser does not support geolocation";
+                }
+            }
+
+            /*When the showPosition function is called, it’s passed a Position object that contains 
+            a coords and timestamp property*/
+            function showPosition(position) {
+                var datetime = new Date(position.timestamp).toLocaleString();
+                message.innerHTML = "Latitude: " + position.coords.latitude
+                + "<br />Longitude: " + position.coords.longitude
+                + "<br />Position determined at: " + datetime;
+            }
+
+            /*The error callback function, if provided when calling 
+            getCurrentPosition() or watchPosition(), expects a PositionError object as its first parameter.*/
+            function showError(error) {
+                switch (error.code) {
+                    case error.PERMISSION_DENIED:
+                        //
+                        message.innerHTML = "Permission denied";
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        //
+                        message.innerHTML = "Position unavailable";
+                        break;
+                    case error.TIMEOUT:
+                        //
+                        message.innerHTML = "Geolocation timed out";
+                        break;
+                    case error.UNKNOWN_ERROR:
+                        //
+                        message.innerHTML = "An unknown error occurred";
+                        break;
+                }
+            }
+
+            getLocation();
+
+        }());
+    </script>
+
+    <!--<script src="../Scripts/jquery-2.2.3.js"></script>-->
+    <!--<script type="text/javascript">
+        (function () {
+            console.log('JavaScript running...');
+
+            var getLocation = function () {
+                if (supportsGeolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                }
+                else {
+                    showMessage("Geolocation not supported");
+                }
+            };
+
+            var supportsGeolocation = function () {
+                return 'geolocation' in navigator;
+            };
+
+            var showPosition = function (position) {
+                var dateTime = new Date(position.timestamp).toLocaleString();
+                showMessage("Latitude: " + position.coords.latitude + "<br />"
+                    + "Longitude: " + position.coords.longitude + "<br />"
+                    + "Timestamp: " + dateTime);
+            };
+
+            var showMessage = function (message) {
+                $('#message').html(message);
+            }
+
+            showMessage('hello');
+            getLocation();
+        }());
+
+
+
+    </script>-->
+</body>
+</html>

@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+    <input id="txtStringIn" type="text" required="required" placeholder="Enter Postal Code" />
+    <br />
+    <button id="btnTestRegExp" type="button">Test Regexp</button>
+
+    <script src="../Scripts/jquery-2.2.3.min.js"></script>
+    <script>
+        (function () {
+            $('#btnTestRegExp').click(testRegExp);
+
+            function testRegExp() {
+                var str = $('#txtStringIn').val();
+                console.log(str);
+
+                var regExp = /^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/;   // /^[A-Za-z]\d[A-Za-z] ?\d[A-Za-z]\d$/;
+
+                try {
+                    var result = regExp.test(str);
+                    if (result) {
+                        alert('Valid Match');
+                    }
+                    else {
+                        alert('Invalid Match');
+                    }
+                } catch (e) {
+                    console.warn(e.message);
+                }
+                
+                
+            }
+        }());
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <input type='button' id='cmdCreateCar1' value='Create Car1' />
+    <br />
+    <input type='button' id='cmdCreateCar2' value='Create Car2' />
+    <br />
+    <input type='button' id='cmdShowVehicles' value='Show Vehicles' />
+    <br />
+    <div id='divShowVehicles'></div>
+    <button id="btnChangeGetInfo">Change getInfo method</button>
+    <script type="text/javascript">
+        var car1, car2;
+
+        document.getElementById('cmdCreateCar1').addEventListener('click', createCar1, false);
+        document.getElementById('cmdCreateCar2').addEventListener('click', createCar2, false);
+        document.getElementById('cmdShowVehicles').addEventListener('click', function () {
+            document.getElementById('divShowVehicles').innerHTML = "Car1 = " + car1.getInfo() + "<br />Car2 = " + car2.getInfo();
+        }, false);
+        document.getElementById('btnChangeGetInfo').addEventListener('click', changeGetInfo, false);
+
+        function createCar1() {
+            car1 = new Vehicle('Nissan', 'Elantra', '2013', 'Silver');
+        }
+
+        function createCar2() {
+            car2 = new Vehicle('Toyota', 'Prius', '2010', 'Black');
+        }
+
+        function Vehicle(pMake, pModel, pYear, pColor) {
+            this.make = pMake;
+            this.model = pModel;
+            this.year = pYear;
+            this.color = pColor;
+        }
+        Vehicle.prototype.getInfo = function () {
+            return "Make:" + this.make + "; Model:" + this.model + "; Year:" + this.year + "; Color:" + this.color;
+        }
+
+        function changeGetInfo() {
+            Vehicle.prototype.getInfo = function () {
+                return "Now the getInfo method for both Vehicle objects returns this";
+            };
+        }
+
+    </script>
+</body>
+</html>

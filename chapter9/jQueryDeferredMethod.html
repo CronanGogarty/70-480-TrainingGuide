@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Asynchronous jQuery using the $.Deferred() method</title>
+    <link href="../styles.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-2.2.3.js"></script>
+</head>
+<body>
+    <button id="btnExecuteAsync">Execute Async Function</button>
+    <p>Open the console to see the thread execution</p>
+    <hr />
+    <code>
+function timeoutAsync(milliseconds) {
+    console.log('timeoutAsync executing...');
+    var deferred = $.Deferred();
+    setTimeout(function () { deferred.resolve() }, milliseconds);
+    return deferred.promise();
+};
+
+function sendRequestAsync() {
+    console.log('sendRequest executing...');
+    var promise = timeoutAsync(4000);
+    console.log('code has continued to execute...');
+
+    promise.always(function () {
+        console.log('promise returned...');
+        alert('This alert always runs once the promise is returned');
+    });
+    promise.done(function () {
+        alert('Async done');
+    });
+    promise.fail(function () {
+        alert('Async method failed!');
+    });
+    return promise;
+}
+
+$(document).ready(function () {
+    console.log('jQuery running...');
+    var btn = $('#btnExecuteAsync').click(sendRequestAsync);
+});
+    </code>
+    <script type="text/javascript">
+
+        function timeoutAsync(milliseconds) {
+            console.log('timeoutAsync executing...');
+            var deferred = $.Deferred();
+            setTimeout(function () { deferred.reject() }, milliseconds);
+            return deferred.promise();
+        };
+
+        function sendRequestAsync() {
+            console.log('sendRequest executing...');
+            var promise = timeoutAsync(4000);
+            console.log('code has continued to execute...');
+            promise.always(function () {
+                console.log('promise returned...');
+                alert('This alert always runs once the promise is returned');
+            });
+            promise.done(function () {
+                alert('Async done');
+            });
+            promise.fail(function () {
+                alert('Async method failed!');
+            });
+            return promise;
+        }
+
+        $(document).ready(function () {
+            console.log('jQuery running...');
+            var btn = $('#btnExecuteAsync').click(sendRequestAsync);
+        });
+    </script>
+</body>
+</html>

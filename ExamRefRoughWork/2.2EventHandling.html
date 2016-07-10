@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        #outer {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+
+        #middle {
+            width: 50%;
+            height: 50%;
+            position: relative;
+            top: 25%;
+            left: 25%;
+            background-color: green;
+        }
+
+        #inner {
+            width: 50%;
+            height: 50%;
+            position: relative;
+            top: 25%;
+            left: 25%;
+            background-color: blue;
+        }
+    </style>
+
+</head>
+
+<body id="bod">
+    <div id="outer">
+        <div id="middle">
+            <div id="inner">
+            </div>
+        </div>
+    </div>
+    <ol id="eventOrder"> </ol>
+    <button type="button" id="clearButton">Clear</button>
+    <hr />
+    <input id="aRange" type="range" max="200" min="0" value="0" />
+    <div id="rangeValue"></div>
+
+    <script>
+        window.onload = function () {
+            document.getElementById("outer").addEventListener("click", outerDivClick, false);
+            document.getElementById("middle").addEventListener("click", middleDivClick, false);
+            document.getElementById("inner").addEventListener("click", innerDivClick, false);
+            document.getElementById("clearButton").addEventListener("click", clearList);
+            document.getElementById("aRange").addEventListener("change", rangeChangeEvent);
+        }
+        function outerDivClick() {
+            appendText("outer Div Clicked");
+        }
+
+        function middleDivClick() {
+            appendText("middle Div Clicked");
+        }
+        function innerDivClick(e) {
+            appendText("inner Div Clicked");
+            e.cancelBubble = true;
+        }
+        function appendText(s) {
+            var li = document.createElement("li");
+            li.innerText = s;
+            document.getElementById("eventOrder").appendChild(li);
+        }
+        function clearList() {
+            var ol = document.createElement("ol");
+            ol.id = "eventOrder";
+            document.getElementById("bod").replaceChild(ol, document.
+            getElementById("eventOrder"));
+        }
+
+        function rangeChangeEvent() {
+            document.getElementById("rangeValue").innerText = this.value;
+        }
+    </script>
+</body>
+</html>

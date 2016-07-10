@@ -1,0 +1,22 @@
+﻿CACHE MANIFEST
+# 2016-06-25:v0.0.6
+
+# Explicitly cached 'master entries'.
+CACHE:
+5.1ApplicationCache.html
+task.js
+../favicon.ico
+http://res.cloudinary.com/demo/video/upload/w_220,h_220,c_fill,q_50/dog.mp4
+
+NETWORK:
+#Files listed under the NETWORK: section header in the cache manifest file are white-listed resources that 
+#require a connection to the server. 
+#All requests to such resources bypass the cache, even if the user is offline. 
+#The wildcard character * can be used once. Most sites need *.
+*
+
+FALLBACK:
+#The FALLBACK: section specifies fallback pages the browser should use if a resource is inaccessible. 
+#Each entry in this section lists two URIs—the first is the resource, the second is the fallback. 
+#Both URIs must be relative and from the same origin as the manifest file. Wildcards may be used.
+../Content/Images/CachedImage.png ../Content/Images/FallbackImage.png

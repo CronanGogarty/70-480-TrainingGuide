@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+
+</head>
+<body>
+    <div>
+        Enter search term: <input type="text" id="searchFruit" />
+        <input type="button" id="searchButton" value="Search" />
+    </div>
+    <div>
+        <h1>Results:</h1>
+    </div>
+    <div id="searchResults">
+    </div>
+
+    <script src="../Scripts/jquery-2.2.3.min.js"></script>
+    <script>
+
+        (function () {
+            $('#searchButton').click(function () {
+                var searchPath;
+                $('#searchResults').empty();
+                switch ($('#searchFruit').val()) {
+                    case 'long':
+                        searchPath = "Fruit/Long.xml";
+                        break;
+                    case 'round':
+                        searchPath = "Fruit/Round.xml";
+                        break;
+                    case 'orange':
+                        searchPath = "Fruit/Orange.xml";
+                        break;
+                    default:
+                        InvalidSearchTerm();
+                }
+
+                $.ajax({
+                    url: searchPath,
+                    cache: false,
+                    dataType: "xml",
+                    success: function (data) {
+                        $(data).find("fruit").each(
+                            function () {
+                                $('#searchResults').append($(this).text());
+                                $('#searchResults').append("<BR />");
+                            })
+                    }
+                });
+            });
+        }());
+    </script>
+</body>
+</html>

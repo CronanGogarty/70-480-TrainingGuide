@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Chaining Promises Using the Pipe() Method</title>
+    <link href="../styles.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-2.2.3.js"></script>
+</head>
+<body>
+    <h1>Chaining Promises Using the Pipe() Method</h1>
+    <button id="btnExecuteAsync">Execute Async Function</button>
+    <p>
+        implement chaining by using the pipe function on the promise object.
+    </p>
+    <p>Open the console to see the thread execution</p>
+
+    <hr />
+
+    <script type="text/javascript">
+        function timeoutAsync(milliseconds) {
+            var deferred = $.Deferred();
+            setTimeout(function () {
+                if (milliseconds==3000) {
+                    deferred.reject();
+                }
+                else {
+                    deferred.resolve();
+                }
+                
+            }, milliseconds);
+            return deferred;
+        }
+
+        function callChainedTimeoutAsync() {
+            var firstPromise = timeoutAsync(2000);
+            var secondPromise = firstPromise.pipe(function () {
+                console.log('firstPromise.done()');
+                return timeoutAsync(2000);
+            });
+            var thirdPromise = secondPromise.pipe(function () {
+                console.log('secondPromise.done()');
+                return timeoutAsync(3000);
+            });
+            var fourthPromise = thirdPromise.pipe(function () {
+                console.log('thirdPromise.done()');
+                return timeoutAsync(2000);
+            });
+            fourthPromise.done(function () {
+                console.log('fourthPromise.done()');
+                alert('All promises done');
+            });
+            fourthPromise.fail(function () {
+                console.log('thirdPromise.fail()');
+            });
+            return fourthPromise;
+        }
+
+        $(document).ready(function () {
+            console.log('jQuery running...');
+            $('#btnExecuteAsync').click(callChainedTimeoutAsync);
+        });
+    </script>
+</body>
+</html>

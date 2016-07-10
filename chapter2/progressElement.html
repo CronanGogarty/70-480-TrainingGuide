@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <button id="btnStart" type="button">Start</button>
+    <label for='progressBar'>Progress</label>
+    <progress id="progressBar" value="0" max="100"></progress>
+
+    <script>
+        var timeout = 100;
+        var progress = 1;
+
+        (function () {
+            console.log('javascript running...');
+            document.getElementById('btnStart').addEventListener('click', doProgress, false);
+        }());
+
+        function doProgress() {
+            setTimeout(function () {
+                if (progress <= 100) {
+                    document.getElementById('progressBar').setAttribute('value', progress++);
+                    doProgress();
+                }
+            }, timeout)
+        }
+
+    </script>
+</body>
+</html>

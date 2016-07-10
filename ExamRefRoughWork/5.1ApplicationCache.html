@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="en" manifest="manifest.appcache">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Application Cache | 70-480 Exam Ref</title>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="description" content="">
+    <meta name="author" content="Cronán Gogarty" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" />
+    <!--<link rel="stylesheet" href="css/main.css" media="screen, projection">-->
+    <link rel="stylesheet" href="/Styles.css" media="screen, projection">
+    <link rel="stylesheet" href="/Styles/global.css" media="screen, projection">
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lte IE 6]>
+        <link rel="stylesheet" href="http://universal-ie6-css.googlecode.com/files/ie6.1.1.css" media="screen, projection">
+    <![endif]-->
+
+</head>
+<body>
+    <header>
+        <h1>Application Cache</h1>
+    </header>
+
+    <main role="main">
+        <h2>Application Cache</h2>
+        <p>Contents go in here</p>
+    </main>
+
+    <footer>
+        <p>&copy; Cron&aacute;n Gogarty</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script>try { Modernizr } catch (e) { document.write('<script src="/Scripts/modernizr-2.8.3.js"><\/script>') }</script>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/Scripts/jquery-2.2.3.min.js"><\/script>')</script>
+    <!--//ONLY INCLUDE JQUERY UI IF USING ADVANCED ANIMATION TECHNIQUES
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js" integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw=" crossorigin="anonymous"></script>
+    <script>window.jQuery.ui || document.write('<script src="/Scripts/jquery-ui-1.11.4.js"><\/script>')</script>
+    -->
+
+    <script>
+        $(function () {
+            console.log("jQuery is working");
+            var cacheStatus;
+
+            cacheStatus = checkCacheStatus();
+
+            function checkCacheStatus() {
+                var appCache = window.applicationCache;
+
+                switch (appCache.status) {
+                    case appCache.UNCACHED: // UNCACHED == 0
+                        return 'UNCACHED';
+                        break;
+                    case appCache.IDLE: // IDLE == 1
+                        return 'IDLE';
+                        break;
+                    case appCache.CHECKING: // CHECKING == 2
+                        return 'CHECKING';
+                        break;
+                    case appCache.DOWNLOADING: // DOWNLOADING == 3
+                        return 'DOWNLOADING';
+                        break;
+                    case appCache.UPDATEREADY:  // UPDATEREADY == 4
+                        return 'UPDATEREADY';
+                        break;
+                    case appCache.OBSOLETE: // OBSOLETE == 5
+                        return 'OBSOLETE';
+                        break;
+                    default:
+                        return 'UKNOWN CACHE STATUS';
+                        break;
+                };
+            };
+            console.log(cacheStatus);
+            
+            window.applicationCache.addEventListener('updateready', onUpdateReady);
+            if (window.applicationCache.status === window.applicationCache.UPDATEREADY) {
+                onUpdateReady();
+            }
+
+            function onUpdateReady() {
+                console.log('found new version!');
+            }
+
+        });
+
+    </script>
+
+
+</body>
+</html>

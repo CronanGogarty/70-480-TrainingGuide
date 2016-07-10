@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html lang="en-ca">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>html5 tables roughwork</title>
+    <style>
+        table, th, td {
+            border: 1px solid hsl(334, 100%, 50%);
+            padding: 2px;
+            margin: 0;
+            border-collapse: collapse;
+        }
+
+            #tblRowHeaders td:last-of-type {
+                background-color: #ff0;
+            }
+        .visible    {
+            display:normal;
+        }
+        .hidden {
+            display:none;
+        }
+    </style>
+
+    <script>
+        function init() {
+            document.getElementById("btnAntiqueCars").addEventListener('click', showAntiqueCars);
+            document.getElementById("btnNonAntiqueCars").addEventListener('click', showNonAntiqueCars);
+        }
+
+        function showAntiqueCars() {
+            document.getElementById("antiqueCars").className = "visible";
+            document.getElementById("nonAntiqueCars").className = "hidden";
+        }
+
+        function showNonAntiqueCars() {
+            document.getElementById("antiqueCars").className = "hidden";
+            document.getElementById("nonAntiqueCars").className = "visible";
+        }
+    </script>
+</head>
+<body>
+    <h1 role="banner">HTML5 tables roughwork</h1>
+    <div role="main" id="main">
+        <section id="row-headers">
+            <h2>Row Headers</h2>
+            <table id="tblRowHeaders">
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>Col 1</th>
+                    <th>Col 2</th>
+                    <th>Col 3</th>
+                </tr>
+                <tr>
+                    <th>Row 1</th>
+                    <td>Cell 1.1</td>
+                    <td>Cell 1.2</td>
+                    <td>Cell 1.3</td>
+                </tr>
+                <tr>
+                    <th>Row 2</th>
+                    <td>Cell 2.1</td>
+                    <td>Cell 2.2</td>
+                    <td>Cell 2.3</td>
+                </tr>
+                <tr>
+                    <th>Row 3</th>
+                    <td>Cell 3.1</td>
+                    <td>Cell 3.2</td>
+                    <td>Cell 3.3</td>
+                </tr>
+            </table>
+        </section>
+        <hr />
+        <section id="table-groups">
+            <hgroup>
+                <h2>Table Groups</h2>
+                <h3>Group sections of tabular data using the &lt;tbody&gt; element</h3>
+            </hgroup>
+            <button id="btnAntiqueCars">Show antique cars</button>
+            <button id="btnNonAntiqueCars">Non-antique cars</button>
+            <table id="tbl-tbody">
+                <thead>
+                    <tr>
+                        <th>Vehicle #</th>
+                        <th>Year</th>
+                        <th>Make</th>
+                        <th>Model</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody id="antiqueCars">
+                    <tr>
+                        <th>1</th>
+                        <td>1957</td>
+                        <td>Ford</td>
+                        <td>Thunderbird</td>
+                        <td>14,000</td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>1947</td>
+                        <td>VW</td>
+                        <td>Bug</td>
+                        <td>54,000</td>
+                    </tr>
+                </tbody>
+                <tbody id="nonAntiqueCars">
+                    <tr>
+                        <th>3</th>
+                        <td>2012</td>
+                        <td>BMW</td>
+                        <td>Z4</td>
+                        <td>40,000</td>
+                    </tr>
+                    <tr>
+                        <th>4</th>
+                        <td>2003</td>
+                        <td>Madza</td>
+                        <td>Miata</td>
+                        <td>5,000</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <script>
+                init();
+            </script>
+
+        </section>
+    </div>
+    <footer role="contentinfo"></footer>
+</body>
+</html>

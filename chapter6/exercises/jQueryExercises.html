@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="../../Scripts/jquery-2.1.4.js"></script>
+    <script>
+        //function setValues() {
+        //    console.log('running setValues()...');
+        //    $('#txtInput1').val('update1');
+        //    $('#txtInput2').val('update2');
+        //}
+
+        //function displayValues() {
+        //    alert("Values\n" + $('#txtInput1').val());
+        //}
+
+
+    </script>
+</head>
+<body>
+    <div id="divBody">
+        <button type="button" id="btnClick">Click</button>
+        <input type="text" value="txtInput1" id="txtInput1" />
+        <input type="text" value="txtInput2" id="txtInput2" />
+
+        <button type="button" id="btnAddEventListener">AddEventListener</button>
+
+        <script>
+
+            //make sure all DOM elements are loaded before performing operations on them
+
+            function initialize() {
+                console.log('JavaScript is running...');
+                document.getElementById('btnClick').addEventListener('click', setValues, false);
+                
+                $('#btnAddEventListener').on('click', function () {
+                    console.log('btnAddEventListener was clicked...');
+                    removeEvent();
+                });
+            }
+
+            function removeEvent() {
+                console.log('removeEvent running...');
+                $('#btnAddeventListener').off('click');
+            }
+            function setValues() {
+                $('#txtInput1').val('value 1');
+                $('#txtInput2').val('value 2');
+
+                var txtIn1 = 0;
+                if($('#txtInput1').length > 0) {
+                    getValues();
+                }
+                
+            }
+
+            function getValues() {
+                console.log($('#txtInput1').val() + "\n" + $('#txtInput2').val());
+            }
+
+            $('document').ready(function () {
+                console.log('jQuery is running...');
+            });
+
+            (function () {
+                initialize();
+            }());
+        </script>
+    </div>
+</body>
+</html>

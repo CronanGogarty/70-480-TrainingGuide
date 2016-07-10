@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="../styles.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-2.2.3.js"></script>
+</head>
+<body>
+    <canvas width="1000" height="300">
+
+    </canvas>
+
+    <script>
+        $(function () {
+            var canvas = $('canvas')[0];
+            var context = canvas.getContext('2d');
+
+            context.lineWidth = 10;
+            context.lineJoin = 'bevel';
+            context.strokeRect(10, 10, 980, 280);
+
+            var img = new Image();
+            img.src = "../Content/Images/PatternRepeat.png";
+            img.onload = function () {
+                
+                var pattern = context.createPattern(img, 'repeat');
+                context.fillStyle = pattern;
+                context.fillRect(10, 10, 980, 280);
+            }
+        });
+    </script>
+</body>
+</html>

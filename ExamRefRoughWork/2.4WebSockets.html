@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <button id="btnConnect">Connect to WebSocket server</button>
+    <br />
+    <input type="text" id="txtMessage" required="required" placeholder="Enter a message to send:" />
+    <br />
+    <button type="button" id="btnSendMessage">Send Message</button>
+    <br />
+    <button id="btnDisconnect">Disconnect from WebSocket server</button>
+
+    <script>
+        (function () {
+            var connection;
+            document.getElementById('btnConnect').addEventListener('click', connectToServer, false);
+            document.getElementById('btnDisconnect').addEventListener('click', disconnectFromServer, false);
+            document.getElementById('btnSendMessage').addEventListener('click', sendMessage, false);
+
+            function connectToServer() {
+            /*
+            You open up a WebSocket connection simply by calling the WebSocket constructor:
+            The second argument accepts optional subprotocols. 
+            It can be a string or an array of strings. 
+            Each string should represent a subprotocol name and server accepts only one of passed subprotocols in the array. 
+            Accepted subprotocol can be determined by accessing protocol property of WebSocket object.
+            */
+                connection = new WebSocket('ws://html5rocks.websocket.org/echo', ['soap', 'xmpp']);
+
+                // When the connection is open, send some data to the server
+                connection.onopen = function () {
+                    if (connection.readyState == WebSocket.OPEN) {
+                        connection.send('Ping'); // Send the message 'Ping' to the server
+                    }
+                    
+                };
+
+                // Log errors
+                connection.onerror = function (error) {
+                    console.log('WebSocket Error ' + error);
+                };
+
+                // Log messages from the server
+                connection.onmessage = function (e) {
+
+                    console.log('Server: ' + e.data);
+                    alert(e.data);
+                };
+
+                connection.onclose = function (e) {
+                    console.log("Server closed at " + e.timeStamp);
+                }
+
+                
+            }
+            function disconnectFromServer() {
+                if (connection) {
+                    if (connection.readyState == WebSocket.OPEN) {
+                        connection.close();
+                    }
+                }
+                
+            }
+
+            function sendMessage() {
+                if (connection) {
+                    if (connection.readyState == WebSocket.OPEN) {
+                        connection.send(txtMessage.value);
+                    }
+                    else {
+                        alert("Connection is closed");
+                    }
+                }
+                
+            }
+
+        }());
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Conditional Parallel Asynchronous Calls</title>
+    <link href="../styles.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-2.2.3.js"></script>
+</head>
+<body>
+    <h1>Conditional Parallel Asynchronous Calls</h1>
+    <p> If includeThird is false, $.when() is assigned to the thirdPromise variable. Remember that $.when() is used at the bottom of the function to indicate that all
+asynchronous operations have completed, which creates a new promise that is passed to the
+then() method. If you call $.when() with no parameters, a new promise object is created with
+its status set to resolved.</p>
+    <label for="">Execute thirdPromise?</label>&nbsp;<input type="checkbox" id="chkIncludeThird" form="" />
+    <br />
+    <button id="btnConditionalParallelCall">Conditional Parallel Asynchronous Call</button>
+    <hr />
+
+    <code>
+    function timeoutAsync(milliseconds, caller) {
+    console.log(caller + ' timeoutAsync running...');
+    var deferred = $.Deferred();
+    setTimeout(function () {
+        deferred.resolve();
+    }, milliseconds);
+    return deferred;
+}
+
+function callParallelTimeoutAsync(includeThird) {
+    var deferred = $.Deferred();
+
+    var firstPromise = timeoutAsync(2000, 'firstPromise');
+
+    var secondPromise = timeoutAsync(2000, 'secondPromise');
+
+    var thirdPromise = includeThird ? timeoutAsync(3000, 'thirdPromise') : $.when();
+
+    var fourthPromise = timeoutAsync(2000, 'fourthPromise');
+
+    $.when(firstPromise, secondPromise, thirdPromise, fourthPromise)
+        .then(function () { alert('done'); deferred.resolve(); }, 
+            function () { deferred.reject(); });
+    return deferred.promise();
+}
+
+$(document).ready(function () {
+    console.log('jQuery running...');
+    $('#btnConditionalParallelCall').click(function () {
+        if ($('#chkIncludeThird').is(':checked')) {
+            console.log('checked');
+            callParallelTimeoutAsync(true);
+        }
+        else {
+            console.log('not checked');
+            callParallelTimeoutAsync(false);
+        };
+    });
+});
+    </code>
+
+    <script type="text/javascript">
+
+    function timeoutAsync(milliseconds, caller) {
+        console.log(caller + ' timeoutAsync running...');
+        var deferred = $.Deferred();
+        setTimeout(function () {
+            deferred.resolve();
+        }, milliseconds);
+        return deferred;
+    }
+
+    function callParallelTimeoutAsync(includeThird) {
+        var deferred = $.Deferred();
+
+        var firstPromise = timeoutAsync(2000, 'firstPromise');
+
+        var secondPromise = timeoutAsync(2000, 'secondPromise');
+
+        //If includeThird is false, $.when() is assigned to the thirdPromise variable.
+        //If you call $.when() with no parameters, a new promise object is created with its status set to resolved.
+        var thirdPromise = includeThird ? timeoutAsync(3000, 'thirdPromise') : $.when(); 
+
+        var fourthPromise = timeoutAsync(2000, 'fourthPromise');
+
+        //$.when() is used at the bottom of the function to indicate that all asynchronous operations have completed
+        //this creates a new promise that is passed to the then() method. 
+        $.when(firstPromise, secondPromise, thirdPromise, fourthPromise)
+            .then(function () { alert('done'); deferred.resolve(); }, 
+                function () { deferred.reject(); });
+        return deferred.promise();
+    }
+
+    $(document).ready(function () {
+        console.log('jQuery running...');
+        $('#btnConditionalParallelCall').click(function () {
+            if ($('#chkIncludeThird').is(':checked')) {
+                console.log('checked');
+                callParallelTimeoutAsync(true);
+            }
+            else {
+                console.log('not checked');
+                callParallelTimeoutAsync(false);
+            };
+        });
+    });
+    </script>
+
+</body>
+</html>

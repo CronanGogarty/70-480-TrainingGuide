@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <input type="text" required id="txtFname" placeholder="First Name:" autocomplete="on" /><br />
+    <input type="text" required id="txtLname" placeholder="Last Name:" autocomplete="on" /><br />
+    <input type="text" required id="txtTitle" placeholder="Title:" autocomplete="on" /><br />
+    <input type="number" min="30000" max="120000" required id="numSalary" step="500" placeholder="Salary:" /><br />
+    <button id="createJunior">Create Junior Employee</button><br />
+    <button id="createManager">Create Manager</button><br />
+    <button id="promoteEmployee">Promote Employee</button><br />
+    <hr />
+    <div id="output"></div>
+
+    <script>
+        (function () {
+            var output = document.getElementById('output');
+
+            document.getElementById('createJunior').addEventListener('click', function () {
+                var newEmployee = new employee(txtFname.value, txtLname.value, numSalary.value, txtTitle.value);
+                showEmployee(newEmployee);
+            }, false);
+
+            document.getElementById('createManager').addEventListener('click', function () {
+                var newManager = new manager(txtFname.value, txtLname.value, numSalary.value, txtTitle.value, 'Ford Focus');
+                showEmployee(newManager);
+            }, false);
+
+            document.getElementById('promoteEmployee').addEventListener('click', function () {
+                var currentEmployee = new employee(txtFname.value, txtLname.value, numSalary.value, txtTitle.value);
+                currentEmployee = currentEmployee.promoteEmloyee(currentEmployee); //employee.prototype.promoteEmloyee(currentEmployee);
+                showEmployee(currentEmployee);
+            }, false);
+
+            function showEmployee(employee) {
+                output.innerHTML = employee.getDetails();
+                txtFname.value = employee.firstname;
+                txtLname.value = employee.lastname;
+                txtTitle.value = employee.title;
+                numSalary.value = employee.salary;
+            }
+
+            var employee = (function () {
+                function employee(fname, lname, salary, title) {
+                    this.firstname = fname;
+                    this.lastname = lname;
+                    this.salary = parseInt(salary, 10);
+                    this.title = title;
+                }
+                employee.prototype.getDetails = function () {
+                    return "Name:" + this.firstname + " " + this.lastname + ";<br />Title: " + this.title + ";<br />Salary: " + this.salary;
+                }
+                employee.prototype.promoteEmloyee = function (employee) {
+                    switch (employee.title.toLowerCase()) {
+                        case 'junior':
+                            employee.title = 'Intermediate';
+                            employee.salary += 2500;
+                            break;
+                        case 'intermediate':
+                            employee.title = 'Senior';
+                            employee.salary += 5000;
+                            break;
+                        case 'senior':
+                            employee.title = 'Manager';
+                            employee.salary += 1000;
+                            break;
+                        case 'manager':
+                            alert('You have reached the glass ceiling - time to move on!');
+                            break;
+                        default:
+                            alert('Unknown member of staff identified');
+                            break;
+                    }
+                    return employee;
+                }
+                return employee;
+            })();
+
+            var manager = (function (parent) {
+                manager.prototype = new employee();
+                manager.prototype.constructor = manager;
+                function manager(fname, lname, salary, title, companyCar) {
+                    parent.call(this, fname, lname, salary, title)
+                    this.salary = 'classified';
+                    this.companyCar = companyCar;
+                }
+                manager.prototype.getDetails = function () {
+                    return "Name:" + this.firstname + " " + this.lastname + ";<br />Title: " + this.title + ";<br />Salary: " + this.salary + "<br />Company Car: " + this.companyCar;
+                }
+                return manager;
+            })(employee);
+
+        }());
+    </script>
+</body>
+</html>

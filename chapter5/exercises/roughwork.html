@@ -1,0 +1,303 @@
+﻿<!DOCTYPE html>
+<html lang="en-ca">
+<head>
+    <meta charset="utf-8" />
+    <title>some html5 features</title>
+    <style>
+        body > header,
+        body > aside,
+        body > footer,
+        div[role="main"] {
+            border: 1px solid hsl(180, 100%, 30%);
+        }
+
+        body > aside {
+            float: right;
+            width: 20%;
+        }
+
+        aside:after {
+            content: " ";
+            visibility: hidden;
+            height: 0;
+            display: block;
+        }
+
+        body > footer {
+            background-color: hsl(180, 100%, 40%);
+        }
+
+        blockquote {
+            border: 1px dotted hsl(180, 100%, 60%);
+        }
+
+        code, samp {
+            white-space: pre;
+        }
+        /********************************************/
+        /* styles for custom list*/
+        body {
+            counter-reset: section;
+        }
+
+        ul.level1 > li:before {
+            counter-increment: section;
+            content: "Section " counter(section) ". ";
+            counter-reset: subsection;
+        }
+
+        ul.level2 > li:before {
+            counter-increment: subsection;
+            content: "Section " counter(section) "(" counter(subsection, lower-alpha) ") - ";
+        }
+
+        ul.level1 > li, ul.level2 > li {
+            list-style-type: none;
+        }
+
+        ul.level3 > li {
+            list-style-type: disc;
+        }
+        /********************************************/
+    </style>
+</head>
+<body>
+    <header role="banner">
+        <h1>HTML5</h1>
+        <h2>Some elements, attributes and features</h2>
+        <p>This header has a role attribute of <em>banner</em> indicating that it contains site-specific content such as the site-name and logo.... I've cheated a little bit here and added a h2 element that is specific to this page.</p>
+        <p>Only one element with the role <em>banner</em> is allowed per page, there is also a <em>heading</em> role that could be applied to article or section headings.</p>
+        <p>If only one <em>&lt;hn&gt;</em> exists, the header element is not required. These paragraphs are within the header. <strong>Note:</strong> the hgroup element is obsolete!!!</p>
+    </header>
+    <aside role="complementary">
+        <h6>Aside Heading</h6>
+        <p>This is an aside with a role attrbute of <em>complementary</em> this means it complements this page, but it can stand alone and make sense. This would be an ideal place for external links and advertisements. </p>
+    </aside>
+    <div role="main">
+        <section id="firstSection">
+            <h3 role="heading">This is a section header</h3>
+            <h4>And this is the sub-heading for this section</h4>
+            <article id="semanticsOutline">
+                <h5>This is an article header</h5>
+                <p>This is a p within an article. An article represents a self-contained piece of content, something that ould be distributed by itself and it would make sense!</p>
+                <p>With that in mind I have included a hn element within the article. The article is contained within a section element. The section element has its own hn elements.</p>
+                <p>This artice and its parent sectino are both contained within a div that has a role attribute of <em>main</em> - this indicates that this is the main content, only one element per page can take the value <em>main</em> as its role attribute.</p>
+                <footer>This article has a footer!</footer>
+            </article>
+            <hr />
+            <article id="someOtherArticle">
+                <h5>Article Heading</h5>
+                <p>Yet another article...</p>
+                <aside>This is an aside - this aside is relevant to the article</aside>
+            </article>
+            <article id="abbreviations">
+                <h5>Using the <em>&lt;abbr&gt;</em> element</h5>
+                <p>The common abbreviation <abbr title="hypertext markup language">HTML</abbr> is used to indicate a markup language that is descended from <strong><abbr title="Standardized Markup Language">SGML</abbr></strong> which was previously used in desktop publishing.</p>
+            </article>
+            <footer>This Section has a footer</footer>
+        </section>
+        <hr />
+        <section id="nestingStrongElements">
+            <h3>Section</h3>
+            <p>I am using this section to experiment with nesting <em>strong</em> elements to see what effect it produces. Note, this is a p within a section, no article.</p>
+            <p>This is some <strong>strong text while <strong>this text</strong> is inside a nested <em>strong</em> element</strong> - as you can see, nesting strong elements has no visual impact.</p>
+        </section>
+        <hr />
+        <section id="quotations">
+            <h3>Quotations</h3>
+            <p>
+                Quotations can be placed in a <em>blockquote</em> for longer quotes;
+            </p>
+            <blockquote cite="Shakespere">
+                O Romeo, Romeo, wherefore art thou Romeo?<br />
+                Deny thy father and refuse thy name;<br />
+                <footer>
+                    <p>William Shakespere, <cite>Romeo &amp; Juliet</cite>, Act 2, Scene 2</p>
+                </footer>
+            </blockquote>
+            <p>Here is a paragraph of text in which I will quote Google's motto of <q cite="http://google.com">do no evil</q> which I suspect they have not adhered to.</p>
+            <p>John said to the audience <q>Sally was crying when she shouted <q cite="john">Leave me alone</q> and then she ran away.</q></p>
+        </section>
+        <hr />
+        <section id="codeSamples">
+            <h3>Code Samples</h3>
+            <p>Use the <em>code</em> element to display code;</p>
+            <code class="keepWhiteSpace">
+                sayHello('Mom');
+                function sayHello(name)
+                {
+                alert('Hello ' + name + '!');
+                }
+            </code>
+            <p>Use the <em>samp</em> element to display the results of running that code;</p>
+            <samp class="keepWhiteSpace">
+                Hello Mom!
+            </samp>
+        </section>
+        <hr />
+        <section id="definitions">
+            <h3>Definitions</h3>
+            <p>
+                A motor vehicle has a <dfn id="vin" title="Vehicle Identification Number - Title attribute within dfn tag"><abbr>VIN</abbr></dfn> that is unique. Over the years, the <abbr title="Vehicle Identification Number">VIN</abbr> has had different formats, based on the vehicle manufacturer.
+            </p>
+            <p>
+                In the United States, the <a href="#vin">
+                    <abbr title="Vehicle Identification Number">VIN</abbr>
+                </a>
+                was standardized to a 17 character format where
+                the 10th character of the
+                <abbr title="Vehicle Identification Number">VIN</abbr>
+                represents the year of the vehicle.
+            </p>
+            <p>Yo - the definition is contained in the 1st paragraph, give the definition an ID and it is possible to link to the definition. The <em>&lt;dfn&gt;</em> tag has been given a <em>title</em> attribute which shows the title when moused over. All the other instances of VIN use the abbr title attribute to show the tooltip.</p>
+        </section>
+        <hr />
+        <section id="detailsSummary">
+            <h3>Details and Summary elements</h3>
+            <details>
+                <summary>The Quickride Steps</summary>
+                <p>Quickride is the <abbr title="Canadian Association of Snowboard Instructors">CASI</abbr>-approved method of teaching beginners how to snowboard. It is comprised of the following steps;</p>
+                <ol>
+                    <li>
+                        <strong>Introductions</strong>
+                        <p>A brief introduction is made by the instructor. Then the students should introduce themselves.</p>
+                        <p>In order to make this step fun, and less daunting to the students, this step can be combined with some warm-up exercises and games.</p>
+                    </li>
+                    <li>
+                        <strong>Equipment</strong>
+                        <p>The instructor will introduce the equipment and explain the role of each item. By the end of this step each student should be able to identify the pieces of equipment and what they are used for.</p>
+                        <p>Similar to step 1, in order to keep this step <mark>fun and stimulating</mark>, games and warm-up exercises can be used.</p>
+                    </li>
+                    <li>
+                        <strong>Skating</strong>
+                        <ul>
+                            <li>Skating with one foot attached to to board.</li>
+                            <li>Walking uphill with one foot attached</li>
+                            <li>Walking downhill with one foot attached</li>
+                            <li><kbd>If time permits</kbd> - a quick <span style="font-family:monospace">explanation of how to turn</span> the board with one foot attached</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Straight-running</strong>
+                        <p>Instructor gives a brief talk on balance, body-position and weight-distribution.</p>
+                        <p>On a gentle incline, <ins>the instroctor will demonstrate how to</ins> slide in a <del>very</del> striaght line with front-foot attached and back-foot standing on board.</p>
+                        <ul>
+                            <li>Heel-drag turn (hypno-turn)</li>
+                            <li>Toe-drag turn</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Edging</strong>
+                    </li>
+                    <li>
+                        <strong>Turning</strong>
+                    </li>
+                    <li>
+                        <strong>Control</strong>
+                    </li>
+                </ol>
+            </details>
+        </section>
+        <hr />
+        <section id="language">
+            <h3>Language Elements</h3>
+            <p>Use <em>ruby</em> element to indicate the phonetic sounds of characters - <ruby>Cronán<rp>(</rp><rt>krow - nawn</rt><rp>)</rp></ruby> is a commonly mis-pronounced name.</p>
+            <p><bdo dir="rtl">This paragraph should be written in right-to-left. But it is possible to <bdi dir="ltr">isolate a span of text and write it left-to-right</bdi> which is the corect direction as we all know!</bdo></p>
+            <p>The <b>Grass mud horse</b> — <ruby>草泥馬<rp>(</rp><rt>Cǎo Ní Mǎ</rt><rp>)</rp></ruby> — is … characterised as “lively, intelligent and tenacious”. However, their existence is said to be threatened by the “river crabs” — <ruby class="styled">河蟹<rp> (</rp><rt>héxiè</rt><rp>) </rp></ruby> — which are invading their habitat.</p>
+            <p><bdo dir="ltr">This paragraph should be written in right-to-left. But it is possible to <bdi dir="rtl">isolate a span of text and write it left-to-right</bdi> which is the corect direction as we all know!</bdo></p>
+        </section>
+        <hr />
+        <section id="lists">
+            <h3>Lists</h3>
+            <strong>Reversed List</strong>
+            <ol reversed="reversed">
+                <li>First</li>
+                <li>Second</li>
+                <li>Third</li>
+                <li>Fourth</li>
+                <li>Fifth</li>
+            </ol>
+            <strong>Start at 6th item - set type = "A"</strong>
+            <ol type="A" start="6">
+                <li>First</li>
+                <li>Second</li>
+                <li>Third</li>
+                <li>Fourth</li>
+                <li>Fifth</li>
+            </ol>
+            <strong>Start at 5th item - set type = "I" - rversed="reversed"</strong>
+            <ol type="I" start="5" reversed="reversed">
+                <li>First</li>
+                <li>Second</li>
+                <li>Third</li>
+                <li>Fourth</li>
+                <li>Fifth</li>
+            </ol>
+            <strong>Unordered List - type="square" - NOTE: ul type attribute is obsolete!</strong>
+            <ul type="square">
+                <li>First</li>
+                <li>Second</li>
+                <li>Third</li>
+                <li>Fourth</li>
+                <li>Fifth</li>
+            </ul>
+            <strong>Description List</strong>
+            <p>A description list shows a list of terms and their associated descriptions (key-value pairs). Use &lt;dl&gt; tag to create the description list, &lt;dt&gt; is the description term, and &lt;dd&gt; is the associated description details.</p>
+            <dl>
+                <dt>Boat</dt>
+                <dd>A water-based vehicle</dd>
+                <dt>Car</dt>
+                <dd>A land-based vehicle for carrying up to 6 passengers</dd>
+                <dt>Bus</dt>
+                <dd>A land-based vehicle for carrying up to 36 people... or more... I don't know.</dd>
+            </dl>
+        </section>
+        <hr />
+        <section id="customLists">
+            <ul class="level1">
+                <li>
+                    Automobiles
+                    <ul class="level2">
+                        <li>
+                            BMW
+                            <ul class="level3">
+                                <li>X1</li>
+                                <li>X3</li>
+                                <li>Z4</li>
+                            </ul>
+                        </li>
+                        <li>
+                            Chevrolet
+                            <ul class="level3">
+                                <li>Cobalt</li>
+                                <li>Impala</li>
+                                <li>Volt</li>
+                            </ul>
+                        </li>
+                        <li>
+                            Ford
+                            <ul class="level3">
+                                <li>Edge</li>
+                                <li>Focus</li>
+                                <li>Mustang</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Boats
+                    <ul class="level2">
+                        <li>Sea Ray</li>
+                        <li>Cobalt</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </div>
+    <footer role="contentinfo">
+        <p>&copy; Andréas Finian Gogarty 2015</p>
+        <p>The footer element in this instance has a role of <em>contentinfo</em> denoting that this footer contains information pertaining to the parent document (i.e. the page)</p>
+        <p>A page can contain multiple footer elements, each section or article can have a footer element</p>
+    </footer>
+</body>
+</html>

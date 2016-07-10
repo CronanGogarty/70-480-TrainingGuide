@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Using the localStorage object reference</title>
+</head>
+<body>
+    <h1>Using the localStorage object reference</h1>
+
+    <p>
+        Read more at <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank">Mozilla MDN Window.localStorage()</a><br />
+        The localStorage property allows you to access a local Storage object.<br />
+        Data stored in localStorage has no expiration time.
+    </p>
+    <p>
+        In addition to localStorage, you can use sessionStorage; it is also a Storage object, so the
+        same methods and properties exist. The difference is that sessionStorage retains data for a
+        single session only. After the user closes the browser window, records stored are automatically
+        cleared.
+        <br />
+        At their core, both localStorage and sessionStorage are firmly dedicated to their respective browsing contexts. Because that context for localStorage includes other tabs and windows within the same URL base, its data is shared among all open instances.
+        <br />
+        In contrast sessionStorage has a context that, by design, is extremely confined. It’s limited to a single
+        browser tab or window. Its data cannot be passed from one tab to the next. However, the
+        data can be shared among any &lt;iframe&gt; elements that exist on the page.
+    </p>
+    <hr />
+    <form id="formLocalStorage">
+        <input type="text" id="txtUserName" required="required" placeholder="Enter a user name" />
+        <br />
+        <button type="submit" id="btnSubmit">Store UserName and AlbumArtist (JSON object) in localStorage</button>
+        <br />
+        <button type="button" id="btnRetrieve">Retrieve UserName from localStorage</button>
+        <br />
+        <button type="button" id="btnRemoveData">Removed UserName from localStorage</button>
+        <br />
+        <button type="button" id="btnClearData">Clear Data</button>
+        <br />
+        <div id="divRetrievedData"></div>
+    </form>
+
+    <script type="text/javascript">
+        (function () {
+            //var message;
+
+            var setLocalStorage = function (e) {
+                e.preventDefault();
+                var username = document.getElementById('txtUserName').value;
+                window.localStorage.setItem('UserName', username);
+
+                var albumArtist = { firstName: 'Jon', lastName: 'Hopkins', album: 'Opalescent', year: '2001', genre: 'Electronica' };
+                window.localStorage.setItem('AlbumArtist', JSON.stringify(albumArtist));
+            }
+
+            var getStoredData = function () {
+                var outputString
+                if (window.localStorage.length > 0) {
+                    outputString = "<strong>Retrieved Data:</strong><br />"
+                    + "There are " + window.localStorage.length + " data items in localStorage.<br />";
+                    for (var i = 0; i < window.localStorage.length; i++) {
+
+                        outputString += "<br />Data item " + i + " Key = " + window.localStorage.key(i) + "; Value = " + retrieveData(window.localStorage.key(i));
+                    }
+                }
+                else {
+                    outputString = "No items in localStorage";
+                }
+                writeMessage(outputString);
+            }
+
+            function retrieveData(key) {
+                var data = window.localStorage.getItem(key);
+                try {
+                    JSON.parse(data);
+                    console.log(key + " Parsed as JSON");
+                } catch (e) {
+                    console.log(key + " Failed to parse as JSON");
+                }
+                return data;
+            }
+
+            var removeData = function () {
+                window.localStorage.removeItem('UserName');
+                message = "UserName removed from localData";
+                writeMessage(message);
+            }
+
+            var clearData = function () {
+                window.localStorage.clear();
+                writeMessage("Data cleared");
+            }
+
+            function writeMessage(message) {
+                document.getElementById('divRetrievedData').innerHTML = message
+            }
+
+            function respondToChange(e) {
+                alert(e.newValue);
+            }
+
+            document.getElementById('formLocalStorage').addEventListener('submit', setLocalStorage, false);
+            document.getElementById('btnRetrieve').addEventListener('click', getStoredData, false);
+            document.getElementById('btnRemoveData').addEventListener('click', removeData, false);
+            document.getElementById('btnClearData').addEventListener('click', clearData, false);
+
+            //subscribe to the storage event 
+            if (window.addEventListener) {
+                window.addEventListener('storage', respondToChange, false);
+            }
+            else {
+                //IE8
+                document.attachEvent('onstorage', respondToChange)
+            }
+        }());
+    </script>
+</body>
+</html>

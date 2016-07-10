@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div id="output2">
+
+    </div>
+    <script>
+        (function(){
+            var result2;
+
+            function evaluateSomething(num) {
+                console.log('evaluateSomething running: num = ' + num);
+                if (num % 2 == 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            for (var i = 0; i < 10; i++) {
+                callSwitch(i);
+            }
+
+            function callSwitch(num) {
+                switch (evaluateSomething(num)) {
+                    case true:
+                        if (result2 === undefined) {
+                            result2 = 'yes';
+                        }
+                        else {
+                            result2 += '<br />yes';
+                        }
+                        break;
+                    case false:
+                        result2 += '<br />no';
+                        break;
+                    default:
+                        result2 += '<br />unknown';
+                        break
+                }
+            }
+
+
+            var output2 = document.getElementById('output2');
+            output2.innerHTML = result2;
+        }());
+        
+
+        
+
+        
+    </script>
+</body>
+</html>

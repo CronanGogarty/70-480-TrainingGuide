@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html lang="en-ca">
+<head>
+    <meta charset="utf-8" />
+    <title>JavaScript Powered Calculator</title>
+    <!--<link href="Content/default.css" rel="stylesheet" />-->
+
+    <script src="../../Scripts/jquery-2.1.4.js"></script>
+    <script src="scripts/CalculatorLibrary.js"></script>
+
+    <style type="text/css">
+        #container * {
+            margin: 0;
+        }
+
+        #container > *
+        /*header, nav, div[role="main"], aside, footer*/ {
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #00ffff;
+            width: 100%;
+            padding-left: 0.5em;
+            padding-right: 0.5em;
+        }
+
+        nav {
+            width: 100%;
+        }
+
+        div[role="main"] {
+            background-color: yellow;
+            width: 80%;
+            float: left;
+            text-align: center;
+        }
+
+        #calculator {
+            outline: 1px solid #000;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        aside {
+            width: 20%;
+            float: right;
+        }
+
+        footer {
+            clear: both;
+            width: 100%;
+            background-color: #00ffff;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <header>
+            <hgroup id="headerText">
+                <h1>Consoto Ltd.</h1>
+                <h2>Your success equals our success</h2>
+            </hgroup>
+        </header>
+        <nav>
+            <a href="calculator.html">Home</a>
+            <a href="ContactUs.html">Contact Us</a>
+        </nav>
+        <div role="main">
+            <div id="calculator">
+                <table>
+                    <tr>
+                        <td colspan="4"><input id="txtResult" type="text" readonly="readonly" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"><input id="txtInput" type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td><button id="btnClearEntry">CE</button></td>
+                        <td><button id="btnClear">C</button></td>
+                    </tr>
+                    <tr>
+                        <td><button id="btnNumber7">7</button></td>
+                        <td><button id="btnNumber8">8</button></td>
+                        <td><button id="btnNumber9">9</button></td>
+                        <td><button id="btnPlus">+</button></td>
+                    </tr>
+                    <tr>
+                        <td><button id="btnNumber4">4</button></td>
+                        <td><button id="btnNumber5">5</button></td>
+                        <td><button id="btnNumber6">6</button></td>
+                        <td><button id="btnMinus">-</button></td>
+                    </tr>
+                    <tr>
+                        <td><button id="btnNumber3">3</button></td>
+                        <td><button id="btnNumber2">2</button></td>
+                        <td><button id="btnNumber1">1</button></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><button id="btnNumber0">0</button></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </table>
+            </div>
+        </div>
+        <aside>
+            <p>Advertisements</p>
+        </aside>
+        <footer>
+            <!--<p><b>NOTE: This calculator does not work in Firefox - nor do the test scripts!!!</b></p>-->
+            <p>&copy; 2015 Cronán Gogarty</p>
+        </footer>
+    </div>
+
+    <script type="text/javascript">
+        //window.addEventListener('load', initialize, false);
+        $('document').ready(function () {
+            calculatorNamespace.initialize();
+        });
+    </script>
+</body>
+</html>

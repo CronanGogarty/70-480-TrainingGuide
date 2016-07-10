@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Updating Progress with the notify() method of the deferred object</title>
+    <link href="../styles.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-2.2.3.js"></script>
+</head>
+<body>
+    <h1>Updating Progress with the notify() method of the deferred object</h1>
+    <p>
+        The deferred object can also notify its promise object when progress has changed. It does
+        this by executing the notify method of the deferred object when you want to update the
+        progress.
+    </p>
+    <p>
+        The promise object has a progress method that accepts a function called when the notify
+        method is executed.
+    </p>
+    <button id="btnExecuteAsync">Execute Async Function</button>
+    <p>Open the console to see the thread execution</p>
+
+    <hr />
+
+<code>
+function timeoutAsync(milliseconds, caller) {
+    console.log(caller + ' timeoutAsync running...');
+    var deferred = $.Deferred();
+    setTimeout(function () { deferred.resolve(); }, milliseconds);
+    return deferred;
+}
+
+function startAsync() {
+    console.log('startAsync running...');
+    var deferred = $.Deferred();
+    var count = 0;
+    var firstPromise = timeoutAsync(2000, 'firstPromise');
+    var secondPromise = timeoutAsync(6000, 'secondPromise');
+    var thirdPromise = timeoutAsync(12000, 'thirdPromise');
+    var fourthPromise = timeoutAsync(20000, 'fourthPromise');
+
+    firstPromise.always(function () { deferred.notify(++count); });
+    secondPromise.always(function () { deferred.notify(++count); });
+    thirdPromise.always(function () { deferred.notify(++count); });
+    fourthPromise.always(function () { deferred.notify(++count); });
+
+    $.when(firstPromise, secondPromise, thirdPromise, fourthPromise)
+        .then(function () {
+            alert('done');
+            deferred.resolve();
+        }, function () {
+            deferred.reject();
+        });
+    return deferred.promise();
+}
+
+function executeStartAsync() {
+    var promise = startAsync();
+    promise.progress(function (msg) {
+        console.log(msg);
+    });
+    return promise;
+}
+
+$(function () {
+    console.log('jQuery running...');
+    $('#btnExecuteAsync').click(executeStartAsync);
+});
+</code>
+    <script type="text/javascript">
+        function timeoutAsync(milliseconds, caller) {
+            console.log(caller + ' timeoutAsync running...');
+            var deferred = $.Deferred();
+            setTimeout(function () { deferred.resolve(); }, milliseconds);
+            return deferred;
+        }
+
+        function startAsync() {
+            console.log('startAsync running...');
+            var deferred = $.Deferred();
+            var count = 0;
+            var firstPromise = timeoutAsync(2000, 'firstPromise');
+            var secondPromise = timeoutAsync(6000, 'secondPromise');
+            var thirdPromise = timeoutAsync(12000, 'thirdPromise');
+            var fourthPromise = timeoutAsync(20000, 'fourthPromise');
+
+            //upon completion of each asynchronous call, the count variable is incremented
+            firstPromise.always(function () { deferred.notify(++count); });
+            secondPromise.always(function () { deferred.notify(++count); });
+            thirdPromise.always(function () { deferred.notify(++count); });
+            fourthPromise.always(function () { deferred.notify(++count); });
+
+            $.when(firstPromise, secondPromise, thirdPromise, fourthPromise)
+                .then(function () {
+                    alert('done');
+                    deferred.resolve();
+                }, function () {
+                    deferred.reject();
+                });
+            return deferred.promise();
+        }
+
+        function executeStartAsync() {
+            var promise = startAsync();
+            //The promise object has a progress method that accepts a function which is called when the notify method is executed.
+            promise.progress(function (msg) {
+                console.log('progress ' + msg);
+            });
+            return promise;
+        }
+
+        $(function () {
+            console.log('jQuery running...');
+            $('#btnExecuteAsync').click(executeStartAsync);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+﻿<!DOCTYPE html>
+<html lang="en-ca">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        p   {
+            display:inline-table;
+        }
+        p:first-child   {
+            display:block;
+        }
+        p:after {
+            content:" --- ";
+        }
+        p:nth-child(4n+5)::after   {
+           //content:
+        }
+        p:last-child::after {
+            content:none;
+        }
+    </style>
+    <script>
+        var functAssignedToVar = function () {
+            //it is valid to create a variable name with _ as first character
+            //it is best practice not to use underscore in variable names
+            var _isUnderscoreStartValid;
+            _isUnderscoreStartValid = "yes!";
+
+            console.log("scripts running...");
+            console.log(_isUnderscoreStartValid);
+        }
+        function calculateVehicleAge() {
+            var vehicleYear = prompt("Vehicle year?", "");
+            var currentYear = 2015;
+            //vehicleYear is currently a string type
+            //in the alert we perform the conversion of vehicleYear to a Number type, then perform the calculation
+            //wrap the calculation in parantheses to ensure the calculation is performed then concatenated to the string
+            //in effect we cast a string (vehicleYear) to a number, execute an expression (currentYear - Number(vehicleYear)
+            //then convert the result of that expression into a string which is concatenated to the rest of the alert string
+            alert("Your vehicle is " + (currentYear - Number(vehicleYear)) + " years old.");
+            if (!isNaN(vehicleYear)) {  //could be written - if(!vehicleYear == NaN)
+                evaluateTax();
+                alert("Total due = tax * 1.21 = " + amountDue);
+            }
+            function evaluateTax() {
+                //this is an example of a function that is local to the calculatVehicle function
+                //this function cannot be called from outside the calculateVehicle function
+
+                var tax = 0;    //this variable is only available within this function block
+                //note that the vehicleYear variable is available in this block
+                if (vehicleYear < 1990) {
+                    tax = 25;   //vintage car tax applies
+                }
+                else if (vehicleYear < 2010) {
+                    tax = 250;  //normal tax applies
+                }
+                else {
+                    tax = 100;  //newer car tax applies
+                }
+                alert("Tax due = " + tax);
+                amountDue = tax * 1.21 //without the 'var' keyword, the amoutDue variable is global and is therefore available to the parent function
+            }
+        }
+
+        function castStrings() {
+            var num1 = Number(prompt("Enter a number1", "50"));
+            var num2 = Number(prompt("Enter a number2", "100"));
+            var total = num1 + num2;
+
+
+            alert("The value of those two numbers added = " + total);
+
+            //
+            alert("Add those numbers in an expression within an alert, then concatenate the result to the alert string = " + (num1 + num2));
+
+            alert("Without placing the \"num1 + num2\" expression in parantheses, the values are simply converted to individual astings and concatenated to the alert string = " + num1 + num2);
+
+            //finaly convert the numbers to strings
+            var numStr = String(num1) + String(num2);
+            alert("The numbers have been converted to Strings and concatenated, the resulting string is placed in a varialbe and that variable is concatenated to this alert string: " + numStr);
+
+            //the original variables still exist as number types however!
+            alert("Finally, to demonstate that the original variables still exist as Number types, perform a multiplication expression in the alert then concatenate the result to the string " + (num1 * num2));
+        }
+
+        function switchThing() {
+            var age = Number(prompt("Enter an age", "102"));
+            var resultString = "";
+            if (!isNaN(age))
+                switch (true) {
+                    case (!isNaN(age)):
+                        resultString += "Age is a number value. ";
+                        //break;
+                    case (age > 18):
+                        resultString += "\nAbove age of majority. ";
+                        //break;
+                    case (age > 75):
+                        resultString += "\nTime for a bus pass grandad!"
+                        break;
+                    case (age > 100):
+                        //this line will not be appended due to the break in the case above
+                        resultString += "\nBirthday card from the President"
+                }
+            else
+                resultString = "You entered a non-numberic (NaN) value";
+            console.log(resultString);
+        }
+
+        function nullAndUndefined() {
+            //an undefined variable is one that has never had a value assigned
+            var thisIsUndefined;
+            console.log("the value of thisIsUndefined = " + thisIsUndefined);
+
+            //a null variable is one that has been declared to have a value of null
+            var thisIsNull = 24 + 12;
+            thisIsNull = null;
+            console.log("thisIsNull value = " + thisIsNull);
+
+            //undefined and null evaluate as equal
+            if (thisIsUndefined == thisIsNull)
+                console.log("thisIsUndefined == thisIsNull")
+
+            //if(myVar) will return false if the value of myVar == undefined, null, 0, NaN or ""
+            var myVar;
+            evaluateMyVar();
+
+            myVar = null;
+            evaluateMyVar();
+
+            myVar = 0;
+            evaluateMyVar();
+
+            myVar = NaN;
+            evaluateMyVar();
+
+            myVar = "";
+            evaluateMyVar();
+
+            myVar = " ";    //note ther difference between an empty string and a string with a space " "
+            evaluateMyVar();    //this will evalaute as true and display the "You should not see this message" output
+
+
+            function evaluateMyVar() {
+                console.log("evaluating myVar - you should see no further output...")
+                if (myVar)
+                    console.log("You should not see this message");
+            }
+        }
+
+        function andOrChaining() {
+            var customer = prompt('Please enter your name');
+            var companyName = prompt('Please enter your company name');
+            //if customer evaluates to false (i.e. - does not have value), javascript then evaluates companyName
+            //if companyName is false (null, "", 0, NaN, undefined) it evaluates the default value ('Valued Customer')
+            //'Valued Customer' obviously has value and is therefore returned
+            alert('Hello ' + (customer || companyName || 'Valued Customer'));
+        }
+
+        function evaluatingTypes() {
+            //JavaScript attempts to convert the operands to types that are compatible before performing the equality check.
+            //However, you might want these expressions to evaluate as false because the types are different.
+            var outputString = "Below we use the equals operator (==) to check equality with some surprising results;\n";
+            switch (true) {
+                case (null == undefined):
+                    outputString += "null == undefined";
+                case (false == 0):
+                    outputString += "\nfalse == 0";
+                case ('' == 0):
+                    outputString += "\n\'\' == 0";
+                case ('123' == 123):
+                    outputString += "\n\'123\' == 123";
+                default:
+                    outputString += "\nHard to believe but the above statements all evaluate as true"
+                    console.log(outputString);
+                    break;
+            }
+
+            outputString = "Below we use the === and !== operators to evaluate type;\n\n";
+            switch (true) {
+                case (null === undefined):
+                    //null === undefined is not true, they are different types
+                case (null !== undefined):
+                    outputString += "null !== undefined: - null is NOT the same type as undefined";
+                    outputString += "\ntypeof(null) = " + typeof (null) + " : typeof(undefined) = " + typeof (undefined);
+                case (false === 0):
+                    //false===0 is not true
+                case (false !== 0):
+                    outputString += "\n\nfalse!==0: - false is NOT the same type as 0";
+                    outputString += "\ntypeof(0) = " + typeof (0) + " : typeof(false) = " + typeof (false);
+                case ('' === 0):
+                    //false - '' === 0 is not truthful
+                case ('' !== 0):
+                    outputString += "\n\n\'\' !== 0: - \'\' is NOT the same type as 0";
+                    outputString += "\ntypeof('') = " + typeof ('') + " : typeof(0) = " + typeof (0);
+                case ('123' === 123):
+                    //no way jose!!!
+                case ('123' !== 123):
+                    outputString += "\n\n\'123\'!==123: - \'123\' is NOT the same type as 123";
+                    outputString += "\ntypeof('123') = " + typeof ('123') + " : typeof(123) = " + typeof (123);
+                    console.log(outputString);
+                    break;
+            }
+        }
+
+        function testPrimeNumber() {
+            //this function accepts a number as an argument, then tests if it is a prime number
+            //when the loop determines it is not a prime number, there is no point completing the loop 
+            //we use the 'break' keyword to exit the loop
+            //
+            //a prime number is a whole number greater than 1 whose only two whole-number factors are 1 and itself
+            //2,3,5,7,11,3,17,19,23,29 are example of a prime number
+            //
+            var numberToTest = Number(prompt('Type number here.', ''));
+            var index = 2;
+            var isPrime = true;
+            while (index < numberToTest) {
+                if (numberToTest % index == 0) {
+                    isPrime = false;
+                    break;
+                }
+                index++;
+            }
+            if (isPrime) {
+                alert(numberToTest + ' is a prime number');
+            }
+            else {
+                alert(numberToTest + ' is not a prime number because it is divisible by ' + index);
+            }
+        }
+
+        function tryCatchFinally() {
+            //I was unaware the try-catch-finally sequence was available in JavaScript!!!
+            try {
+                //call to a non-existant function
+                nonFunction();
+                console.log("this line will not write to console if the exception is thrown - i.e. execution will pass to the catch block immediately");
+            } catch (e) {
+                console.log("we have caught the exception - let's see if there is any information regarding the exception in the \'e\' object;\ne.description = " + e.description + "\ne.message = " + e.message + "\ne.name = " + e.name + "\ne.number = " + e.number + "\ne.stack = " + e.stack + "\ne.toString() = " + e.toString());
+            }
+            finally 
+            {
+                console.log("finally block is executed whether exception is thrown or not!");
+            }
+
+            //uncomment this function to see how code execution occurs when there is no exception to catch
+            //function nonFunction()   {
+            //    console.log("nonFunction() is running...\nno exceptions should be thrown...");
+            //}
+        }
+
+    </script>
+</head>
+<body onload="functAssignedToVar();">
+    <p>Open the console, that's where the action is at!</p>
+    <p><a href="javascript:calculateVehicleAge();">Calculate vehicle age</a></p>
+    <p><a href="javascript:evaluateTax();">This link will throw a JavaScript exception</a></p>
+    <p><a href="javascript:castStrings();">Convert numbers to strings</a></p>
+    <p><a href="javascript:switchThing();">Switch</a></p>
+    <p><a href="javascript:nullAndUndefined();">undefined and null variables</a></p>
+    <p><a href="javascript:andOrChaining();">Chaining || expressions</a></p>
+    <p><a href="javascript:evaluatingTypes();">Evaluating types</a></p>
+    <p><a href="javascript:testPrimeNumber();">Break out of a loop</a></p>
+    <p><a href="javascript:tryCatchFinally();">Try-catch-finally</a></p>
+</body>
+</html>

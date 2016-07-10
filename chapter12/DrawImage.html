@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Draw Image on Canvas</title>
+    <link href="../styles.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-2.2.3.js"></script>
+</head>
+<body>
+    <h1>Draw Image on Canvas</h1>
+    <canvas height="330" width="1000" id="canvas"></canvas>
+
+    <script>
+        var canvas, context;
+        (function () {
+            canvas = document.getElementById('canvas');
+            context = canvas.getContext('2d');
+
+            drawImage();
+            
+
+        }());
+
+        function drawImage() {
+            var image = new Image();
+            image.src = '../Content/Images/PatternRepeat.png';
+            image.onload = function () {
+                context.drawImage(image, 0, 0);
+                //wait until the image is loaded and drawn before calling the items to go over it
+                drawText();
+            }
+        }
+
+        function drawText() {
+            context.beginPath();
+            context.font = 'bold 24px Arial';
+            context.fillText("Oh look - I can write over my image", 20, 120, 200);
+        }
+    </script>
+
+
+</body>
+</html>

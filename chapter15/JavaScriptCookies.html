@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <form id="formCookies">
+        <input type="text" required="required" id="txtUserName" placeholder="Enter a username" />
+        <br />
+        <input type="submit" id="btnStoreCookie" value="Store Cookie" />
+        <br />
+        <button id="btnRetrieveCookie" type="button">Retrieve Cookie</button>
+        <br />
+        <span id="spanCookieValue"></span>
+    </form>
+
+    <script>
+        (function () {
+            console.log('JavaScript running...');
+
+            var storeCookie = function (e) {
+                e.preventDefault();
+                var text = document.getElementById('txtUserName').value;
+                console.log('txt = ' + text);
+                if (text !== null && text !== "") {
+                    document.cookie = 'UserName=' + text;
+                }
+                
+            };
+            //document.getElementById('btnStoreCookie').addEventListener('click', storeCookie, false);
+            document.getElementById('formCookies').addEventListener('submit', storeCookie, false);
+
+            var retrieveCookie = function () {
+                console.log('retrieveCookie running...');
+                if (document.cookie.length > 0) {
+
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var index = cookies[i].lastIndexOf('=');
+                        if (cookies[i].substring(0,index).toUpperCase() == "USERNAME") {
+                            var cusername = cookies[i];
+                            document.getElementById('spanCookieValue').innerText = 'Retrieved cookie:' + cusername;
+                        }
+                    }
+                }
+            }
+            document.getElementById('btnRetrieveCookie').addEventListener('click', retrieveCookie, false);
+        }());
+    </script>
+</body>
+</html>

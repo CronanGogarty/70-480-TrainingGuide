@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Basic Websockets</title>
+</head>
+<body>
+    <h1>Basic Websockets</h1>
+
+    <p>WebSocket connects on page load<br />Click button to send message.<br />Open console to see output.</p>
+
+    <button id="btnSendMessage">Send Message</button>
+
+    <script type="text/javascript">
+        var wsUri = 'ws://echo.websocket.org';
+        var webSocket;
+
+        (function () {
+            console.log('JavaScript running....');
+
+            if (window.WebSocket) {
+                console.log('WebSockets supported');
+                connect();
+                document.getElementById('btnSendMessage').addEventListener('click', function () {
+                    if (webSocket.readyState != WebSocket.OPEN) {
+                        alert('webSocket disconnected');
+                    }
+                    else {
+                        webSocket.send('echo this');
+                        console.log('WebSocket message sent');
+                    }
+                }, false);
+            }
+            else {
+                console.log('WebSockets not supported');
+            }
+        }());
+
+        function connect() {
+            webSocket = new window.WebSocket(wsUri);
+            webSocket.onopen = function (evt) {
+                console.log('WebSocket connected');
+            }
+            webSocket.onclose = function () { console.log('WebSocket disconnected') };
+            webSocket.onmessage = function (evt) { console.log('WebSocket response = ' + evt.data) };
+            webSocket.onerror = function (evt) { console.log('WebSocket error = ' + evt.error) };
+        }
+        
+    </script>
+</body>
+</html>

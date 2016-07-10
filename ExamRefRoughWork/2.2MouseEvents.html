@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        #hotzone {
+            width: 500px;
+            height: 200px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="hotzone">
+
+    </div>
+
+    <div id="xycoords">
+
+    </div>
+
+    <script>
+        (function () {
+            var output = document.getElementById('xycoords');
+            document.getElementById('hotzone').addEventListener('mousemove', function (e) {
+                output.innerHTML = "X: " + e.clientX + "<br />Y: " + e.clientY;
+            }, false);
+        }());
+    </script>
+</body>
+</html>

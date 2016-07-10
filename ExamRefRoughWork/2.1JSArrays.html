@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <p>Open console to see results!</p>
+    <script>
+        (function () {
+
+            //Array.concat - returns a new array
+            var sports = new Array('football', 'cricket', 'rugby', 'tennis', 'badminton');
+            var moreSports = new Array('soccer', 'basketball', 'hockey');
+            var combinedSports = sports.concat(moreSports); //returns a new array
+            //console.log('----------------------------------------------------------------------------');
+
+            console.log("Array is a typeOf: " + typeof (moreSports));
+            console.log('var sports = ' + sports.toString());
+            console.log('var moreSports = ' + moreSports.toString());
+            console.log('var combinedSports = sports.concat(moreSports) = ' + combinedSports.toString());
+            console.log('----------------------------------------------------------------------------');
+
+            var index = sports.indexOf('football', 0); // The indexOf method accepts two parameters: what to search for and the index at which to begin searching
+            console.log('indexOf \'football\' = ' + index);
+            console.log('----------------------------------------------------------------------------');
+
+            var sports = new Array('soccer', 'basketball', 'hockey', 'football', 'cricket', 'rugby', 'tennis', 'badminton');
+            var joined = sports.join('* '); //The result is a string
+            console.log('Array = ' + sports);
+            console.log('Array.join(\'* \') = ' + joined);
+            console.log('----------------------------------------------------------------------------');
+
+            console.log('Array.reverse() = ' + sports.reverse());
+            console.log('Array.sort() = ' + sports.sort()); //The sort method sequences the items in the array in ascending order. 
+            console.log('----------------------------------------------------------------------------');
+
+            /*
+            The slice method takes two parameters: the indexes where the slice operation should begin and end.
+            this method returns a new array
+            The original arry is not altered - think of slice as copying elements from an array to a new array
+            */
+            var someSports = sports.slice(1, 2);    
+            console.log('Array \'sports\' = ' + sports.toString());
+            console.log('Array someSports = sports.slice(1, 2) = ' + someSports.toString());
+            console.log('now Array \'sports\' = ' + sports.toString());
+            console.log('----------------------------------------------------------------------------');
+
+            
+            var sports = new Array('soccer', 'basketball', 'hockey', 'football', 'cricket', 'rugby', 'tennis', 'badminton');
+            console.log('var sports = ' + sports.toString());
+            var splicedItems = sports.splice(1, 3, 'golf', 'curling', 'darts');
+            /*
+            The splice method returns an array containing the items that are spliced out of the source array. 
+            The first parameter is the index in the array where the splice operation should start.
+            The second parameter is the number of items to splice, starting from the index specified 
+            in the first parameter. The optional last parameter lists items that are to replace the 
+            items being spliced out.
+            If the last parameter is omitted, the spliced items are simply removed from the array and not replaced.
+
+
+            */
+            console.log('var splicedItems = sports.splice(1, 3, \'golf\', \'curling\', \'darts\') = new array = ' + splicedItems.toString());
+            console.log('now var sports has been altered by the splice method = ' + sports.toString());
+
+            console.log('----------------------------------------------------------------------------');
+            console.log('pop, push, shift, unshift');
+
+            var sports = new Array();
+            sports.push('soccer', 'basketball', 'hockey');
+            console.log('var sports = ' + sports.toString());
+            sports.push('football');
+            console.log('sports.push(\'football\') = ' + sports.toString());
+
+            var nextSport = sports.pop();
+            console.log('var nextSport = sports.pop() = ' + nextSport);
+            console.log('var sports = ' + sports.toString());
+            console.log('----------------------------------------------------------------------------');
+
+            var sports = new Array();
+            sports.unshift('soccer', 'basketball', 'hockey');
+            console.log('var sports = ' + sports.toString());
+            sports.unshift('football');
+            console.log('sports.unshift(\'football\') = ' + sports.toString())
+            var nextSport = sports.shift();
+            console.log('var nextSport = sports.shift() = ' + nextSport);
+            console.log('var sports = ' + sports.toString());
+
+        }());
+    </script>
+</body>
+</html>

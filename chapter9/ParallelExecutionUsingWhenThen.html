@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Parallel Execution Using $.when() and $.then</title>
+    <link href="../styles.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-2.2.3.js"></script>
+</head>
+<body>
+    <h1>Parallel Execution Using $.when() and $.then</h1>
+    <p>You can use the $.when() method to indicate completion of multiple asynchronous operations. The $.when() method is non-blocking, so it’s usually used with a deferred object. In the following example, the previous example is rewritten to run all four operations in parallel.</p>
+    <p>Open console to view thread execution messages.</p>
+    <button id="btnExecuteAsync">Start Async Execution</button>
+    <hr />
+<code>
+function timeoutAsync(milliseconds, caller) {
+    console.log(caller + 'timeoutAsync running...');
+    var deferred = $.Deferred();
+    setTimeout(function () { deferred.resolve(); }, milliseconds);
+    return deferred;
+}
+
+function startAsync() {
+    console.log('startAsync running...');
+    var deferred = $.Deferred();
+    var firstPromise = timeoutAsync(2000, 'firstPromise');
+    var secondPromise = timeoutAsync(2000, 'secondPromise');
+    var thirdPromise = timeoutAsync(2000, 'thirdPromise');
+    var fourthPromise = timeoutAsync(1230, 'fourthPromise');
+    $.when(firstPromise, secondPromise, thirdPromise, fourthPromise)
+        .then(function () {
+            alert('done');
+            deferred.resolve();
+        }, function () {
+            deferred.reject();
+        });
+    return deferred.promise();
+}
+
+$(function () {
+    console.log('jQuery running...');
+    $('#btnExecuteAsync').click(startAsync);
+});
+</code>
+
+    <script type="text/javascript">
+        function timeoutAsync(milliseconds, caller) {
+            console.log(caller + 'timeoutAsync running...');
+            var deferred = $.Deferred();
+            setTimeout(function () { deferred.resolve(); }, milliseconds);
+            return deferred;
+        }
+
+        function startAsync() {
+            console.log('startAsync running...');
+            var deferred = $.Deferred();
+            var firstPromise = timeoutAsync(2000, 'firstPromise');
+            var secondPromise = timeoutAsync(2000, 'secondPromise');
+            var thirdPromise = timeoutAsync(2000, 'thirdPromise');
+            var fourthPromise = timeoutAsync(1230, 'fourthPromise');
+            $.when(firstPromise, secondPromise, thirdPromise, fourthPromise)
+                .then(function () {
+                    alert('done');
+                    deferred.resolve();
+                }, function () {
+                    deferred.reject();
+                });
+            return deferred.promise();
+        }
+
+        $(function () {
+            console.log('jQuery running...');
+            $('#btnExecuteAsync').click(startAsync);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>navigator.geolocation watchLocation() method</title>
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+</head>
+<body>
+    <h1>The watchLocation() method</h1>
+
+    <div id="message">
+
+    </div>
+    <button id="startWatch">Start watchLocation()</button>
+    <br />
+    <button id="stopWatch">Stop watchLocation()</button>
+
+    <script type="text/javascript">
+        (function () {
+            console.log('JavaScript running...');
+
+            var start = document.getElementById('startWatch');
+            start.addEventListener('click', clickStart, false);
+            var stop = document.getElementById('stopWatch');
+            
+            var message = document.getElementById('message');
+            var id = null;
+            var options = {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 15000 
+                };
+
+            function locationSuccess(position) {
+                message.innerHTML = "Location found<br />Latitude:" + position.coords.latitude + "<br />Longitude:" + position.coords.longitude;
+            }
+
+            function locationError(error) {
+                switch (error.code) {
+                    case error.PERMISSION_DENIED:
+                        message.innerHTML = "Location denied";
+                        break;
+                    case error.TIMEOUT:
+                        message.innerHTML = "watchPosition() timed out";
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        message.innerHTML = "Position unavailable";
+                        break;                    
+                    default:
+                        message.innerHTML = "An unknown error occurred";
+                        break;
+                }
+            }
+
+            var clickStop = function () {
+                console.log('clickStop');
+                if (id!==null) {
+                    console.log('closeWatch running...');
+                    navigator.geolocation.clearWatch(id);
+                    message.innerHTML = 'watchLocation closed';
+                }
+                else {
+                    console.warn('id===null');
+                }
+                
+            }
+            stop.addEventListener('click', clickStop, false);
+            
+
+            function clickStart() {
+                id = navigator.geolocation.watchPosition(locationSuccess, locationError, options);
+                console.log(id);
+            }
+
+
+            
+        }());
+    </script>
+</body>
+</html>

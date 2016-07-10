@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <input type="text" id="txtFname" placeholder="Firstname:" autocomplete="on" /><br />
+    <input type="text" id="txtLname" placeholder="Lastname:" autocomplete="on" />
+    <br />
+    <button id="btnAddToSessionStorage" type="button">Add to Session Storage</button>&nbsp;<button id="btnAddToLocalStorage" type="button">Add to Local Storage</button>
+    <br />
+    <button id="btnGetSessionStorage" type="button">Get data from sessionStorage</button>&nbsp;<button id="btnGetLocalStorage" type="button">Get data from local storage</button>
+    <div id="divSessionData"></div>
+    <div id="divLocalData"></div>
+    <br />
+    <button type="button" id="btnClearData">Clear Data from Local Storage</button>
+
+    <script>
+        (function () {
+            var result;
+
+            function readInput() {
+                var fname = document.getElementById('txtFname').value;
+                var lname = document.getElementById('txtLname').value;
+                var person = { firstName: fname, lastName: lname };
+                return person;
+            }
+
+            document.getElementById('btnClearData').addEventListener('click', function () {
+                if (localStorage.length > 0 ) {
+                    localStorage.clear();
+                    document.getElementById('divSessionData').innerHTML = 'LocalStorage cleared';
+                }
+            }, false);
+
+            document.getElementById('btnAddToSessionStorage').addEventListener('click', function () {
+                if (txtFname.value && txtLname.value) {
+                    var person = readInput();
+
+                    window.sessionStorage.setItem('personObject', JSON.stringify(person));
+                    console.log(JSON.stringify(person) + " was added to sessionStorage");
+                }
+            }, false);
+
+            document.getElementById('btnAddToLocalStorage').addEventListener('click', function () {
+                if (txtFname.value && txtLname.value) {
+                    var person = readInput();
+
+                    window.localStorage.setItem('personObject', JSON.stringify(person));
+                    console.log(JSON.stringify(person) + " was added to localStorage");
+                }
+            }, false);
+
+            document.getElementById('btnGetSessionStorage').addEventListener('click', function () {
+                if (sessionStorage.length > 0) {
+                    try {
+                        var key = sessionStorage.key(0, 'session');
+                        result = readData(key);
+                    }
+                    catch(error){
+                        result = error.message;
+                    }
+                    finally{
+                        document.getElementById('divSessionData').innerHTML = result;
+                    }
+                }
+            }, false);
+
+            document.getElementById('btnGetLocalStorage').addEventListener('click', function () {
+                console.log('here...');
+                document.getElementById('divLocalData').innerHTML = "";
+                if (localStorage.length > 0) {
+                    for (var i = 0; i < localStorage.length; i++) {
+                        try {
+                            var key = localStorage.key(i);
+                            result += readData(key, 'local');
+                        }
+                        catch (error) {
+                            result = error.message;
+                        }
+                        finally {
+                            
+                        }
+                    }
+                    document.getElementById('divLocalData').innerHTML = result;
+                }
+            }, false);
+
+            function readData(key, type) {
+                if (type == 'local') {
+                    var data = localStorage.getItem(key);
+                }
+                else {
+                    var data = sessionStorage.getItem(key);
+                }
+                try {
+                    JSON.parse(data);
+                } catch (e) {
+
+                }
+                return data;
+            }
+        }());
+    </script>
+</body>
+</html>

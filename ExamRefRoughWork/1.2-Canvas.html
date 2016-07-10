@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style>
+        canvas  {
+            border:1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="1000" height="400"></canvas>
+
+    <script>
+        var canvas = document.getElementById('canvas');
+        var ctxt = canvas.getContext('2d');
+
+        ctxt.rect(0, 0, 1000, 400);
+        var gradient = ctxt.createLinearGradient(0, 0, 1000, 0);
+        gradient.addColorStop(0, "Black");
+        gradient.addColorStop(0.5, "Gray");
+        gradient.addColorStop(1, "White");
+        ctxt.fillStyle = gradient;
+        ctxt.fill();
+
+        var gradient = ctxt.createRadialGradient(200, 200, 5, 250, 250, 100);
+        gradient.addColorStop(0, "Red");
+        gradient.addColorStop(.5, "Orange");
+        gradient.addColorStop(1, "Blue");
+        ctxt.fillStyle = gradient;
+        ctxt.fillRect(150, 150, 300, 200);
+        ctxt.stroke();
+
+        ctxt.beginPath();
+        ctxt.arc(150, 100, 75, 0, Math.PI, true);
+        ctxt.lineWidth = 25;
+        ctxt.strokeStyle = '#0f0';
+        ctxt.stroke();
+
+        ctxt.beginPath();
+        ctxt.arc(225, 100, 75, 0, Math.PI, false);
+        ctxt.lineWidth = 25;
+        ctxt.strokeStyle = '#0f0';
+        ctxt.stroke();
+
+        ctxt.beginPath();
+        ctxt.arc(375, 100, 75, 0, Math.PI, true);
+        ctxt.lineWidth = 25;
+        ctxt.strokeStyle = '#0f0';
+        ctxt.stroke();
+
+        ctxt.beginPath();
+        ctxt.arc(450, 150, 75, .5 * Math.PI, 1 * Math.PI, false);
+        ctxt.lineWidth = 25;
+        ctxt.strokeStyle = '#f00';
+        ctxt.stroke();
+
+        ctxt.beginPath();
+        ctxt.moveTo(10, 380);
+        ctxt.quadraticCurveTo(500, -250, 580, 380); //x,y "control point" - x,y end point of curve 
+        ctxt.lineWidth = 25;
+        ctxt.strokeStyle = '#f00';
+        ctxt.stroke();
+
+        ctxt.beginPath();
+        ctxt.moveTo(600, 20);
+        ctxt.bezierCurveTo(1400, 200, 400, 300, 900, 375);
+        ctxt.lineWidth = 5;
+        ctxt.strokeStyle = '#0ff';
+        ctxt.stroke();
+
+        ctxt.font = "24px arial";
+        ctxt.textAlign = "center";
+        ctxt.fillStyle = "White";
+        ctxt.fillText("Text with altered colored font Centered.", canvas.width / 2,
+        canvas.height / 2);
+
+
+    </script>
+</body>
+</html>

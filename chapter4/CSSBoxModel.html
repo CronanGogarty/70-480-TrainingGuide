@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        CSS Box Model|Chapter 4:Getting Started With CSS
+    </title>
+    <style type="text/css">
+        #divContainerBox {
+            background-color: hsla(230, 100%, 60%, 0.4);
+            width: 300px;
+            border: 50px solid #f00;
+            padding: 50px;
+            margin: 50px;
+        }
+
+        .contentBox {
+            -moz-box-sizing: content-box;
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+        }
+
+        .borderBox {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .paddingBox {
+            -moz-box-sizing: padding-box;
+            -webkit-box-sizing: padding-box;
+            box-sizing: padding-box;
+        }
+    </style>
+
+</head>
+<body>
+<p>
+<pre>
+    background-color: hsla(230, 100%, 60%, 0.4);
+    width: 300px;
+    border: 50px solid #f00;
+    padding: 50px;
+    margin: 50px;
+</pre>
+</p>
+    <div id="divContainerBox">
+        <p>
+            This is a box<br />
+            It has content, padding, a border and a margin<br />
+            <span id="spanBoxSizing"></span>
+        </p>
+    </div>
+    <input type="button" value="Border-box" id="cmdBorderBox" />
+    &nbsp;
+    <input type="button" value="Content-box" id="cmdContentBox" />
+    &nbsp;
+    <input type="button" value="Padding-box" id="cmdPaddingBox" />
+
+    <script type="text/javascript">
+        document.getElementById("cmdBorderBox").addEventListener('click', setBorderBox, false);
+        document.getElementById("cmdContentBox").addEventListener('click', setContentBox, false);
+        document.getElementById("cmdPaddingBox").addEventListener('click', setPaddingBox, false);
+
+        var containerBox = document.getElementById('divContainerBox');
+        var spanBoxSizing = document.getElementById('spanBoxSizing');
+
+        function setBorderBox() {
+            containerBox.classList.add('borderBox');
+            containerBox.classList.remove('contentBox');
+            containerBox.classList.remove('paddingBox');
+            spanBoxSizing.innerText = "box-sizing:border-box";
+        }
+
+        function setContentBox() {
+            containerBox.classList.add('contentBox');
+            containerBox.classList.remove('borderBox');
+            containerBox.classList.remove('paddingBox');
+            spanBoxSizing.innerText = "box-sizing:content-box";
+        }
+
+        function setPaddingBox() {
+            containerBox.classList.add('paddingBox');
+            containerBox.classList.remove('borderBox');
+            containerBox.classList.remove('contentBox');
+            spanBoxSizing.innerText = "box-sizing:padding-box";
+        }
+    </script>
+</body>
+</html>

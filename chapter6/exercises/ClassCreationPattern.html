@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="scripts/ClassCreationPattern.js"></script>
+    <style>
+        button  {
+            width:200px;
+            margin-bottom:10px;
+            display:block;
+        }
+    </style>
+</head>
+<body>
+    <button id="btnCreateClass">getClassInfo()</button>
+    <button id="btnAccelerate">accelerate()</button>
+    <script>
+        var myClass = new ClassHolder('memberOne', 'funktionOne');
+
+        document.getElementById('btnCreateClass').addEventListener('click', getClassInfo, false);
+        document.getElementById('btnAccelerate').addEventListener('click', goFaster, false);
+
+        function goFaster() {
+            alert(myClass.accellerate());
+        }
+
+        function getClassInfo() {
+            alert(myClass.getInfo());
+        }
+    </script>    
+</body>
+</html>
